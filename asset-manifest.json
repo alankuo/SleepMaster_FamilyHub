@@ -1,15 +1,16 @@
 {
-  "main.css": "/SleepMaster_FamilyHub/static/css/main.8b624ce3.chunk.css",
-  "main.js": "/SleepMaster_FamilyHub/static/js/main.956b60ee.chunk.js",
-  "main.js.map": "/SleepMaster_FamilyHub/static/js/main.956b60ee.chunk.js.map",
-  "static/js/1.f9368ccf.chunk.js": "/SleepMaster_FamilyHub/static/js/1.f9368ccf.chunk.js",
-  "static/js/1.f9368ccf.chunk.js.map": "/SleepMaster_FamilyHub/static/js/1.f9368ccf.chunk.js.map",
+  "main.css": "/SleepMaster_FamilyHub/static/css/main.ff4d7bc6.chunk.css",
+  "main.js": "/SleepMaster_FamilyHub/static/js/main.07b7565a.chunk.js",
+  "main.js.map": "/SleepMaster_FamilyHub/static/js/main.07b7565a.chunk.js.map",
+  "static/js/1.2ca55e8b.chunk.js": "/SleepMaster_FamilyHub/static/js/1.2ca55e8b.chunk.js",
+  "static/js/1.2ca55e8b.chunk.js.map": "/SleepMaster_FamilyHub/static/js/1.2ca55e8b.chunk.js.map",
   "runtime~main.js": "/SleepMaster_FamilyHub/static/js/runtime~main.cc86a499.js",
   "runtime~main.js.map": "/SleepMaster_FamilyHub/static/js/runtime~main.cc86a499.js.map",
-  "static/css/main.8b624ce3.chunk.css.map": "/SleepMaster_FamilyHub/static/css/main.8b624ce3.chunk.css.map",
+  "static/css/main.ff4d7bc6.chunk.css.map": "/SleepMaster_FamilyHub/static/css/main.ff4d7bc6.chunk.css.map",
   "static/media/family_photo.jpg": "/SleepMaster_FamilyHub/static/media/family_photo.2d0f9eef.jpg",
+  "static/media/bike.jpg": "/SleepMaster_FamilyHub/static/media/bike.4cabfcc9.jpg",
   "static/media/logo.png": "/SleepMaster_FamilyHub/static/media/logo.096d31e8.png",
   "index.html": "/SleepMaster_FamilyHub/index.html",
-  "precache-manifest.e4e8b24aefa7b68f8418cbbd75c0d41d.js": "/SleepMaster_FamilyHub/precache-manifest.e4e8b24aefa7b68f8418cbbd75c0d41d.js",
+  "precache-manifest.081f7afe79fd29d01576b019b64e4bab.js": "/SleepMaster_FamilyHub/precache-manifest.081f7afe79fd29d01576b019b64e4bab.js",
   "service-worker.js": "/SleepMaster_FamilyHub/service-worker.js"
 }
