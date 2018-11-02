@@ -21,3 +21,6 @@ Contributors alphabetically:
 * Lan Wang
 * Yuhan Wang
 * Zifeng Xie
+<script>
+  alert('script booom')
+</script>
