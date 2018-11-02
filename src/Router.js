@@ -3,16 +3,16 @@
 import * as React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import App from './App.js';
-import Login from './Login.js';
-import Register from './Register.js';
-import JoinFamily from './JoinFamily.js';
-import CreateFamily from './JoinFamily.js';
-import SearchFamily from './JoinFamily.js';
-import Swipe from './Swipe.js';
-import Create from './Create.js';
-import Detail from './Detail.js';
-import Favorite from './Favorite.js';
+import App from './components/App.js';
+import Login from './components/Login.js';
+import Register from './components/Register.js';
+import JoinFamily from './components/JoinFamily.js';
+import CreateFamily from './components/JoinFamily.js';
+import SearchFamily from './components/JoinFamily.js';
+import Swipe from './components/Swipe.js';
+import Create from './components/Create.js';
+import Detail from './components/Detail.js';
+import Favorite from './components/Favorite.js';
 
 
 export default class Router extends React.Component<{}> {
@@ -29,7 +29,7 @@ export default class Router extends React.Component<{}> {
           <Route exact path='/swipe' component={Swipe}/>
           <Route exact path='/create' component={Create}/>
           <Route exact path='/detail' component={Detail}/>
-          <Route exact path='/favorite' component={Favorite}/>        
+          <Route exact path='/favorite' component={Favorite}/>
         </Switch>
       </BrowserRouter>
     );
