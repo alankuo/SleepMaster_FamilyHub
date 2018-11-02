@@ -22,14 +22,14 @@ export default class Router extends React.Component<{}> {
         <Switch>
           <Route exact path='/' component={App}/>
           <Route exact path='/login' component={Login}/>
-          {/* <Route exact path='/register' component={Register}/>
+          <Route exact path='/register' component={Register}/>
           <Route exact path='/register/join' component={JoinFamily}/>
           <Route exact path='/register/create' component={CreateFamily}/>
           <Route exact path='/register/search' component={SearchFamily}/>
           <Route exact path='/swipe' component={Swipe}/>
           <Route exact path='/create' component={Create}/>
           <Route exact path='/detail' component={Detail}/>
-          <Route exact path='/favorite' component={Favorite}/> */}
+          <Route exact path='/favorite' component={Favorite}/>
         </Switch>
       </main>
     );
