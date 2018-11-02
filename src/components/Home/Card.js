@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 
 const navigation=['/discover-event', '/create-event', '/favorite-event']
 const icons = [searchIcon, addIcon, favorite];
+const texts = ['Explore Events', 'Create Events', 'Favorite Events']
 const styles = {
     card: {
         width:'100%',
@@ -32,9 +33,12 @@ class Card extends Component {
     render() {
         return (
             <div style={styles.card}>
-                <div style={styles.iconSection}>
-                    <Link to={`${navigation[this.props.icon]}`}><img src={icons[this.props.icon]} style={styles.icon} /></Link>
-                </div>
+                <Link to={`${navigation[this.props.icon]}`}>
+                    <div style={styles.iconSection}>
+                        <img src={icons[this.props.icon]} style={styles.icon} />
+                        <h1>{texts[this.props.icon]}</h1>
+                    </div>
+                </Link>
             </div>
 
         );
