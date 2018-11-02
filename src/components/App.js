@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import Login from './Login'
+import { Link } from 'react-router-dom'
+
 
 class App extends Component {
   render() {
@@ -18,6 +21,8 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Link to='/login'>Back</Link>
+          <Login/>
         </header>
       </div>
     );
