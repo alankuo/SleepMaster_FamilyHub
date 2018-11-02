@@ -29,10 +29,10 @@ export default class NavBar extends React.Component {
           </div>
           <div id="navbar" className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
-              <li className={this.state.homeVal} style={{padding:16+"px", fontSize:18}}><Link to="/">Home</Link></li>
-              <li className={this.state.profileVal} style={{padding:16+"px", fontSize:18}}><Link to="/memories">Memory Album</Link></li>
-              <li className={this.state.chatVal} style={{padding:16+"px", fontSize:18}}><Link to="/settings">Settings</Link></li>
-              <li style={{padding:16+"px", fontSize:18}}><Link to="/login">Logout</Link></li>
+              <li className={this.state.homeVal} style={{padding:16+"px", fontSize:18, fontWeight:"bold"}}><Link to="/">Home</Link></li>
+              <li className={this.state.profileVal} style={{padding:16+"px", fontSize:18, fontWeight:"bold"}}><Link to="/memories">Memory Album</Link></li>
+              <li className={this.state.chatVal} style={{padding:16+"px", fontSize:18, fontWeight:"bold"}}><Link to="/settings">Settings</Link></li>
+              <li style={{padding:16+"px", fontSize:18, fontWeight:"bold"}}><Link to="/login">Logout</Link></li>
             </ul>
           </div>
         </div>

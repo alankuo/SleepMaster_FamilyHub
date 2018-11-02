@@ -6,13 +6,10 @@ class Login extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <p>
-            Let's Login!!
-          </p>
+        <div style={{padding:300+"px", fontSize:30}}>
+          <p style={{fontSize:40}}>Let's Log In!!!!!</p><br/>
           <Link to="/">Log In</Link>
-        </header>
+        </div>
       </div>
     );
   }
