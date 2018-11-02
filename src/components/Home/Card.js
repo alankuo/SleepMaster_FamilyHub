@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import searchIcon from '../../img/magnifier-tool.png';
-import addIcon from '../../img/add.png'
+import addIcon from '../../img/add.png';
+import favorite from '../../img/favorite.png';
+import {Link} from 'react-router-dom';
 
-
-const icons = [searchIcon, addIcon];
+const navigation=['/discover-event', '/create-event', '/favorite-event']
+const icons = [searchIcon, addIcon, favorite];
 const styles = {
     card: {
         width:'100%',
@@ -31,7 +33,7 @@ class Card extends Component {
         return (
             <div style={styles.card}>
                 <div style={styles.iconSection}>
-                    <img src={icons[this.props.icon]} style={styles.icon}/>
+                    <Link to={`${navigation[this.props.icon]}`}><img src={icons[this.props.icon]} style={styles.icon} /></Link>
                 </div>
             </div>
 

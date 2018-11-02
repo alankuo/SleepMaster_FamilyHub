@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
+
 const styles = {
     'cards': {
         width: '100%',
@@ -26,21 +27,17 @@ class Cards extends Component {
 
         <div className='container'>
         <ul className='row' style={styles.cards}>
-            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
+            <li className='col-xs-12 col-sm-6 col-md-6 col-lg-4' style={styles.card}>
 
-                <Card icon={1} />
+                <Card icon={2} />
             </li>
-            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
+            <li className='col-xs-12 col-sm-6 col-md-6 col-lg-4' style={styles.card}>
 
                 <Card icon={0} />
             </li>
-            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
+            <li className='col-xs-12 col-sm-6 col-md-6 col-lg-4' style={styles.card}>
 
-                <Card />
-            </li>
-            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
-
-                <Card />
+                <Card icon={1}/>
             </li>
 
 
