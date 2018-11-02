@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import Login from './Login'
 import { Link } from 'react-router-dom'
+import NavBar from './NavBar'
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <NavBar/>
         <header className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <p>
@@ -22,7 +23,6 @@ class App extends Component {
             Learn React
           </a>
           <Link to='/login'>Back</Link>
-          <Login/>
         </header>
       </div>
     );

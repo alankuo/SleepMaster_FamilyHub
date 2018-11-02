@@ -7,12 +7,14 @@ import App from './components/App.js';
 import Login from './components/Login';
 import Register from './components/Register.js';
 import JoinFamily from './components/JoinFamily.js';
-import CreateFamily from './components/JoinFamily.js';
-import SearchFamily from './components/JoinFamily.js';
+import CreateFamily from './components/CreateFamily.js';
+import Dashboard from './components/Dashboard.js';
 import Swipe from './components/Swipe.js';
 import Create from './components/Create.js';
-import Detail from './components/Detail.js';
-import Favorite from './components/Favorite.js';
+import EventDetails from './components/EventDetails.js';
+import FavoriteEvents from './components/FavoriteEvents.js';
+import Settings from './components/Settings.js'
+import Memories from './components/Memories.js'
 
 
 export default class Router extends React.Component<{}> {
@@ -23,13 +25,15 @@ export default class Router extends React.Component<{}> {
           <Route exact path='/' component={App}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
-          <Route exact path='/register/join' component={JoinFamily}/>
-          <Route exact path='/register/create' component={CreateFamily}/>
-          <Route exact path='/register/search' component={SearchFamily}/>
-          <Route exact path='/swipe' component={Swipe}/>
-          <Route exact path='/create' component={Create}/>
-          <Route exact path='/detail' component={Detail}/>
-          <Route exact path='/favorite' component={Favorite}/>
+          <Route exact path='/join-family' component={JoinFamily}/>
+          <Route exact path='/create-family' component={CreateFamily}/>
+          <Route exact path='/dashboard' component={Dashboard}/>
+          <Route exact path='/discover-event' component={Swipe}/>
+          <Route exact path='/create-event' component={Create}/>
+          <Route exact path='/event-detail' component={EventDetails}/>
+          <Route exact path='/favorite-event' component={FavoriteEvents}/>
+          <Route exact path='/memories' component={Memories}/>
+          <Route exact path='/settings' component={Settings}/>
         </Switch>
       </main>
     );

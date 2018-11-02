@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import App from './components/App'
-
 import AppRouter from './Router'
+
 ReactDOM.render(
   <BrowserRouter>
-    {/*<App />*/}
     <AppRouter history={BrowserRouter} routes={AppRouter} />
   </BrowserRouter>,
 document.getElementById('root'));

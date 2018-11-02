@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
   render() {
@@ -8,8 +9,9 @@ class Login extends Component {
         <header className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <p>
-            Yo baby!
+            Let's Login!!
           </p>
+          <Link to="/">Log In</Link>
         </header>
       </div>
     );
