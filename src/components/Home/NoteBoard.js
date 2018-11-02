@@ -17,10 +17,12 @@ const styles={
 class NoteBoard extends Component {
   render() {
     return (
-        <div style={styles.noteBoard}>
-            <textarea style={styles.textarea}>
 
-            </textarea>
+        <div style={styles.noteBoard}>
+          <p> Message Board</p>
+          <textarea style={styles.textarea} value = "Leave a message for your family!">
+          </textarea>
+          <input type="submit" value="Save" />
         </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import familyPhoto from '../../img/family.jpeg'
+import familyPhoto from '../../img/family_photo.jpg'
 import NoteBoard from './NoteBoard';
 import Cards from './Cards';
 
@@ -17,7 +17,7 @@ const styles = {
     },
     noteBoard: {
         width: '25%',
-        paddingTop: '5%',
+        paddingTop: '10%',
         height: '100%',
         boxSizing: 'border-box',
         float: 'left'
