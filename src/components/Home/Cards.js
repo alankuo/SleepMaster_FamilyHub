@@ -3,10 +3,8 @@ import Card from './Card';
 const styles = {
     'cards': {
         width: '100%',
-        maxWidth: '2000px',
         listStyle: 'none',
         margin: '0',
-        border: '1px solid black',
         padding: '0',
         boxSizing: 'border-box'
 
@@ -18,29 +16,38 @@ const styles = {
         boxSizing: 'border-box'
     },
     card: {
-        height: '800px',
-        padding: '0',
-        margin: '0'
+        height: '600px',
+        padding: '20px'
     }
 }
 class Cards extends Component {
   render() {
     return (
-        <ul class='container' style={styles.cards}>
-            <li class='row'>
-                <div class='col-sm-12 col-md-12 col-lg-4' style={styles.card} >
-                    <Card />
-                </div>
-                <div class='col-sm-12 col-md-12 col-lg-4' style={styles.card}>
-                    <Card />
-                </div>
-                <div class='col-sm-12 col-md-12 col-lg-4' style={styles.card}>
-                    <Card />
-                </div>
+
+        <div className='container'>
+        <ul className='row' style={styles.cards}>
+            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
+
+                <Card icon={1} />
+            </li>
+            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
+
+                <Card icon={0} />
+            </li>
+            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
+
+                <Card />
+            </li>
+            <li className='col-sm-12 col-md-6 col-lg-4' style={styles.card}>
+
+                <Card />
             </li>
 
 
+
+
         </ul>
+        </div>
 
 
     );
