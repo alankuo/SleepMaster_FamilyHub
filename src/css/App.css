@@ -1,34 +1,73 @@
-.App {
-  text-align: center;
+/* global */
+:root {
+  --login-bar-width: 500px;
+  --login-bar-margin: 325px;
+  --theme-color: #5F9EA0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body h1{
+	text-align: center;
+	font-size: 30px;
+}
+
+/* login */
+.welcome-msg{
+	margin-top: 100px;
+	font-size: 36px;
+}
+
+.login-bar {
+  width: var(--login-bar-width);
+	margin: 70px var(--login-bar-margin);
+}
+
+.login-header {
+	color: white;
+	background: var(--theme-color);
+	text-align: center;
+	border: 1px solid var(--theme-color);
+	border-bottom: none;
+	border-radius: 10px 10px 0px 0px;
+	padding: 20px;
+}
+
+form, .content {
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid #B0C4DE;
+  background: white;
+  border-radius: 0px 0px 10px 10px;
+	text-align: center;
+}
+
+.input-group {
+	margin: 30px 20px 10px 30px;
+}
+
+.input-group label {
+  font-size: 20px;
+	display: block;
+	text-align: left;
+}
+
+.input-group input {
+	width: 400px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.btn {
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  background: var(--theme-color);
+  margin-top: 40px;
+  margin-bottom: 20px !important;
 }
 
 * {

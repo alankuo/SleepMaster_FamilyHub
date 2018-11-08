@@ -22,7 +22,7 @@ import ReactDOM from 'react-dom';
 import {
   HashRouter,
 } from 'react-router-dom';
-import App from "./components/App";
+import './index.css';
 import AppRouter from './Router'
 import * as serviceWorker from './serviceWorker';
 
