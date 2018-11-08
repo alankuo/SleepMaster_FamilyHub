@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import eventPhoto from '../img/bike.jpg'
-import './App.js';
-import NavBar from './NavBar.js';
+import eventPhoto from '../../img/bike.jpg'
+import NavBar from '../NavBar.js';
 import {Link} from 'react-router-dom';
 
 class Swipe extends Component {

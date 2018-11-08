@@ -2,6 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import logo from "../img/logo.png"
 
+const styles = {
+  image: {
+    height: "15vw",
+    maxHeight: "80px",
+    display: "block",
+    marginLeft: "4%",
+    float: "left"
+
+  }
+}
+
 export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +28,7 @@ export default class NavBar extends React.Component {
   render(){
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
+        <Link to="/" className="navBar-logo"><img src={logo} alt="" style={styles.image}/></Link>
         <div className="container">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -25,7 +37,6 @@ export default class NavBar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link to="/"><img src={logo} alt="" style={{width:30+'%'}}/></Link>
           </div>
           <div id="navbar" className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">

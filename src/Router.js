@@ -7,7 +7,7 @@ import Register from './components/Register.js';
 import JoinFamily from './components/JoinFamily.js';
 import CreateFamily from './components/CreateFamily.js';
 import Dashboard from './components/Dashboard.js';
-import Swipe from './components/Swipe.js';
+import Swipe from './components/Swipe/Swipe.js';
 import Create from './components/Create.js';
 import EventDetails from './components/EventDetails.js';
 import FavoriteEvents from './components/FavoriteEvents.js';
