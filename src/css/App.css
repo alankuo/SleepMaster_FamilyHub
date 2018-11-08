@@ -16,6 +16,13 @@ body h1{
 	font-size: 30px;
 }
 
+footer{
+	text-align: center;
+	height:60px;
+	background:#f4f4f4;
+	padding-top:15px;
+}
+
 /* login */
 .welcome-msg{
 	margin-top: 100px;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import NavBar from './NavBar'
+import Footer from './Footer'
 
 class Settings extends Component {
   constructor() {
@@ -61,6 +62,7 @@ class Settings extends Component {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
