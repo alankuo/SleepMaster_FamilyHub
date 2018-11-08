@@ -25,26 +25,26 @@ class Cards extends Component {
   render() {
     return (
 
-        <div className='container'>
-        <ul className='row' style={styles.cards}>
-            <li className='col-xs-12 col-sm-6 col-md-6 col-lg-4' style={styles.card}>
+            <ul className='cards'>
+                <li className='cards-card'>
 
-                <Card icon={2} />
-            </li>
-            <li className='col-xs-12 col-sm-6 col-md-6 col-lg-4' style={styles.card}>
+                    <Card icon={2} />
+                </li>
+                <li className='cards-card'>
 
-                <Card icon={0} />
-            </li>
-            <li className='col-xs-12 col-sm-6 col-md-6 col-lg-4' style={styles.card}>
+                    <Card icon={0} />
+                </li>
+                <li className='cards-card'>
 
-                <Card icon={1}/>
-            </li>
-
+                    <Card icon={1}/>
+                </li>
 
 
 
-        </ul>
-        </div>
+
+
+
+            </ul>
 
 
     );

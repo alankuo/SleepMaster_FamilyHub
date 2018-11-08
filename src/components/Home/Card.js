@@ -32,12 +32,10 @@ class Card extends Component {
 
     render() {
         return (
-            <div style={styles.card}>
-                <Link to={`${navigation[this.props.icon]}`}>
-                    <div style={styles.iconSection}>
-                        <img src={icons[this.props.icon]} style={styles.icon} />
-                        <h1>{texts[this.props.icon]}</h1>
-                    </div>
+            <div className="card">
+                <Link className="card-link" to={`${navigation[this.props.icon]}`}>
+                    <img className="card-img" src={icons[this.props.icon]} />
+                    <h1>{texts[this.props.icon]}</h1>
                 </Link>
             </div>
 
