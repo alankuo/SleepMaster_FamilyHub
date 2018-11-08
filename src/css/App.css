@@ -1,8 +1,9 @@
 /* global */
 :root {
+  /*--theme-color: #166643;*/
+  --theme-color: #5F9EA0;
   --login-bar-width: 500px;
   --login-bar-margin: 325px;
-  --theme-color: #5F9EA0;
 }
 
 body {
@@ -68,6 +69,12 @@ form, .content {
   background: var(--theme-color);
   margin-top: 30px;
   margin-bottom: 20px !important;
+}
+
+/* settings */
+.settings-bar {
+  width: var(--login-bar-width);
+	margin: 150px var(--login-bar-margin);
 }
 
 * {
