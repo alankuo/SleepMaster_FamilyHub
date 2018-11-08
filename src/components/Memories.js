@@ -5,7 +5,7 @@ import NavBar from './NavBar'
 class Memories extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <NavBar/>
         <p style={{padding:300+"px", fontSize:30}}>Memories TBD...</p>
       </div>
