@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import familyPhoto from '../../img/family_photo.jpg'
+import familyPhoto from '../../img/family_photo.jpg';
 import NoteBoard from './NoteBoard';
 import Cards from './Cards';
+import './Home.css';
 
 
 const styles = {
@@ -10,7 +11,7 @@ const styles = {
     },
     photoSection: {
         width: '70%',
-        position: 'absoulte',
+        height: '100%',
         padding: '5%',
         boxSizing: 'border-box',
         float: 'left'
@@ -27,13 +28,13 @@ const styles = {
         overflow: 'auto',
     },
     photo: {
-        width: '100%',
-        padding: '10px',
-        // border: '1px solid grey',
+        height: '100%',
+        padding: '5px',
+        boxShadow: '0 6px 12px 0 rgba(0,0,0,0.2)',
         borderRadius: '20px',
     },
     familyPhoto: {
-        width: '100%',
+        height: '200px',
         borderRadius: '20px',
     },
 
@@ -41,17 +42,16 @@ const styles = {
 class Home extends Component {
   render() {
     return (
-      <div className="Home">
-        <div className="top" style={styles.top}>
-            <div style={styles.photoSection}>
-                <div style={styles.photo}>
-                    <img src={familyPhoto} style={styles.familyPhoto}/>
+      <div className="home">
+        <div className="home-top clearfix">
+            <div className="home-photo-section">
+                <div className="home-photo">
+                    <img src={familyPhoto} className="home-photo-img"/>
                 </div>
             </div>
-            <div style={styles.noteBoard}>
+            <div className="home-noteboard-section">
                 <NoteBoard />
             </div>
-            <div style={styles.clearfix} />
         </div>
         <Cards />
       </div>
