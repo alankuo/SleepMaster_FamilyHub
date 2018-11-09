@@ -32,7 +32,7 @@ class Memories extends Component {
             <p className="time-left">11/07</p>
             <div className="photos left">
               <button className="button">
-                <img src={photo} onClick={this.showModal.bind(this)}></img>
+                <img src={photo} alt={photo} onClick={this.showModal.bind(this)}></img>
                 {this.state.show ?
                   <Modal closeModal={this.hideModal.bind(this)} />
                   : null
@@ -43,7 +43,7 @@ class Memories extends Component {
             <p className="time-right">11/06</p>
             <div className="photos right">
               <button className="button">
-                <img src={photo} onClick={this.showModal.bind(this)}></img>
+                <img src={photo} alt={photo} onClick={this.showModal.bind(this)}></img>
                 {this.state.show ?
                   <Modal closeModal={this.hideModal.bind(this)} />
                   : null
@@ -54,7 +54,7 @@ class Memories extends Component {
             <p className="time-left">11/01</p>
             <div className="photos left">
               <button className="button">
-                <img src={photo} onClick={this.showModal.bind(this)}></img>
+                <img src={photo} alt={photo} onClick={this.showModal.bind(this)}></img>
                 {this.state.show ?
                   <Modal closeModal={this.hideModal.bind(this)} />
                   : null

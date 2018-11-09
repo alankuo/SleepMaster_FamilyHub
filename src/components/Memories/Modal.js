@@ -7,7 +7,7 @@ class Modal extends Component {
     return (
       <div className='popup'>
         <div className='popup_inner'>
-          <img src={photos} className="carousel"></img>
+          <img src={photos} alt={photos} className="carousel"></img>
           <button className="glyphicon glyphicon-menu-left button prev"></button>
           <button className="glyphicon glyphicon-menu-right button next"></button>
           <button onClick={this.props.closeModal}>close</button>
