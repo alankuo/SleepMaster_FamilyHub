@@ -8,7 +8,7 @@ import JoinFamily from './components/JoinFamily.js';
 import CreateFamily from './components/CreateFamily.js';
 import Swipe from './components/Swipe/Swipe.js';
 import CreateEvents from './components/CreateEvents.js';
-import EventDetails from './components/EventDetails.js';
+import EventDetails from './components/EventDetail/EventDetails.js';
 import FavoriteEvents from './components/FavoriteEvents.js';
 import Settings from './components/Settings.js'
 import Memories from './components/Memories/Memories.js'

@@ -78,7 +78,7 @@ class Register extends Component {
               <label>Email*</label>
               <input type="email" name="email" placeholder="name@example.com"></input>
             </div>
-            <p>By submitting this information, you indicate that you agree to EasyLineUp's <strong>Terms of Service</strong> and have read and understood our <strong>Privacy Policy</strong>.</p>
+            <p>By submitting this information, you indicate that you agree to FamilyHub's <strong>Terms of Service</strong> and have read and understood our <strong>Privacy Policy</strong>.</p>
             <input type="button" className="btn" name="register_btn" onClick={this.registerAccount} value="Register" />
             <p>
               Already a Member? <Link to="/login">Sign In</Link>
