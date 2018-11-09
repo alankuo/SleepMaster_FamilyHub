@@ -4,7 +4,12 @@ import infoIcon from '../../img/info.png'
 import './Swipe.css';
 import NavBar from '../NavBar.js';
 import {Link} from 'react-router-dom';
-// import Transition from 'react-transition-group/Transition';
+import dislike from '../../img/dislike_icon.png';
+import like from '../../img/like_icon.png';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 
 class Swipe extends Component {
 
@@ -21,6 +26,7 @@ class Swipe extends Component {
       ],
       current: 4,
       update: true,
+      release: false,
     }
 
     this.renderCards = this.renderCards.bind(this);
@@ -85,7 +91,7 @@ class Swipe extends Component {
       this.state.cards[this.state.current].x = 0;
       this.state.cards[this.state.current].y = 0;
       this.state.cards[this.state.current].rotate = 0;
-      this.setState({...this.state, update: !this.state.update});
+      this.setState({...this.state, update: !this.state.update, release: !this.state.release});
     }
 
 
@@ -101,41 +107,40 @@ class Swipe extends Component {
       <div>
         <NavBar />
           <div className="swipe">
-            {
-              this.state.cards.map((e, i) =>
-              // <Transition in={true} timeout={1000}>
-                <div
-                  key={i}
-                  className="swipe-card"
-                  style={{
-                    transform: `translateX(-50%) translate(${e.x + ((this.state.current - i) * 8)}px, ${e.y + ((this.state.current - i) * 8)}px) rotate(${e.rotate}deg)`,
-                    display: `${i <= this.state.current + 1 && i >= this.state.current - 1 ? "block" : "none"}`
-                  }}
-                  onDragStart={this.startDrag}
-                  onDrag={this.drag}
-                  onDragEnd={this.drop}
-                  draggable={this.state.current === i ? "true" : "false"}
+              {
+                this.state.cards.map((e, i) =>
+                    <div
+                      key={i}
+                      className="swipe-card"
+                      style={{
+                        transform: `translateX(-50%) translate(${e.x + ((this.state.current - i) * 8)}px, ${e.y + ((this.state.current - i) * 8)}px) rotate(${e.rotate}deg)`,
+                        display: `${i <= this.state.current + 1 && i >= this.state.current - 1 ? "block" : "none"}`
+                      }}
+                      onDragStart={this.startDrag}
+                      onDrag={this.drag}
+                      onDragEnd={this.drop}
+                      draggable={this.state.current === i ? "true" : "false"}
 
-                >
+                    >
+                      <img className="swipe-card-dislike" src={dislike} style={{opacity: e.rotate / 5}}/>
+                      <img className="swipe-card-like" src={like} style={{opacity: -e.rotate / 5}}/>
+                      <img className="swipe-card-image" src={eventPhoto} draggable="false"
+                        onClick={this.detail}/>
 
-                  <img className="swipe-card-image" src={eventPhoto} draggable="false"
-                    onClick={this.detail}/>
+                      <div className="swipe-card-bot">
+                        <h1>Riding bike <img className="swipe-card-info" src={infoIcon}
+                            onClick={this.detail}
+                          />
+                        </h1>
 
-                  <div className="swipe-card-bot">
-                    <h1>Riding bike <img className="swipe-card-info" src={infoIcon}
-                        onClick={this.detail}
-                      />
-                    </h1>
+                        <div className="swipe-people glyphicon glyphicon-user"> 2-3</div>
+                        <h4 className="swipe-type">Outdoor</h4>
+                        <h4 >Need: bike</h4>
+                      </div>
+                    </div>
 
-                    <div className="swipe-people glyphicon glyphicon-user"> 2-3</div>
-                    <h4 className="swipe-type">Outdoor</h4>
-                    <h4 >Need: bike</h4>
-                  </div>
-                </div>
-              // </Transition>
-
-              )
-            }
+                )
+              }
 
         </div>
       </div>
