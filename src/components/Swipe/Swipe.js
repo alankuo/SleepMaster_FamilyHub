@@ -10,6 +10,7 @@ import {
   CSSTransition,
   TransitionGroup,
 } from 'react-transition-group';
+import request from 'then-request'
 
 class Swipe extends Component {
 
@@ -18,13 +19,8 @@ class Swipe extends Component {
 
     this.state = {
       cards: [
-        new CardInfo(),
-        new CardInfo(),
-        new CardInfo(),
-        new CardInfo(),
-        new CardInfo(),
       ],
-      current: 4,
+      current: -1,
       update: true,
       release: false,
     }
@@ -37,7 +33,17 @@ class Swipe extends Component {
   }
 
   componentWillMount() {
+    request('GET', '/assets/data/activities.json', {json: true}).done((res)=> {
+      var response = JSON.parse(res.getBody());
+      const arr = [];
+      for(let i=0; i < response.activities.length; i++) {
+        const activity = response.activities[i];
+        arr.push(new CardInfo(activity.name, activity.img, activity.num,activity.category, activity.equipment))
+      }
+      console.log(arr);
 
+      this.setState({...this.state, cards: arr, current: arr.length - 1});
+    });
   }
 
 
@@ -87,6 +93,7 @@ class Swipe extends Component {
       this.state.cards[this.state.current].x = 20000;
       this.state.cards[this.state.current].y = 0;
       this.setState({...this.state, update: !this.state.update, current: this.state.current - 1});
+      this.like(this.state.cards[this.state.current]);
     } else {
       this.state.cards[this.state.current].x = 0;
       this.state.cards[this.state.current].y = 0;
@@ -100,6 +107,19 @@ class Swipe extends Component {
   /*********** Navigation ******************/
   detail() {
     window.location = "#/event-detail";
+  }
+
+  like(card) {
+    let arr = localStorage.getItem('favorite');
+    if(arr == null) {
+      arr = []
+    } else {
+      arr = JSON.parse(arr);
+    }
+    arr.push(card.json());
+    localStorage.setItem('favorite', JSON.stringify(arr));
+
+
   }
 
   render() {
@@ -122,20 +142,20 @@ class Swipe extends Component {
                       draggable={this.state.current === i ? "true" : "false"}
 
                     >
-                      <img className="swipe-card-dislike" src={dislike} style={{opacity: e.rotate / 5}}/>
-                      <img className="swipe-card-like" src={like} style={{opacity: -e.rotate / 5}}/>
-                      <img className="swipe-card-image" src={eventPhoto} draggable="false"
+                      <img className="swipe-card-dislike" src={dislike} style={{opacity: e.rotate / 5}} draggable="false"/>
+                      <img className="swipe-card-like" src={like} style={{opacity: -e.rotate / 5}} draggable="false"/>
+                      <img className="swipe-card-image" src={e.image} draggable="false"
                         onClick={this.detail}/>
 
                       <div className="swipe-card-bot">
-                        <h1>Riding bike <img className="swipe-card-info" src={infoIcon}
+                        <h1>{e.title} <img className="swipe-card-info" src={infoIcon}
                             onClick={this.detail}
                           />
                         </h1>
 
-                        <div className="swipe-people glyphicon glyphicon-user"> 2-3</div>
-                        <h4 className="swipe-type">Outdoor</h4>
-                        <h4 >Need: bike</h4>
+                        <h4> <div className="swipe-people glyphicon glyphicon-user"> </div> {e.suggestPeople[0]} - {e.suggestPeople[1]}</h4>
+                        <h4 className="swipe-type">{e.type}</h4>
+                        <h4 >Need: {e.stuffs}</h4>
                       </div>
                     </div>
 
@@ -149,15 +169,19 @@ class Swipe extends Component {
 }
 
 class CardInfo {
-  constructor() {
-    this.title = "bike";
-    this.image = eventPhoto;
-    this.suggestPeople = [2, 3];
-    this.type = "Outdoor";
-    this.stuffs = "bike";
+  constructor(title, image, suggestPeople, type, stuffs) {
+    this.title = title;
+    this.image = image;
+    this.suggestPeople = suggestPeople;
+    this.type = type;
+    this.stuffs = stuffs;
     this.x = 0;
     this.y = 0;
     this.rotate = 0;
+  }
+
+  json() {
+    return {"name":this.title, "num":this.suggestPeople, "category":this.type, "equipment":this.stuffs,"img":this.image}
   }
 
 
