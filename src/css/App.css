@@ -1,7 +1,9 @@
 /* global */
 :root {
-  /*--theme-color: #166643;*/
-  --theme-color: #5F9EA0;
+  /* --theme-color: #166643; */
+  /* --theme-color: #5F9EA0; */
+  --theme-color: #9900cc;
+  --navbar-color: #EEFCCE;
   --login-bar-width: 500px;
   --login-bar-margin: 325px;
 }
@@ -21,6 +23,11 @@ footer{
 	height:60px;
 	background:#f4f4f4;
 	padding-top:15px;
+}
+
+/* navbar override bootstrap */
+.navbar-default {
+  background-color: var(--navbar-color) !important;
 }
 
 /* login */

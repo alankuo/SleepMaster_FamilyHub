@@ -18,7 +18,6 @@ class Login extends Component {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     if ( username === "philip" && password === "guo"){
-      alert ("Login successfully");
       window.location="/";
     }
     else{

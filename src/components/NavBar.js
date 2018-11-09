@@ -9,7 +9,6 @@ const styles = {
     display: "block",
     marginLeft: "4%",
     float: "left"
-
   }
 }
 
@@ -28,7 +27,7 @@ export default class NavBar extends React.Component {
   render(){
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
-        <Link to="/" className="navBar-logo"><img src={logo} alt="" style={styles.image}/></Link>
+        <Link to="/"><img src={logo} alt="" style={styles.image}/></Link>
         <div className="container">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
