@@ -181,8 +181,6 @@
                     text-decoration: none;
                 }
                     .card-img {
-                        margin-left: 50%;
-                        transform: translateX(-50%);
                         margin-top: 40%;
                         width: 40%;
                     }
