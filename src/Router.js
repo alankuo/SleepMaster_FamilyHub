@@ -11,7 +11,7 @@ import CreateEvents from './components/CreateEvents.js';
 import EventDetails from './components/EventDetails.js';
 import FavoriteEvents from './components/FavoriteEvents.js';
 import Settings from './components/Settings.js'
-import Memories from './components/Memories.js'
+import Memories from './components/Memories/Memories.js'
 import ResetPassword from './components/ResetPassword.js'
 
 
