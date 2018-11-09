@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import eventPhoto from '../img/bike.jpg'
 import NavBar from './NavBar.js';
 import {Link} from 'react-router-dom';
+
 import ImageUpload from'./UploadImage';
 
 class CreateEvents extends Component {
@@ -41,8 +42,9 @@ class CreateEvents extends Component {
   render() {
     document.title = 'Create an Event';
     return (
-
       <div className="container" onKeyPress={this.keyEvent}>
+        <NavBar/>
+
         <div className="login-bar">
           <div className="header">
             <h2>Create an Event</h2>
