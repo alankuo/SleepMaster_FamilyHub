@@ -1,13 +1,8 @@
 {
   "activities": [
-  	{"name":"Play BasketBall", "num":2, "category":"outdoor", "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha"},
-  	{"name":"Play Soccer", "num":3, "category":"outdoor", "time-length":[60, 80], "img":"assets/img/balotelli.jpg", "description":"testing"},
-    {"name":"Sing", "num":2, "category":"indoor", "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo"},
-    {"name":"Sing", "num":2, "category":"indoor", "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo"}
-  ],
-  "activities2": [
-  	{"name":"Test", "num":2, "category":"outdoor", "time-length":[50, 90], "img":"assets/img/basketball.jpg", "description":"Haha"},
-  	{"name":"NA", "num":3, "category":"outdoor", "time-length":[60, 80], "img":"assets/img/balotelli.jpg", "description":"testing"},
-    {"name":"wate", "num":2, "category":"indoor", "time-length":[20,40], "img":"assets/img/guitar.jpg", "description":"yo"}
+  	{"name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha"},
+  	{"name":"Play Soccer", "num":[3,5], "category":"outdoor", "equipment":["soccer"], "time-length":[60, 80], "img":"assets/img/balotelli.jpg", "description":"testing"},
+    {"name":"Sing", "num":[2,5], "category":"indoor", "equipment":["microphone", "speaker"], "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo"},
+    {"name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo"}
   ]
 }

@@ -32,35 +32,70 @@ class FavoriteEvents extends Component {
 
 		// Bind all functions so they can refer to "this" correctly
 		this.changeActive = this.changeActive.bind(this);
+    this.getActivities = this.getActivities.bind(this);
+    this.mapArray = this.mapArray.bind(this);
 	}
 
   componentWillMount() {
     request('GET', 'assets/data/activities.json', {json: true}).done((res)=> {
       var response = JSON.parse(res.getBody());
       this.setState(response);
+      this.setState({"outdoorActivities": this.getActivities("outdoor")});
+      this.setState({"indoorActivities": this.getActivities("indoor")});
+      this.setState({"otherActivities": this.getActivities("others")});
       this.setState({"dataRetrieved": true});
-      console.log(this.state.activities);
     });
+  }
+
+  getActivities(filter) {
+    let activities = this.state.activities;
+    let result = [];
+    for(let index = 0; index < activities.length; index++) {
+      let item = activities[index];
+      if(item["category"]===filter) {
+        result.push(item);
+      }
+    }
+    return result;
   }
 
   changeActive(number, second, third) {
     this.setState({"activeTab": number});
-    console.log(number);
-    console.log(second);
-    console.log(third);
+  }
+
+  mapArray(array) {
+    return array.map((item, i) => {
+      return(
+        <div key={i} style={styles.event}>
+          <img src={item["img"]} alt="/" style={styles.eventImg}/>
+          <div style={{marginLeft:20+'px'}}>
+            <span style={{fontWeight:"bold"}}>Activity Name:</span> {item["name"]}<br/>
+            <span style={{fontWeight:"bold"}}>Category:</span> {item["category"]}<br/>
+            <span style={{fontWeight:"bold"}}>Suggested of People:</span> {item["num"][0]}-{item["num"][1]}<br/>
+            <span style={{fontWeight:"bold"}}>Equipment Needed:</span> {
+              item["equipment"].map((item2, i2)=>{
+                if(i2===item["equipment"].length-1)
+                  return(item2)
+                else
+                  return(item2 + ", ")})
+                }<br/>
+            <span style={{fontWeight:"bold"}}>Description:</span> {item["description"]}<br/>
+          </div>
+        </div>
+      );
+    });
+
   }
 
   render() {
-    var temp = this.state.dataRetrieved?this.state.activities:[];
-    const card = temp.map((item, i) =>
-      <div key={i} style={styles.event}>
-        <img src={item["img"]} alt="/" style={styles.eventImg}/>
-        <p style={{marginLeft:20+'px'}}>Activity Name: {item["name"]}<br/>
-        Category: {item["category"]}<br/>
-        Suggested of People: {item["num"]}<br/>
-        {item["description"]}<br/></p>
-      </div>
-    );
+    var allActivities = this.state.dataRetrieved?this.state.activities:[];
+    const allCards = this.mapArray(allActivities);
+    var outdoorActivities = this.state.dataRetrieved?this.state.outdoorActivities:[];
+    const outdoorCards = this.mapArray(outdoorActivities);
+    var indoorActivities = this.state.dataRetrieved?this.state.indoorActivities:[];
+    const indoorCards = this.mapArray(indoorActivities);
+    var otherActivities = this.state.dataRetrieved?this.state.otherActivities:[];
+    const otherCards = this.mapArray(otherActivities);
     return (
       <div>
         <NavBar/>
@@ -81,22 +116,22 @@ class FavoriteEvents extends Component {
           <div className="tab-content">
             <div role="tabpanel" className="tab-pane active" id="all">
               <div className="row">
-                {this.state.dataRetrieved?card:<div></div>}
+                {this.state.dataRetrieved?allCards:<div></div>}
               </div>
             </div>
             <div role="tabpanel" className="tab-pane" id="one">
               <div className="row">
-              Outdoor TBD...
+                {this.state.dataRetrieved?outdoorCards:<div></div>}
               </div>
             </div>
             <div role="tabpanel" className="tab-pane" id="two">
               <div className="row">
-              Indoor TBD...
+                {this.state.dataRetrieved?indoorCards:<div></div>}
               </div>
             </div>
             <div role="tabpanel" className="tab-pane" id="three">
               <div className="row">
-              Others TBD...
+                {this.state.dataRetrieved?otherCards:<div></div>}
               </div>
             </div>
           </div>
