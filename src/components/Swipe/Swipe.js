@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import eventPhoto from '../../img/bike.jpg'
+import eventPhoto from '../../img/bike.jpg';
 import NavBar from '../NavBar.js';
 import {Link} from 'react-router-dom';
 
