@@ -12,23 +12,27 @@ self.__precacheManifest = [
     "url": "/SleepMaster_FamilyHub/static/media/bike.4cabfcc9.jpg"
   },
   {
+    "revision": "38375a5d96dae479d5831919d2d3741a",
+    "url": "/SleepMaster_FamilyHub/static/media/bike.38375a5d.png"
+  },
+  {
     "revision": "cc86a499f0ac47ccafdb",
     "url": "/SleepMaster_FamilyHub/static/js/runtime~main.cc86a499.js"
   },
   {
-    "revision": "8ef956f6c89884ce7745",
-    "url": "/SleepMaster_FamilyHub/static/js/main.8ef956f6.chunk.js"
+    "revision": "da70415bdb9cabb049dd",
+    "url": "/SleepMaster_FamilyHub/static/js/main.da70415b.chunk.js"
   },
   {
-    "revision": "8c1727b4aef3a5adddb7",
-    "url": "/SleepMaster_FamilyHub/static/js/1.8c1727b4.chunk.js"
+    "revision": "e20a19245e67d768cfd2",
+    "url": "/SleepMaster_FamilyHub/static/js/1.e20a1924.chunk.js"
   },
   {
-    "revision": "8ef956f6c89884ce7745",
-    "url": "/SleepMaster_FamilyHub/static/css/main.dd68fce9.chunk.css"
+    "revision": "da70415bdb9cabb049dd",
+    "url": "/SleepMaster_FamilyHub/static/css/main.72fc905b.chunk.css"
   },
   {
-    "revision": "016b73696d000337fcdb54a248be0bb4",
+    "revision": "1992d81177a0d2f7da58b3fca9f0a913",
     "url": "/SleepMaster_FamilyHub/index.html"
   }
 ];
