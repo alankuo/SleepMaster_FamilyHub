@@ -30,6 +30,16 @@
             width: 100%;
         }
 
+        .swipe-card-info {
+            width: 6%;
+            transform: translate(0,-5%);
+            transition: transform ease-in-out 0.1s;
+        }
+
+        .swipe-card-info:hover {
+            transform: translate(0,-5%) scale(1.1);
+        }
+
         .swipe-card-bot {
             padding: 0 20px;
             box-sizing: border-box;
