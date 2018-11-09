@@ -82,8 +82,8 @@ class CreateEvents extends Component {
 
             <div className="input-group">
               <label>Event Photo*</label>
+              <ImageUpload/>
             </div>
-            <ImageUpload/>
 
             <div>
               <input type="button" className="btn" onClick={this.createEvent} id="submitBtn" name="create_btn" value="CREATE"/>

@@ -32,25 +32,25 @@ class ImageUpload extends React.Component {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img  class="img-responsive center-block" src={imagePreviewUrl} />);
+      $imagePreview = (<img className="img-responsive center-block" src={imagePreviewUrl} />);
     } else {
       $imagePreview = (<div className="previewText">Image Preview</div>);
     }
 
     return (
       <div className="previewComponent">
-        <form onSubmit={(e)=>this._handleSubmit(e)}>
+        {/*<form onSubmit={(e)=>this._handleSubmit(e)}>*/}
           <input className="fileInput"
                  type="file"
                  multiple accept='image/*'
                  onChange={(e)=>this._handleImageChange(e)} />
-          <button className="submitButton"
-                  type="submit"
-                  onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+          {/*<button className="submitButton"*/}
+                  {/*type="submit"*/}
+                  {/*onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>*/}
           <div className="imgPreview">
             {$imagePreview}
           </div>
-        </form>
+        {/*</form>*/}
       </div>
     )
   }
