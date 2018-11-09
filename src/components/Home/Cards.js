@@ -25,7 +25,7 @@ class Cards extends Component {
   render() {
     return (
 
-            <ul className='cards'>
+            <ul className='cards clearfix'>
                 <li className='cards-card'>
 
                     <Card icon={2} />

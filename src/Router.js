@@ -12,6 +12,7 @@ import EventDetails from './components/EventDetails.js';
 import FavoriteEvents from './components/FavoriteEvents.js';
 import Settings from './components/Settings.js'
 import Memories from './components/Memories.js'
+import ResetPassword from './components/ResetPassword.js'
 
 
 export default class Router extends React.Component<{}> {
@@ -28,8 +29,9 @@ export default class Router extends React.Component<{}> {
           <Route exact path='/create-event' component={Create}/>
           <Route exact path='/event-detail' component={EventDetails}/>
           <Route exact path='/favorite-event' component={FavoriteEvents}/>
-          <Route exact path='/memories' component={Memories}/>
           <Route exact path='/settings' component={Settings}/>
+          <Route exact path='/memories' component={Memories}/>
+          <Route exact path='/reset-password' component={ResetPassword}/>
         </Switch>
       </main>
     );
