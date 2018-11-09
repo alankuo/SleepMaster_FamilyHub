@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import eventPhoto from '../img/bike.jpg'
 import NavBar from './NavBar.js';
-import {Link} from 'react-router-dom';
 
 import ImageUpload from'./UploadImage';
 

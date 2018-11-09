@@ -34,6 +34,7 @@ class FavoriteEvents extends Component {
 		this.changeActive = this.changeActive.bind(this);
     this.getActivities = this.getActivities.bind(this);
     this.mapArray = this.mapArray.bind(this);
+    this.grabLocalStorageData = this.grabLocalStorageData.bind(this);
 	}
 
   componentWillMount() {
@@ -63,6 +64,10 @@ class FavoriteEvents extends Component {
     this.setState({"activeTab": number});
   }
 
+  grabLocalStorageData() {
+
+  }
+
   mapArray(array) {
     return array.map((item, i) => {
       return(
@@ -84,7 +89,6 @@ class FavoriteEvents extends Component {
         </div>
       );
     });
-
   }
 
   render() {

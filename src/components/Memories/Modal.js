@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import photos from '../../img/bike.jpg';
 import '../../css/Memories.css';
 
-const modal = {
-  'height': '300px',
-  'width': '300px',
-  'backgroundColor': 'red',
-}
-
 class Modal extends Component {
   render() {
     return (

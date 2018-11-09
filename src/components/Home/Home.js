@@ -12,7 +12,7 @@ class Home extends Component {
         <div className="home-top clearfix">
             <div className="home-photo-section">
                 <div className="home-photo">
-                    <img src={familyPhoto} className="home-photo-img"/>
+                    <img src={familyPhoto} alt={familyPhoto} className="home-photo-img"/>
                 </div>
             </div>
             <div className="home-noteboard-section">

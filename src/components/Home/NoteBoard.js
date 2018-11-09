@@ -62,9 +62,9 @@ class NoteBoard extends Component {
         return this.state.bullets.map((e, i) => {
             return (<Textarea
                     key={hash(e)}
-                    className={this.state.edit == e? "noteboard-text" : "noteboard-passage"}
+                    className={this.state.edit === e? "noteboard-text" : "noteboard-passage"}
                     autofocus="autofocus"
-                    readOnly={this.state.edit == e? null : "readOnly"}
+                    readOnly={this.state.edit === e? null : "readOnly"}
                     onClick={this.getEntryEdit(e,i)}
                     onChange={this.updateEdit}
 
@@ -86,7 +86,7 @@ class NoteBoard extends Component {
                 }
 
                 {
-                    this.state.bullets.length == 0 ?
+                    this.state.bullets.length === 0 ?
                     <h3 className="noteboard-tutorial"> Double Click here<br/>to start your new message</h3> : null
                 }
                 </div>

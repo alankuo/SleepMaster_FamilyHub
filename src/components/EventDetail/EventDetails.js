@@ -69,7 +69,7 @@ class EventDetails extends Component {
           </div>
           <div className="col-lg-4">
             <div style={swipe_card}>
-              <img className="img-responsive" src={eventPhoto} />
+              <img className="img-responsive" src={eventPhoto} alt={eventPhoto}/>
               <div className="swipe-card-bot">
                 <h1>Riding bike</h1>
                 <div className="swipe-people glyphicon glyphicon-user"> 2-3</div>
