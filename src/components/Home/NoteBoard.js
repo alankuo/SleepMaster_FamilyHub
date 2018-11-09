@@ -79,7 +79,7 @@ class NoteBoard extends Component {
                 className="noteboard"
                 onDoubleClick={this.createEdit}
             >
-                <h3 className="noteboard-title"> Message Board</h3>
+                <h3 className="noteboard-title center-block"> Message Board</h3>
                 <div className="noteboard-notes">
                 {
                     this.renderNotes()
@@ -94,7 +94,7 @@ class NoteBoard extends Component {
 
                 <div className="noteboard-button">
                     {/* <input className="noteboard-remove" type="submit" value="Delete" onClick={this.saveEdit}/> */}
-                    <input className="noteboard-submit" type="submit" value="Save" onClick={this.saveEdit}/>
+                    <input className="noteboard-submit center-block" type="submit" value="Save" onClick={this.saveEdit}/>
                 </div>
             </div>
         );

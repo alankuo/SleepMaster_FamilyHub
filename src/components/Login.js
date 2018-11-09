@@ -30,7 +30,6 @@ class Login extends Component {
     if (e.key === 'Enter') {
       this.validateLogin();
     }
-    console.log(e.key);
   }
 
   render() {
@@ -38,9 +37,9 @@ class Login extends Component {
     return (
       <div onKeyPress={this.keyEvent}>
         <h1 className="welcome-msg">Welcome to <span className="primary">FamilyHub!!</span></h1>
-        <div className="container" style={{marginTop:0, border:0+'px'}}>
+        <div className="container">
           <div className="login-bar">
-            <div className="login-header">
+            <div className="header">
               <h2>LOG IN</h2>
             </div>
             <form id="form_id" method="post" name="myform">
@@ -62,7 +61,7 @@ class Login extends Component {
                 Not yet a member? <Link to="/register">Sign up</Link>
               </p>
               <p>
-                Forgot your password? <Link to="/reset">Reset Password</Link>
+                Forgot your password? <Link to="/reset-password">Reset Password</Link>
               </p>
             </form>
           </div>
