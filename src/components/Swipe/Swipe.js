@@ -148,14 +148,14 @@ class Swipe extends Component {
                         onClick={this.detail}/>
 
                       <div className="swipe-card-bot">
-                        <h1>{e.title} <img className="swipe-card-info" src={infoIcon}
+                        <h4 className="swipe-card-title">{e.title} <img className="swipe-card-info" src={infoIcon}
                             onClick={this.detail}
                           />
-                        </h1>
+                        </h4>
 
-                        <h4> <div className="swipe-people glyphicon glyphicon-user"> </div> {e.suggestPeople[0]} - {e.suggestPeople[1]}</h4>
-                        <h4 className="swipe-type">{e.type}</h4>
-                        <h4 >Need: {e.stuffs}</h4>
+                        <h6> <div className="swipe-people glyphicon glyphicon-user"> </div> {e.suggestPeople[0]} - {e.suggestPeople[1]}</h6>
+                        <h6 className="swipe-type">{e.type}</h6>
+                        <h6 >Need: {e.stuffs}</h6>
                       </div>
                     </div>
 
