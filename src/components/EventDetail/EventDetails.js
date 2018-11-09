@@ -3,8 +3,7 @@ import '../../css/App.css';
 import NavBar from '../NavBar'
 import Comments from './Comments'
 import CommentBox from './CommentBox'
-import eventPhoto from '../../img/bike.jpg'
-
+import eventPhoto from '../../img/bike.png'
 class EventDetails extends Component {
 
   constructor(props) {
@@ -40,18 +39,19 @@ class EventDetails extends Component {
   }
 
   render() {
-    var eventCard = {
-      "height": "500px",
-      "width": "350px",
-      // "marginTop": "8%",
-      "border": "1px solid black"
+    var swipe_card = {
+      "width": "50vh",
+      "height": "80vh",
+      "min-height": "480px",
+      "min-width": "300px",
+      "border-radius": "20px",
+      "overflow": "hidden",
+      "position": "fixed",
+
+      "box-shadow": "0 3px 12px 3px rgba(0,0,0,0.2)",
+      "background-color": "white",
     };
 
-    var number = {
-      "fontSize": "20px",
-      "paddingLeft": "35px",
-      "marginTop": "30px",
-    };
 
     return (
       <div className="Page">
@@ -62,24 +62,23 @@ class EventDetails extends Component {
           <div className="col-lg-2">
           </div>
           <div className="col-lg-4">
-            <div style={eventCard}>
-              <img src={eventPhoto} style={{width: "100%"}}></img>
-              <h1 style={{textAlign: "center"}}>Riding bike</h1><br/>
-              <div className="glyphicon glyphicon-user" style={number}> 2-3</div>
-              <h3 style={number}>Outdoor</h3>
-              <h4 style={{float: "left", paddingLeft: "35px"}}>Need: bike</h4>
+            <div style={swipe_card}>
+              <img className="img-responsive" src={eventPhoto} />
+              <div className="swipe-card-bot">
+                <h1>Riding bike</h1>
+                <div className="swipe-people glyphicon glyphicon-user"> 2-3</div>
+                <h4 className="swipe-type">Outdoor</h4>
+                <h4 >Need: bike</h4>
+              </div>
             </div>
           </div>
 
           <div className="col-lg-4">
             <div className="columns">
-              <div className="column ">
                 <Comments comments={this.state.comments.reverse()} />
                 <CommentBox handleAddComment={this.handleAddComment} />
-              </div>
             </div>
           </div>
-
         </div>
       </div>
 
