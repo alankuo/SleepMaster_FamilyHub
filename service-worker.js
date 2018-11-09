@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/SleepMaster_FamilyHub/precache-manifest.da350cccd63524bebeae39cbb71df2d2.js"
+  "/SleepMaster_FamilyHub/precache-manifest.d22854d29e8fb53c18f3811490d35f78.js"
 );
 
 workbox.clientsClaim();
