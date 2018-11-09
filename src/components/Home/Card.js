@@ -12,7 +12,6 @@ const styles = {
         width:'100%',
         height: '100%',
         border: '1px solid black',
-
         padding: '20px'
     },
     iconSection: {
@@ -29,12 +28,11 @@ class Card extends Component {
         super(props);
     }
 
-
     render() {
         return (
             <div className="card">
                 <Link className="card-link" to={`${navigation[this.props.icon]}`}>
-                    <img className="card-img" src={icons[this.props.icon]} />
+                    <img className="card-img center-block" src={icons[this.props.icon]} />
                     <h1>{texts[this.props.icon]}</h1>
                 </Link>
             </div>
