@@ -33,7 +33,7 @@ class Swipe extends Component {
   }
 
   componentWillMount() {
-    request('GET', '/assets/data/activities.json', {json: true}).done((res)=> {
+    request('GET', 'assets/data/activities.json', {json: true}).done((res)=> {
       var response = JSON.parse(res.getBody());
       const arr = [];
       for(let i=0; i < response.activities.length; i++) {
@@ -142,14 +142,13 @@ class Swipe extends Component {
                       draggable={this.state.current === i ? "true" : "false"}
 
                     >
-                      <img className="swipe-card-dislike" src={dislike} style={{opacity: e.rotate / 5}} draggable="false"/>
-                      <img className="swipe-card-like" src={like} style={{opacity: -e.rotate / 5}} draggable="false"/>
-                      <img className="swipe-card-image" src={e.image} draggable="false"
+                      <img className="swipe-card-dislike" src={dislike} alt={dislike} style={{opacity: e.rotate / 5}} draggable="false"/>
+                      <img className="swipe-card-like" src={like} alt={like} style={{opacity: -e.rotate / 5}} draggable="false"/>
+                      <img className="swipe-card-image" src={e.image} alt={e.image} draggable="false"
                         onClick={this.detail}/>
 
                       <div className="swipe-card-bot">
-                        <h4 className="swipe-card-title">{e.title} <img className="swipe-card-info" src={infoIcon}
-                            onClick={this.detail}
+                        <h4 className="swipe-card-title">{e.title} <img className="swipe-card-info" src={infoIcon} alt={infoIcon} onClick={this.detail}
                           />
                         </h4>
 
