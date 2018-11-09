@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import eventPhoto from '../../img/bike.png'
+import eventPhoto from '../../img/bike.png';
+import infoIcon from '../../img/info.png'
 import './Swipe.css';
 import NavBar from '../NavBar.js';
 import {Link} from 'react-router-dom';
+// import Transition from 'react-transition-group/Transition';
 
 class Swipe extends Component {
 
@@ -25,6 +27,7 @@ class Swipe extends Component {
     this.startDrag = this.startDrag.bind(this);
     this.drag = this.drag.bind(this);
     this.drop = this.drop.bind(this);
+    this.detail = this.detail.bind(this);
   }
 
   componentWillMount() {
@@ -88,6 +91,11 @@ class Swipe extends Component {
 
   }
 
+  /*********** Navigation ******************/
+  detail() {
+    window.location = "#/event-detail";
+  }
+
   render() {
     return (
       <div>
@@ -95,7 +103,7 @@ class Swipe extends Component {
           <div className="swipe">
             {
               this.state.cards.map((e, i) =>
-
+              // <Transition in={true} timeout={1000}>
                 <div
                   key={i}
                   className="swipe-card"
@@ -109,14 +117,22 @@ class Swipe extends Component {
                   draggable={this.state.current === i ? "true" : "false"}
 
                 >
-                  <img className="swipe-card-image" src={eventPhoto} draggable="false"></img>
+
+                  <img className="swipe-card-image" src={eventPhoto} draggable="false"
+                    onClick={this.detail}/>
+
                   <div className="swipe-card-bot">
-                    <h1>Riding bike</h1>
+                    <h1>Riding bike <img className="swipe-card-info" src={infoIcon}
+                        onClick={this.detail}
+                      />
+                    </h1>
+
                     <div className="swipe-people glyphicon glyphicon-user"> 2-3</div>
                     <h4 className="swipe-type">Outdoor</h4>
                     <h4 >Need: bike</h4>
                   </div>
                 </div>
+              // </Transition>
 
               )
             }
