@@ -16,7 +16,7 @@
 }
 
 .button {
-  background-color: rgb(0,0,0,0);
+  background-color: rgb(255, 255, 255, 0.3);
 }
 
 /* The actual timeline (the vertical ruler) */
@@ -111,4 +111,19 @@
 
 .carousel {
   width: 100%;
+  position: relative;
+}
+
+.prev {
+  position: absolute;
+  float: left;
+  font-size: 40px;
+  margin-top: -35%;
+}
+
+.next {
+  position: absolute;
+  float: right;
+  font-size: 40px;
+  margin-top: -35%;
 }
