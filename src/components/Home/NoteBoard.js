@@ -1,23 +1,7 @@
 import React, { Component } from 'react';
 import Textarea from 'react-textarea-autosize';
+const hash = require('object-hash');
 
-const styles={
-    noteBoard: {
-        boxSizing: 'border-box',
-        border: '1px solid black',
-        padding: '20px',
-        height: '100%',
-    },
-    textarea: {
-        width: '100%',
-        height: '200px',
-        resize: 'none',
-        padding: '10px',
-        // left: '50%',
-        // top: '50%',
-        // transform: 'translate(-50%,-50%)'
-    }
-}
 class NoteBoard extends Component {
     constructor(props) {
         super(props);
@@ -77,7 +61,7 @@ class NoteBoard extends Component {
     renderNotes() {
         return this.state.bullets.map((e, i) => {
             return (<Textarea
-                    key={e.text}
+                    key={hash(e)}
                     className={this.state.edit == e? "noteboard-text" : "noteboard-passage"}
                     autofocus="autofocus"
                     readOnly={this.state.edit == e? null : "readOnly"}

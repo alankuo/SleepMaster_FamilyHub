@@ -131,7 +131,7 @@
                         border: 0;
                         width: 70%;
                         height: 40px;
-                        margin: 20px 0 0 20px;
+                        margin: 10px 15% 10px 15%;
                         background-color: rgb(65, 199, 70);
                         color: white;
                         border-radius: 25px;
@@ -181,6 +181,8 @@
                     text-decoration: none;
                 }
                     .card-img {
+                        margin-left: 50%;
+                        transform: translateX(-50%);
                         margin-top: 40%;
                         width: 40%;
                     }

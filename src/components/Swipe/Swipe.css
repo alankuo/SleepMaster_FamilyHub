@@ -1,0 +1,53 @@
+.swipe {
+    position: fixed;
+    padding: 100px 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+    .swipe-card {
+        width: 50vh;
+        height: 80vh;
+        min-height: 480px;
+        min-width: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        position: fixed;
+        left: 50%;
+
+        box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
+        background-color: white;
+
+
+
+    }
+
+    .swipe-card:hover {
+        cursor: pointer;
+    }
+
+        .swipe-card-image {
+            width: 100%;
+        }
+
+        .swipe-card-bot {
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+
+            .swipe-people {
+                margin-bottom: 10px;
+            }
+            .swipe-type {
+                margin: 0;
+            }
+
+            img {
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+                }
+
