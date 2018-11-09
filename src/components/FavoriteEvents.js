@@ -5,7 +5,7 @@ import request from 'then-request'
 
 const styles = {
   event: {
-    height: "350px",
+    height: "400px",
     width: "350px",
     display: "block",
     float: "left",
@@ -34,18 +34,33 @@ class FavoriteEvents extends Component {
 		this.changeActive = this.changeActive.bind(this);
     this.getActivities = this.getActivities.bind(this);
     this.mapArray = this.mapArray.bind(this);
-    this.grabLocalStorageData = this.grabLocalStorageData.bind(this);
+    this.updateFromLocalStorageData = this.updateFromLocalStorageData.bind(this);
 	}
 
   componentWillMount() {
     request('GET', 'assets/data/activities.json', {json: true}).done((res)=> {
       var response = JSON.parse(res.getBody());
       this.setState(response);
+      console.log("componentWillMount");
+      this.updateFromLocalStorageData();
       this.setState({"outdoorActivities": this.getActivities("outdoor")});
       this.setState({"indoorActivities": this.getActivities("indoor")});
       this.setState({"otherActivities": this.getActivities("others")});
       this.setState({"dataRetrieved": true});
+      console.log(this.state.activities);
     });
+  }
+
+  updateFromLocalStorageData() {
+    let activities = this.state.activities;
+    let storedArray = JSON.parse(localStorage["favorite"]);
+    if(storedArray === undefined) {
+      storedArray = [];
+    }
+    for(let index = 0; index < storedArray.length; index++) {
+      let item = storedArray[index];
+      activities.unshift(item);
+    }
   }
 
   getActivities(filter) {
@@ -64,10 +79,6 @@ class FavoriteEvents extends Component {
     this.setState({"activeTab": number});
   }
 
-  grabLocalStorageData() {
-
-  }
-
   mapArray(array) {
     return array.map((item, i) => {
       return(
@@ -76,7 +87,9 @@ class FavoriteEvents extends Component {
           <div style={{marginLeft:20+'px'}}>
             <span style={{fontWeight:"bold"}}>Activity Name:</span> {item["name"]}<br/>
             <span style={{fontWeight:"bold"}}>Category:</span> {item["category"]}<br/>
-            <span style={{fontWeight:"bold"}}>Suggested of People:</span> {item["num"][0]}-{item["num"][1]}<br/>
+            {item["num"]!==undefined?
+            (<span><span style={{fontWeight:"bold"}}>Suggested of People:</span> {item["num"][0]}-{item["num"][1]}<br/></span>)
+            :""}
             <span style={{fontWeight:"bold"}}>Equipment Needed:</span> {
               item["equipment"].map((item2, i2)=>{
                 if(i2===item["equipment"].length-1)
