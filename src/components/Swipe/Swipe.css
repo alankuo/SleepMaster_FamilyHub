@@ -43,15 +43,21 @@
 
         }
 
-        .swipe-card-info {
-            width: 6%;
-            transform: translate(0,-5%);
-            transition: transform ease-in-out 0.1s;
+        .swipe-card-title {
+            text-align: center;
         }
 
-        .swipe-card-info:hover {
-            transform: translate(0,-5%) scale(1.1);
-        }
+            .swipe-card-info {
+                width: 6%;
+                transform: translate(0,-5%);
+                transition: transform ease-in-out 0.1s;
+                margin: 10px auto;
+
+            }
+
+            .swipe-card-info:hover {
+                transform: translate(0,-5%) scale(1.1);
+            }
 
         .swipe-card-bot {
             padding: 0 20px;
@@ -60,7 +66,6 @@
 
 
             .swipe-people {
-                margin-bottom: 10px;
             }
             .swipe-type {
                 margin: 0;
