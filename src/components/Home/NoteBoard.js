@@ -95,7 +95,7 @@ class NoteBoard extends Component {
                 className="noteboard"
                 onDoubleClick={this.createEdit}
             >
-                <h3 className="noteboard-title"> Message Board</h3>
+                <h3 className="noteboard-title center-block"> Message Board</h3>
                 <div className="noteboard-notes">
                 {
                     this.renderNotes()
