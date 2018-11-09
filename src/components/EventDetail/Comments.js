@@ -6,6 +6,8 @@ class Comments extends Component {
 
 
     return (
+      <div>
+        <h1 className="title">Comments</h1>
       <section className="section">
 
         {
@@ -14,6 +16,7 @@ class Comments extends Component {
           })
         }
       </section>
+      </div>
     );
   }
 }

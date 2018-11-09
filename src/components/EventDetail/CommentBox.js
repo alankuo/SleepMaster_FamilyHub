@@ -42,7 +42,7 @@ class CommentBox extends Component {
   render() {
     return (
       <div>
-        <h1 className="title">Comments</h1>
+        <h1 className="title">Leave your comment!</h1>
         <form onSubmit={this.addComment}>
           <div className="input-group">
             <div className="control">

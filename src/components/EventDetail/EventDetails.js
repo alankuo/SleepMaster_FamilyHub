@@ -11,7 +11,7 @@ class EventDetails extends Component {
     this.handleAddComment = this.handleAddComment.bind(this);
     this.state = {
       comments: [{name: "Lan Wang", comment: "Really enjoy it with my family!"}
-      ,{name: "Lan Wang", comment: "Really enjoy it with my family!"}]
+      ,{name: "Yuhan Wang", comment: "Like it!"}]
     }
   }
 
@@ -39,7 +39,7 @@ class EventDetails extends Component {
   }
 
   render() {
-    var swipe_card = {
+    const swipe_card = {
       "width": "50vh",
       "height": "80vh",
       "min-height": "480px",
@@ -47,6 +47,7 @@ class EventDetails extends Component {
       "border-radius": "20px",
       "overflow": "hidden",
       "position": "fixed",
+      "margin-top": "15px",
 
       "box-shadow": "0 3px 12px 3px rgba(0,0,0,0.2)",
       "background-color": "white",
@@ -57,7 +58,7 @@ class EventDetails extends Component {
       <div className="Page">
         <NavBar/>
 
-        <h1><span className="primary" >Event Detail</span></h1>
+        {/*<h1><span className="primary" >Event Detail</span></h1>*/}
         <div className="row d-flex justify-content-center">
           <div className="col-lg-2">
           </div>
@@ -73,7 +74,7 @@ class EventDetails extends Component {
             </div>
           </div>
 
-          <div className="col-lg-4">
+          <div className="col-lg-5">
             <div className="columns">
                 <Comments comments={this.state.comments.reverse()} />
                 <CommentBox handleAddComment={this.handleAddComment} />
