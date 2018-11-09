@@ -37,6 +37,9 @@ class EventDetails extends Component {
       };
     });
   }
+  goback() {
+    window.location = "#/discover-event";
+  }
 
   render() {
     const swipe_card = {
@@ -61,6 +64,8 @@ class EventDetails extends Component {
         {/*<h1><span className="primary" >Event Detail</span></h1>*/}
         <div className="row d-flex justify-content-center">
           <div className="col-lg-2">
+
+            <button style={{left:"20%", marginTop:"10%"}} type="button" className="btn btn-default btn-lg glyphicon glyphicon-arrow-left" onClick={this.goback}/>
           </div>
           <div className="col-lg-4">
             <div style={swipe_card}>
