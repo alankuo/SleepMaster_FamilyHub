@@ -74,7 +74,7 @@ class CreateEvents extends Component {
               </div>
 
               <div className="input-group">
-                <label>Approximate Time</label>
+                <label>Approximated Time</label>
                 <input type="text" name="time" id="time" placeholder=""></input>
               </div>
 

@@ -17,7 +17,8 @@ class Login extends Component {
   validateLogin(e){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    if ( username === "philip" && password === "guo"){
+    if ( (username === "philip" && password === "guo") ||
+          (username === localStorage['username'] && password === localStorage['password'])){
       window.location="#/";
     }
     else{

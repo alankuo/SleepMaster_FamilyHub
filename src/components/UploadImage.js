@@ -34,7 +34,7 @@ class ImageUpload extends React.Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img className="img-responsive center-block" src={imagePreviewUrl} alt={imagePreviewUrl}/>);
     } else {
-      $imagePreview = (<div className="previewText">Image Preview</div>);
+      $imagePreview = (<div className="previewText"></div>);
     }
 
     return (
