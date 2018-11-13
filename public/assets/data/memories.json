@@ -1,0 +1,8 @@
+{
+  "memories": [
+  {"img":"assets/img/curry.jpg", "date":"11/07", "i":"1"},
+  {"img":"assets/img/party.jpg", "date":"11/06", "i":"2"},
+  {"img":"assets/img/gem.jpg", "date":"11/05", "i":"3"},
+  {"img":"assets/img/curry.jpg", "date":"11/04", "i":"4"}
+]
+}
