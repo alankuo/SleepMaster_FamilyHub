@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import eventPhoto from '../../img/bike.png';
 import infoIcon from '../../img/info.png'
 import './Swipe.css';
 import NavBar from '../NavBar.js';
-import {Link} from 'react-router-dom';
 import dislike from '../../img/dislike_icon.png';
 import like from '../../img/like_icon.png';
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
+// import {
+//   CSSTransition,
+//   TransitionGroup,
+// } from 'react-transition-group';
 import request from 'then-request'
 
 class Swipe extends Component {
@@ -64,9 +62,9 @@ class Swipe extends Component {
   drag(e) {
     console.log("drag");
     console.log(this.state.cards[this.state.current].x);
-    var tmp =this.state.cards[this.state.current];
-    this.state.cards[this.state.current].x = e.screenX - this.x;
-    this.state.cards[this.state.current].y = e.screenY - this.y;
+    var currentCard =this.state.cards;
+    currentCard[this.state.current].x = e.screenX - this.x;
+    currentCard[this.state.current].y = e.screenY - this.y;
 
     const maxDegree = 8;
     let rotate = - (e.screenX - this.x) / 100 * maxDegree;
@@ -75,9 +73,9 @@ class Swipe extends Component {
     } else if (rotate < -maxDegree) {
       rotate = -maxDegree;
     }
-    this.state.cards[this.state.current].rotate = rotate;
+    currentCard[this.state.current].rotate = rotate;
 
-    this.setState({...this.state, cards: this.state.cards});
+    this.setState({...this.state, cards: currentCard});
   }
 
   drop(e) {
@@ -85,20 +83,21 @@ class Swipe extends Component {
 
     const maxDegree = 8;
     let rotate = - (e.screenX - this.x) / 100 * maxDegree;
+    var currentCard = this.state.cards;
     if(rotate > maxDegree) {
-      this.state.cards[this.state.current].x = -20000;
-      this.state.cards[this.state.current].y = 0;
-      this.setState({...this.state, update: !this.state.update, current: this.state.current - 1});
+      currentCard[this.state.current].x = -20000;
+      currentCard[this.state.current].y = 0;
+      this.setState({...this.state, cards: currentCard, update: !this.state.update, current: this.state.current - 1});
     } else if (rotate < -maxDegree) {
-      this.state.cards[this.state.current].x = 20000;
-      this.state.cards[this.state.current].y = 0;
-      this.setState({...this.state, update: !this.state.update, current: this.state.current - 1});
+      currentCard[this.state.current].x = 20000;
+      currentCard[this.state.current].y = 0;
+      this.setState({...this.state, cards: currentCard, update: !this.state.update, current: this.state.current - 1});
       this.like(this.state.cards[this.state.current]);
     } else {
-      this.state.cards[this.state.current].x = 0;
-      this.state.cards[this.state.current].y = 0;
-      this.state.cards[this.state.current].rotate = 0;
-      this.setState({...this.state, update: !this.state.update, release: !this.state.release});
+      currentCard[this.state.current].x = 0;
+      currentCard[this.state.current].y = 0;
+      currentCard[this.state.current].rotate = 0;
+      this.setState({...this.state, cards: currentCard, update: !this.state.update, release: !this.state.release});
     }
 
 
@@ -106,7 +105,7 @@ class Swipe extends Component {
 
   /*********** Navigation ******************/
   detail() {
-    window.location = "#/event-detail";
+    window.location = "#/event-details";
   }
 
   like(card) {

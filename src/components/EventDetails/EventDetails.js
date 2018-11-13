@@ -45,15 +45,15 @@ class EventDetails extends Component {
     const swipe_card = {
       "width": "50vh",
       "height": "80vh",
-      "min-height": "480px",
-      "min-width": "300px",
-      "border-radius": "20px",
+      "minHeight": "480px",
+      "minWidth": "300px",
+      "borderRadius": "20px",
       "overflow": "hidden",
       "position": "fixed",
-      "margin-top": "15px",
+      "marginTop": "15px",
 
-      "box-shadow": "0 3px 12px 3px rgba(0,0,0,0.2)",
-      "background-color": "white",
+      "boxShadow": "0 3px 12px 3px rgba(0,0,0,0.2)",
+      "backgroundColor": "white",
     };
 
 

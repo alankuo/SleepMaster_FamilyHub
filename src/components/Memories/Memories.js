@@ -49,7 +49,7 @@ class Memories extends Component {
   }
 
   handleOutsideClick(e) {
-    if (e.target.tagName != "IMG" && e.target.tagName != "BUTTON") {
+    if (e.target.tagName !== "IMG" && e.target.tagName !== "BUTTON") {
       this.setState({
         id: null,
       });
@@ -117,7 +117,7 @@ class Memories extends Component {
                         style={{'width': '100%'}}
                       />
                     </button>
-                    {this.state.id == pics.i && (
+                    {this.state.id === pics.i && (
                       <Modal
                         pics={pics.image}
                         closeModal={this.handleOutsideClick}
@@ -126,7 +126,7 @@ class Memories extends Component {
                   </div>
                 </div>
                )
-              }          
+              }
           </div>
         </div>
       </div>
