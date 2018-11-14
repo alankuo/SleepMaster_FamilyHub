@@ -1,6 +1,6 @@
-
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Footer from './Footer'
 
 class ResetPassword extends React.Component{
   constructor() {
@@ -52,6 +52,7 @@ class ResetPassword extends React.Component{
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
