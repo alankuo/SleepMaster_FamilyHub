@@ -61,9 +61,9 @@ class NoteBoard extends Component {
     renderNotes() {
         return this.state.bullets.map((e, i) => {
             return (<Textarea
-                    key={hash(e)}
+                    key={hash(e+i)}
                     className={this.state.edit === e? "noteboard-text" : "noteboard-passage"}
-                    autofocus="autofocus"
+                    autoFocus="autofocus"
                     readOnly={this.state.edit === e? null : "readOnly"}
                     onClick={this.getEntryEdit(e,i)}
                     onChange={this.updateEdit}

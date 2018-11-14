@@ -1,96 +1,97 @@
 .swipe {
-    position: fixed;
-    padding: 100px 20px;
-    height: 100%;
-    box-sizing: border-box;
+  position: fixed;
+  padding: 100px 20px;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-    .swipe-card {
-        width: 50vh;
-        height: 80vh;
-        min-height: 480px;
-        min-width: 300px;
-        border-radius: 20px;
-        overflow: hidden;
-        position: fixed;
-        left: 50%;
+.swipe-card {
+  width: 50vh;
+  height: 80vh;
+  min-height: 480px;
+  min-width: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: fixed;
+  left: 50%;
 
-        box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
-        background-color: white;
+  box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
+  background-color: white;
+}
 
+.swipe-card:hover {
+  cursor: pointer;
+}
 
+  .swipe-card-dislike {
+      width: 55%;
+      right: 0;
+      position: absolute;
+  }
 
-    }
+  .swipe-card-like {
+      width: 55%;
 
-    .swipe-card:hover {
-        cursor: pointer;
-    }
+      position: absolute;
+  }
 
-        .swipe-card-dislike {
-            width: 55%;
-            right: 0;
-            position: absolute;
-        }
+  .swipe-card-image {
+      height: 60vh;
 
-        .swipe-card-like {
-            width: 55%;
+  }
 
-            position: absolute;
-        }
+  .swipe-card-title {
+      text-align: center;
+  }
 
-        .swipe-card-image {
-            height: 60vh;
+      .swipe-card-info {
+          width: 6%;
+          transform: translate(0,-5%);
+          transition: transform ease-in-out 0.1s;
+          margin: 10px auto;
 
-        }
+      }
 
-        .swipe-card-title {
-            text-align: center;
-        }
+      .swipe-card-info:hover {
+          transform: translate(0,-5%) scale(1.1);
+      }
 
-            .swipe-card-info {
-                width: 6%;
-                transform: translate(0,-5%);
-                transition: transform ease-in-out 0.1s;
-                margin: 10px auto;
-
-            }
-
-            .swipe-card-info:hover {
-                transform: translate(0,-5%) scale(1.1);
-            }
-
-        .swipe-card-bot {
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
+  .swipe-card-bot {
+      padding: 0 20px;
+      box-sizing: border-box;
+  }
 
 
-            .swipe-people {
-            }
-            .swipe-type {
-                margin: 0;
-            }
+      .swipe-people {
+      }
+      .swipe-type {
+          margin: 0;
+      }
 
-            img {
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -o-user-select: none;
-                user-select: none;
-                }
+      img {
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -o-user-select: none;
+          user-select: none;
+          }
 
-                    .fade-enter {
-                        opacity: 0.01;
-                    }
-                    .fade-enter-active {
-                        opacity: 1;
-                        transition: opacity 500ms ease-in;
-                    }
-                    .fade-exit {
-                        opacity: 1;
-                    }
-                    .fade-exit-active {
-                        opacity: 0.01;
-                        transition: opacity 500ms ease-in;
-                    }
+              .fade-enter {
+                  opacity: 0.01;
+              }
+              .fade-enter-active {
+                  opacity: 1;
+                  transition: opacity 500ms ease-in;
+              }
+              .fade-exit {
+                  opacity: 1;
+              }
+              .fade-exit-active {
+                  opacity: 0.01;
+                  transition: opacity 500ms ease-in;
+              }
 
+.swipe-img {
+  height: 170px;
+  width: 170px;
+}

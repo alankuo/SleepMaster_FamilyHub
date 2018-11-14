@@ -69,13 +69,13 @@ class CreateEvents extends Component {
               </div>
 
               <div className="input-group">
-                <label>Need/Equipment</label>
+                <label>Equipment Needed</label>
                 <input type="text" name="need" id="need" placeholder=""></input>
               </div>
 
               <div className="input-group">
-                <label>Approximated Time</label>
-                <input type="text" name="time" id="time" placeholder=""></input>
+                <label>Approximated Time (in minutes)</label>
+                <input type="number" name="time" id="time" placeholder=""></input>
               </div>
 
               <div className="input-group">

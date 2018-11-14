@@ -4,6 +4,8 @@ import './Swipe.css';
 import NavBar from '../NavBar.js';
 import dislike from '../../img/dislike_icon.png';
 import like from '../../img/like_icon.png';
+import swipeLeft from '../../img/swipe-left.png';
+import swipeRight from '../../img/swipe-right.png';
 // import {
 //   CSSTransition,
 //   TransitionGroup,
@@ -125,6 +127,10 @@ class Swipe extends Component {
     return (
       <div>
         <NavBar />
+          <div style={{marginTop: 270+'px',float:'left'}}>
+            <p style={{marginLeft: 170+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE LEFT TO DISLIKE</p><br/>
+            <img className="swipe-img" style={{marginLeft: "190px", width:150+'px'}} src={swipeLeft} alt={swipeLeft} />
+          </div>
           <div className="swipe">
               {
                 this.state.cards.map((e, i) =>
@@ -159,7 +165,10 @@ class Swipe extends Component {
 
                 )
               }
-
+        </div>
+        <div style={{marginTop: 270+'px',float:'right'}}>
+          <p style={{marginRight: 160+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE RIGHT TO LIKE</p><br/>
+          <img className="swipe-img" style={{marginLeft:10+'px'}} src={swipeRight} alt={swipeRight} />
         </div>
       </div>
     );
