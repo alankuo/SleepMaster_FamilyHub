@@ -18,5 +18,21 @@ export default class {
     }
 
 
+    static setNoteboard(noteboard) {
+        localStorage.setItem('noteboard', JSON.stringify(noteboard))
+    }
+
+    static getNoteboard() {
+        const noteboard = localStorage.getItem('noteboard');
+        if(noteboard != null) {
+            return JSON.parse(noteboard);
+        } else {
+            return [];
+        }
+    }
+
+
+
+
 
 }

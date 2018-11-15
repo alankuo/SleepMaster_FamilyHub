@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import Textarea from 'react-textarea-autosize';
+import Database from '../../util/Database';
+import deleteIcon from '../../img/delete.png'
 const hash = require('object-hash');
+// import {cloneState} from '../../util/CloneState';
+
+
+const NoUseElements = new Set(['noteboard-button', 'noteboard-tutorial', 'noteboard-title', 'noteboard-notes', 'noteboard'])
 
 class NoteBoard extends Component {
     constructor(props) {
@@ -9,66 +15,190 @@ class NoteBoard extends Component {
         this.state = {
             text: "Leave a message for your family!",
 
-            bullets: [
-
-            ],
+            bullets: Database.getNoteboard(),
 
             update: true,
+            delete: false,
+
             edit: null,
+
         }
 
-        this.enterEdit = this.enterEdit.bind(this);
-        this.saveEdit = this.saveEdit.bind(this);
-        this.updateEdit = this.updateEdit.bind(this);
-        this.createEdit = this.createEdit.bind(this);
-        this.renderNotes = this.renderNotes.bind(this);
-        this.getEntryEdit = this.getEntryEdit.bind(this);
+        this.NoteBoard = React.createRef();
+
+        this.doubleClickNoUseElement = this.doubleClickNoUseElement.bind(this);
+        this.clickNoUseElement = this.clickNoUseElement.bind(this);
+        this.clickPlus = this.clickPlus.bind(this);
+        this.clickMinus = this.clickMinus.bind(this);
+        this.clickNote = this.clickNote.bind(this);
+        this.changeNote = this.changeNote.bind(this);
+        this.clickSave = this.clickSave.bind(this);
+    }
+
+    /********** lifecycle *************/
+
+    /********** ref helper ************/
+    scrollTop() {
+        if(this.NoteBoard.current != null) {
+            this.NoteBoard.current.scrollTop = 0;
+        }
+    }
+
+    /********** interaction **********/
+    doubleClickNoUseElement(e) {
+        // if double click in useful element
+        if(!NoUseElements.has(e.target.className)) {
+            return ;
+        }
+
+        this.cloneState = {...this.state};
+        this.createEdit();
+
+        this.setState(this.cloneState, this.scrollTop);
+    }
+
+
+    clickNoUseElement(e) {
+        // if click in useful element
+        if(!NoUseElements.has(e.target.className)) {
+            return ;
+        }
+        this.cloneState = {...this.state};
+
+        this.saveEdit();
+        this.exitDeleteMode();
+
+        this.setState(this.cloneState);
+
+    }
+
+
+    clickPlus(e) {
+        this.cloneState = {...this.state};
+
+        this.createEdit();
+
+        this.setState(this.cloneState, this.scrollTop);
+    }
+
+    clickMinus(e) {
+
+        this.cloneState = {...this.state};
+
+        this.switchDeleteMode();
+
+        this.setState(this.cloneState);
+    }
+
+    clickNote(e, i) {
+        return (function() {
+
+            this.cloneState = {...this.state};
+
+            this.enterEdit(e);
+
+            this.setState(this.cloneState);
+        }).bind(this);
+    }
+
+
+    changeNote(e, i) {
+        return (function(event) {
+
+            this.cloneState = {...this.state};
+
+            this.updateEdit(event, i)
+
+            this.setState(this.cloneState);
+
+        }).bind(this);
+    }
+
+    clickSave() {
+        this.cloneState = {...this.state};
+        this.saveEdit();
+        this.setState(this.cloneState);
+    }
+
+    clickDelete(e, i) {
+        return (function() {
+            this.cloneState = {...this.state};
+            this.deleteEdit(i);
+            this.setState(this.cloneState);
+        }).bind(this)
+
     }
 
 
     /********** editor **********/
-    getEntryEdit(e,i) {
-        return this.enterEdit.bind(this, e);
+    createEdit() {
+        this.exitDeleteMode();
+        this.saveEdit();
+
+        const newBullet = new Note();
+        this.cloneState.bullets.unshift(newBullet);
+        this.cloneState.edit = newBullet;
     }
 
-    enterEdit(e, event) {
-        event.stopPropagation();
-        this.setState({...this.state, edit: e});
+    enterEdit(e) {
+        this.exitDeleteMode();
+
+        this.cloneState.edit = e;
     }
 
     saveEdit() {
-        if(this.state.edit != null) {
-            if(this.state.edit.text === "") {
+        if(this.cloneState.edit != null) {
+            if( this.cloneState.bullets[0] &&
+                this.cloneState.bullets[0].first &&
+                this.cloneState.bullets[0].text.length == 0) {
 
+                this.cloneState.bullets.shift();
             }
-            this.setState({...this.state, edit: null});
+            this.cloneState.edit = null;
         }
 
     }
 
-    createEdit() {
-        const newBullet = new Note();
-        this.state.bullets.push(newBullet);
-        this.setState({...this.state, bullets: this.state.bullets, edit: newBullet});
+    deleteEdit(i) {
+        this.cloneState.bullets.splice(i, 1);
+        Database.setNoteboard(this.cloneState.bullets);
     }
 
-    updateEdit(e) {
+    updateEdit(e, i) {
+        this.cloneState.bullets[i].text = e.target.value;
+        this.cloneState.bullets[i].first = false;
 
-        // this.setState({...this.state, })
+        Database.setNoteboard(this.cloneState.bullets);
     }
+
+    /***********  delete **********/
+    switchDeleteMode() {
+        this.saveEdit();
+        this.cloneState.delete = !this.cloneState.delete;
+    }
+
+    exitDeleteMode() {
+        this.cloneState.delete = false;
+    }
+
 
     /************ render notes ***********/
     renderNotes() {
         return this.state.bullets.map((e, i) => {
-            return (<Textarea
-                    key={hash(e+i)}
-                    className={this.state.edit === e? "noteboard-text" : "noteboard-passage"}
-                    autoFocus="autofocus"
-                    readOnly={this.state.edit === e? null : "readOnly"}
-                    onClick={this.getEntryEdit(e,i)}
-                    onChange={this.updateEdit}
-
-                /> );
+            return (<li className={"noteboard-note " + (this.state.delete ? "noteboard-delete" : "noteboard-normal")} key={e.id}>
+                        <img
+                            className='noteboard-delete-icon'
+                            src={deleteIcon}
+                            onClick={this.clickDelete(e, i)}/>
+                        <Textarea
+                            className={(this.state.edit === e? "noteboard-text" : "noteboard-passage")}
+                            readOnly={this.state.edit === e? null : "readOnly"}
+                            autoFocus
+                            onClick={this.clickNote(e,i)}
+                            onInput={this.changeNote(e,i)}
+                            value={this.state.bullets[i].text}
+                        />
+                    </li> );
         })
     }
 
@@ -77,10 +207,16 @@ class NoteBoard extends Component {
 
             <div
                 className="noteboard"
-                onDoubleClick={this.createEdit}
+                onDoubleClick={this.doubleClickNoUseElement}
+                onClick={this.clickNoUseElement}
             >
-                <h3 className="noteboard-title center-block"> Message Board</h3>
-                <div className="noteboard-notes">
+                <h3 className="noteboard-title">
+                    Message Board
+                    <button className='noteboard-button-icon noteboard-button-minus' onClick={this.clickMinus}> - </button>
+                    <button className='noteboard-button-icon noteboard-button-plus' onClick={this.clickPlus}> + </button>
+                </h3>
+
+                <ul className="noteboard-notes" ref={this.NoteBoard}>
                 {
                     this.renderNotes()
                 }
@@ -89,12 +225,12 @@ class NoteBoard extends Component {
                     this.state.bullets.length === 0 ?
                     <h3 className="noteboard-tutorial"> Double Click here<br/>to start your new message</h3> : null
                 }
-                </div>
+                </ul>
 
 
                 <div className="noteboard-button">
                     {/* <input className="noteboard-remove" type="submit" value="Delete" onClick={this.saveEdit}/> */}
-                    <input className="noteboard-submit center-block" type="submit" value="Save" onClick={this.saveEdit}/>
+                    <input className="noteboard-submit center-block" type="submit" value="Save" onClick={this.clickSave}/>
                 </div>
             </div>
         );
@@ -103,9 +239,10 @@ class NoteBoard extends Component {
 
 class Note {
     constructor() {
-        this.edit = false;
+        this.first = true;
         this.expand = false;
         this.text = "";
+        this.id = Date.now() + Math.random()
     }
 }
 
