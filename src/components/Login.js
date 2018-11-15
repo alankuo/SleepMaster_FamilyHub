@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import { Link } from 'react-router-dom'
+import Footer from './Footer'
 
 class Login extends Component {
   constructor() {
@@ -17,8 +18,9 @@ class Login extends Component {
   validateLogin(e){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    if ( username === "philip" && password === "guo"){
-      window.location="/";
+    if ( (username === "philip" && password === "guo") ||
+          (username === localStorage['username'] && password === localStorage['password'])){
+      window.location="#/";
     }
     else{
       alert("username and password do not match!");
@@ -65,6 +67,7 @@ class Login extends Component {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import eventPhoto from '../../img/bike.png';
 import infoIcon from '../../img/info.png'
 import './Swipe.css';
 import NavBar from '../NavBar.js';
-import {Link} from 'react-router-dom';
 import dislike from '../../img/dislike_icon.png';
 import like from '../../img/like_icon.png';
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
+import swipeLeft from '../../img/swipe-left.png';
+import swipeRight from '../../img/swipe-right.png';
+// import {
+//   CSSTransition,
+//   TransitionGroup,
+// } from 'react-transition-group';
 import request from 'then-request'
 
 class Swipe extends Component {
@@ -33,7 +33,7 @@ class Swipe extends Component {
   }
 
   componentWillMount() {
-    request('GET', '/assets/data/activities.json', {json: true}).done((res)=> {
+    request('GET', 'assets/data/activities.json', {json: true}).done((res)=> {
       var response = JSON.parse(res.getBody());
       const arr = [];
       for(let i=0; i < response.activities.length; i++) {
@@ -64,9 +64,9 @@ class Swipe extends Component {
   drag(e) {
     console.log("drag");
     console.log(this.state.cards[this.state.current].x);
-    var tmp =this.state.cards[this.state.current];
-    this.state.cards[this.state.current].x = e.screenX - this.x;
-    this.state.cards[this.state.current].y = e.screenY - this.y;
+    var currentCard =this.state.cards;
+    currentCard[this.state.current].x = e.screenX - this.x;
+    currentCard[this.state.current].y = e.screenY - this.y;
 
     const maxDegree = 8;
     let rotate = - (e.screenX - this.x) / 100 * maxDegree;
@@ -75,9 +75,9 @@ class Swipe extends Component {
     } else if (rotate < -maxDegree) {
       rotate = -maxDegree;
     }
-    this.state.cards[this.state.current].rotate = rotate;
+    currentCard[this.state.current].rotate = rotate;
 
-    this.setState({...this.state, cards: this.state.cards});
+    this.setState({...this.state, cards: currentCard});
   }
 
   drop(e) {
@@ -85,20 +85,21 @@ class Swipe extends Component {
 
     const maxDegree = 8;
     let rotate = - (e.screenX - this.x) / 100 * maxDegree;
+    var currentCard = this.state.cards;
     if(rotate > maxDegree) {
-      this.state.cards[this.state.current].x = -20000;
-      this.state.cards[this.state.current].y = 0;
-      this.setState({...this.state, update: !this.state.update, current: this.state.current - 1});
+      currentCard[this.state.current].x = -20000;
+      currentCard[this.state.current].y = 0;
+      this.setState({...this.state, cards: currentCard, update: !this.state.update, current: this.state.current - 1});
     } else if (rotate < -maxDegree) {
-      this.state.cards[this.state.current].x = 20000;
-      this.state.cards[this.state.current].y = 0;
-      this.setState({...this.state, update: !this.state.update, current: this.state.current - 1});
+      currentCard[this.state.current].x = 20000;
+      currentCard[this.state.current].y = 0;
+      this.setState({...this.state, cards: currentCard, update: !this.state.update, current: this.state.current - 1});
       this.like(this.state.cards[this.state.current]);
     } else {
-      this.state.cards[this.state.current].x = 0;
-      this.state.cards[this.state.current].y = 0;
-      this.state.cards[this.state.current].rotate = 0;
-      this.setState({...this.state, update: !this.state.update, release: !this.state.release});
+      currentCard[this.state.current].x = 0;
+      currentCard[this.state.current].y = 0;
+      currentCard[this.state.current].rotate = 0;
+      this.setState({...this.state, cards: currentCard, update: !this.state.update, release: !this.state.release});
     }
 
 
@@ -106,7 +107,7 @@ class Swipe extends Component {
 
   /*********** Navigation ******************/
   detail() {
-    window.location = "#/event-detail";
+    window.location = "#/event-details";
   }
 
   like(card) {
@@ -126,6 +127,10 @@ class Swipe extends Component {
     return (
       <div>
         <NavBar />
+          <div style={{marginTop: 270+'px',float:'left'}}>
+            <p style={{marginLeft: 170+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE LEFT TO DISLIKE</p><br/>
+            <img className="swipe-img" style={{marginLeft: "190px", width:150+'px'}} src={swipeLeft} alt={swipeLeft} />
+          </div>
           <div className="swipe">
               {
                 this.state.cards.map((e, i) =>
@@ -142,14 +147,13 @@ class Swipe extends Component {
                       draggable={this.state.current === i ? "true" : "false"}
 
                     >
-                      <img className="swipe-card-dislike" src={dislike} style={{opacity: e.rotate / 5}} draggable="false"/>
-                      <img className="swipe-card-like" src={like} style={{opacity: -e.rotate / 5}} draggable="false"/>
-                      <img className="swipe-card-image" src={e.image} draggable="false"
+                      <img className="swipe-card-dislike" src={dislike} alt={dislike} style={{opacity: e.rotate / 5}} draggable="false"/>
+                      <img className="swipe-card-like" src={like} alt={like} style={{opacity: -e.rotate / 5}} draggable="false"/>
+                      <img className="swipe-card-image" src={e.image} alt={e.image} draggable="false"
                         onClick={this.detail}/>
 
                       <div className="swipe-card-bot">
-                        <h4 className="swipe-card-title">{e.title} <img className="swipe-card-info" src={infoIcon}
-                            onClick={this.detail}
+                        <h4 className="swipe-card-title">{e.title} <img className="swipe-card-info" src={infoIcon} alt={infoIcon} onClick={this.detail}
                           />
                         </h4>
 
@@ -161,7 +165,10 @@ class Swipe extends Component {
 
                 )
               }
-
+        </div>
+        <div style={{marginTop: 270+'px',float:'right'}}>
+          <p style={{marginRight: 160+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE RIGHT TO LIKE</p><br/>
+          <img className="swipe-img" style={{marginLeft:10+'px'}} src={swipeRight} alt={swipeRight} />
         </div>
       </div>
     );

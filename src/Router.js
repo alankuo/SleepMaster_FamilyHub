@@ -8,7 +8,7 @@ import JoinFamily from './components/JoinFamily.js';
 import CreateFamily from './components/CreateFamily.js';
 import Swipe from './components/Swipe/Swipe.js';
 import CreateEvents from './components/CreateEvents.js';
-import EventDetails from './components/EventDetail/EventDetails.js';
+import EventDetails from './components/EventDetails/EventDetails.js';
 import FavoriteEvents from './components/FavoriteEvents.js';
 import Settings from './components/Settings.js'
 import Memories from './components/Memories/Memories.js'
@@ -27,7 +27,7 @@ export default class Router extends React.Component<{}> {
           <Route exact path='/create-family' component={CreateFamily}/>
           <Route exact path='/discover-event' component={Swipe}/>
           <Route exact path='/create-event' component={CreateEvents}/>
-          <Route exact path='/event-detail' component={EventDetails}/>
+          <Route exact path='/event-details' component={EventDetails}/>
           <Route exact path='/favorite-event' component={FavoriteEvents}/>
           <Route exact path='/settings' component={Settings}/>
           <Route exact path='/memories' component={Memories}/>

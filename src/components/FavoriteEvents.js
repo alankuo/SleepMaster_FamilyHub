@@ -5,7 +5,7 @@ import request from 'then-request'
 
 const styles = {
   event: {
-    height: "350px",
+    height: "400px",
     width: "350px",
     display: "block",
     float: "left",
@@ -34,26 +34,45 @@ class FavoriteEvents extends Component {
 		this.changeActive = this.changeActive.bind(this);
     this.getActivities = this.getActivities.bind(this);
     this.mapArray = this.mapArray.bind(this);
+    this.updateFromLocalStorageData = this.updateFromLocalStorageData.bind(this);
 	}
 
   componentWillMount() {
     request('GET', 'assets/data/activities.json', {json: true}).done((res)=> {
-      var response = JSON.parse(res.getBody());
-      this.setState(response);
+      //var response = JSON.parse(res.getBody());
+      //this.setState(response);
+      this.setState({"activities":[]});
+      console.log("componentWillMount");
+      this.updateFromLocalStorageData();
       this.setState({"outdoorActivities": this.getActivities("outdoor")});
       this.setState({"indoorActivities": this.getActivities("indoor")});
       this.setState({"otherActivities": this.getActivities("others")});
       this.setState({"dataRetrieved": true});
+      console.log(this.state.activities);
     });
+  }
+
+  updateFromLocalStorageData() {
+    let activities = this.state.activities;
+    let storedArray = [];
+    if(localStorage["favorite"] !== undefined) {
+      storedArray = JSON.parse(localStorage['favorite']);
+    }
+    for(let index = 0; index < storedArray.length; index++) {
+      let item = storedArray[index];
+      activities.unshift(item);
+    }
   }
 
   getActivities(filter) {
     let activities = this.state.activities;
     let result = [];
-    for(let index = 0; index < activities.length; index++) {
-      let item = activities[index];
-      if(item["category"]===filter) {
-        result.push(item);
+    if(activities !== undefined) {
+      for(let index = 0; index < activities.length; index++) {
+        let item = activities[index];
+        if(item["category"]===filter) {
+          result.push(item);
+        }
       }
     }
     return result;
@@ -64,27 +83,35 @@ class FavoriteEvents extends Component {
   }
 
   mapArray(array) {
-    return array.map((item, i) => {
-      return(
-        <div key={i} style={styles.event}>
-          <img src={item["img"]} alt="/" style={styles.eventImg}/>
-          <div style={{marginLeft:20+'px'}}>
-            <span style={{fontWeight:"bold"}}>Activity Name:</span> {item["name"]}<br/>
-            <span style={{fontWeight:"bold"}}>Category:</span> {item["category"]}<br/>
-            <span style={{fontWeight:"bold"}}>Suggested of People:</span> {item["num"][0]}-{item["num"][1]}<br/>
-            <span style={{fontWeight:"bold"}}>Equipment Needed:</span> {
-              item["equipment"].map((item2, i2)=>{
-                if(i2===item["equipment"].length-1)
-                  return(item2)
-                else
-                  return(item2 + ", ")})
-                }<br/>
-            <span style={{fontWeight:"bold"}}>Description:</span> {item["description"]}<br/>
+    if(array !== undefined) {
+      return array.map((item, i) => {
+        return(
+          <div key={i} style={styles.event}>
+            <img src={item["img"]} alt="/" style={styles.eventImg}/>
+            <div style={{marginLeft:20+'px'}}>
+              <span style={{fontWeight:"bold"}}>Activity Name:</span> {item["name"]}<br/>
+              <span style={{fontWeight:"bold"}}>Category:</span> {item["category"]}<br/>
+              {item["num"]!==undefined?
+              (<span><span style={{fontWeight:"bold"}}>Suggested of People:</span> {item["num"][0]}-{item["num"][1]}<br/></span>)
+              :""}
+              <span style={{fontWeight:"bold"}}>Equipment Needed:</span> {
+                item["equipment"].map((item2, i2)=>{
+                  if(i2===item["equipment"].length-1)
+                    return(item2)
+                  else
+                    return(item2 + ", ")})
+                  }<br/>
+              <span style={{fontWeight:"bold"}}>Description:</span> {item["description"]}<br/>
+            </div>
           </div>
-        </div>
+        );
+      });
+    }
+    else {
+      return(
+        <div></div>
       );
-    });
-
+    }
   }
 
   render() {

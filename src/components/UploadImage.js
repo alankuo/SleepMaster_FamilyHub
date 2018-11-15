@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -32,9 +32,9 @@ class ImageUpload extends React.Component {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img className="img-responsive center-block" src={imagePreviewUrl} />);
+      $imagePreview = (<img className="img-responsive center-block" src={imagePreviewUrl} alt={imagePreviewUrl}/>);
     } else {
-      $imagePreview = (<div className="previewText">Image Preview</div>);
+      $imagePreview = (<div className="previewText"></div>);
     }
 
     return (
@@ -57,4 +57,3 @@ class ImageUpload extends React.Component {
 }
 
 export default ImageUpload;
-

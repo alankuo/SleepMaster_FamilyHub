@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import eventPhoto from '../img/bike.jpg'
 import NavBar from './NavBar.js';
-import {Link} from 'react-router-dom';
 
 import ImageUpload from'./UploadImage';
 
@@ -42,53 +40,54 @@ class CreateEvents extends Component {
   render() {
     document.title = 'Create an Event';
     return (
-      <div className="container" onKeyPress={this.keyEvent}>
+      <div>
         <NavBar/>
+        <div className="container" onKeyPress={this.keyEvent}>
+          <div className="settings-bar">
+            <div className="header">
+              <h2>Create an Event</h2>
+            </div>
+            <form method="post">
+              <div className="input-group">
+                <label>Event Name*</label>
+                <input type="text" name="event_name" id="event_name" placeholder=""></input>
+              </div>
+              <div className="input-group">
+                <label>Number of members*</label>
+                <input type="number" name="number_of_members" id="number_of_members" placeholder=""></input>
+              </div>
 
-        <div className="login-bar">
-          <div className="header">
-            <h2>Create an Event</h2>
+              <div class="input-group">
+                <label>Category*</label>
+
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>Choose Category</option>
+                  <option value="1">Outdoor</option>
+                  <option value="2">Indoor</option>
+                  <option value="3">Others</option>
+                </select>
+              </div>
+
+              <div className="input-group">
+                <label>Equipment Needed</label>
+                <input type="text" name="need" id="need" placeholder=""></input>
+              </div>
+
+              <div className="input-group">
+                <label>Approximated Time (in minutes)</label>
+                <input type="number" name="time" id="time" placeholder=""></input>
+              </div>
+
+              <div className="input-group">
+                <label>Event Photo*</label>
+                <ImageUpload/>
+              </div>
+
+              <div>
+                <input type="button" className="btn" onClick={this.createEvent} id="submitBtn" name="create_btn" value="CREATE"/>
+              </div>
+            </form>
           </div>
-          <form method="post">
-            <div className="input-group">
-              <label>Event Name*</label>
-              <input type="text" name="event_name" id="event_name" placeholder=""></input>
-            </div>
-            <div className="input-group">
-              <label>Number of members*</label>
-              <input type="number" name="number_of_members" id="number_of_members" placeholder=""></input>
-            </div>
-
-            <div class="input-group">
-              <label>Category*</label>
-
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Choose Category</option>
-                <option value="1">Outdoor</option>
-                <option value="2">Indoor</option>
-                <option value="3">Others</option>
-              </select>
-            </div>
-
-            <div className="input-group">
-              <label>Need/Equipment</label>
-              <input type="text" name="need" id="need" placeholder=""></input>
-            </div>
-
-            <div className="input-group">
-              <label>Approximate Time</label>
-              <input type="text" name="time" id="time" placeholder=""></input>
-            </div>
-
-            <div className="input-group">
-              <label>Event Photo*</label>
-              <ImageUpload/>
-            </div>
-
-            <div>
-              <input type="button" className="btn" onClick={this.createEvent} id="submitBtn" name="create_btn" value="CREATE"/>
-            </div>
-          </form>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import { Link } from 'react-router-dom'
+import Footer from './Footer'
 
 class Register extends Component {
   constructor() {
@@ -21,6 +22,8 @@ class Register extends Component {
     const username = document.getElementById("username").value;
     const password_1 = document.getElementById("password_1").value;
     const password_2 = document.getElementById("password_2").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
     if(first_name===""||last_name===""||username===""||password_1===""){
       alert("Please fill in all required information!");
     }
@@ -31,7 +34,12 @@ class Register extends Component {
       alert("Passwords do not match!");
     }
     else{
+      localStorage.setItem('username', username);
+      localStorage.setItem('password', password_1);
+      localStorage.setItem('email', email);
+      localStorage.setItem('phone', phone);
       alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
+      window.location = "#/login";
     }
   }
 
@@ -72,11 +80,11 @@ class Register extends Component {
             </div>
             <div className="input-group">
               <label>Phone</label>
-              <input type="number" name="phone" placeholder="(000)-000-0000"></input>
+              <input type="number" name="phone" id="phone" placeholder="(000)-000-0000"></input>
             </div>
             <div className="input-group">
               <label>Email*</label>
-              <input type="email" name="email" placeholder="name@example.com"></input>
+              <input type="email" name="email" id="email" placeholder="name@example.com"></input>
             </div>
             <p>By submitting this information, you indicate that you agree to FamilyHub's <strong>Terms of Service</strong> and have read and understood our <strong>Privacy Policy</strong>.</p>
             <input type="button" className="btn" name="register_btn" onClick={this.registerAccount} value="Register" />
@@ -85,6 +93,7 @@ class Register extends Component {
             </p>
           </form>
         </div>
+        <Footer />
       </div>
     );
   }
