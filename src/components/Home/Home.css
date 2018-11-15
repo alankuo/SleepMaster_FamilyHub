@@ -53,11 +53,37 @@
             }
                 .noteboard-title {
                     margin-left: 10px;
-                    margin-top: 5px;
+                    margin-top: 10px;
                     margin-bottom: 5px;
                     text-align: left;
                     font-size: 1.5vw;
                 }
+
+                    .noteboard-button-icon {
+                        float: right;
+                        margin-right: 20px;
+                        background-color: transparent;
+                        height: 3vh;
+                        width: 3vh;
+                        border-radius: 1.5vh;
+                        font-size: auto;
+                        overflow: hidden;
+                        font-weight: normal;
+                        text-align: center;
+                        font-size: 2vh;
+                        padding: 0;
+                        outline:0;
+                    }
+
+                    .noteboard-button-plus {
+                        border: 1px solid rgb(29, 142, 238);
+                        color: rgb(29, 142, 238);
+                    }
+
+                    .noteboard-button-minus {
+                        border: 1px solid red;
+                        color: red;
+                    }
 
                 .noteboard-tutorial {
                     font-size: 17px;
@@ -74,70 +100,89 @@
                     flex: 1;
                     overflow-y: scroll;
                     padding: 10px;
-
-                }
-                    .noteboard-text {
-                        color: rgb(29, 76, 119);
-                        width: 100%;
-                        overflow: visible;
-                        margin-top: 10px;
-                        box-sizing: border-box;
-                        resize: none;
-                        border: none;
-                        padding: 10px;
-                        border-radius: 10px;
-                        box-shadow: 0 0px 0px 0px rgba(0,0,0,0.2);
-                        border: 1px solid rgb(168, 206, 241);
-                        outline: 0;
-                        font-size: 15px;
-                        transition: border ease-in-out 0.2s, box-shadow ease-in-out 0.1s;
-
-                    }
-                    .noteboard-passage {
-                        color: black;
-                        width: 100%;
-                        overflow: visible;
-                        box-sizing: border-box;
-                        margin-top: 10px;
-                        resize: none;
-                        border: none;
-                        border: 1px solid white;
-                        padding: 10px;
-                        border-radius: 10px;
-                        box-shadow: 0 3px 12px 0px rgba(0,0,0,0.2);
-                        outline: 0;
-                        font-size: 15px;
-                        transition: border ease-in-out 0.2s, box-shadow ease-in-out 0.1s;
-                    }
-
-                .noteboard-button {
-                    width: 100%;
+                    list-style: none;
                     overflow-x: hidden;
-                    white-space: nowrap;
+
                 }
-                    .noteboard-remove {
-                        border: 0;
-                        box-sizing: border-box;
-                        width: 40%;
-                        height: 40px;
-                        margin: 20px 20px 0 0;
-                        background-color: rgb(255, 60, 60);
-                        color: white;
-                        border-radius: 25px;
-                        display: inline-block;
-                        transition: width ease-in-out 0.1s;
+
+                    .noteboard-note {
+                        transition: transform ease-in-out 0.15s
                     }
-                    .noteboard-submit {
-                        border: 0;
-                        width: 70%;
-                        height: 40px;
-                        margin: 10px 15% 10px 15%;
-                        background-color: rgb(65, 199, 70);
-                        color: white;
-                        border-radius: 25px;
-                        display: inline-block;
-                        transition: width ease-in-out 0.1s;
+                    .noteboard-delete {
+                        transform: translateX(50px);
                     }
+                    .noteboard-normal {
+                        transform: translateX(0px);
+                    }
+                        .noteboard-text {
+                            color: rgb(29, 76, 119);
+                            width: 100%;
+                            overflow: visible;
+                            margin-top: -20px;
+                            box-sizing: border-box;
+                            resize: none;
+                            border: none;
+                            padding: 10px;
+                            border-radius: 10px;
+                            box-shadow: 0 0px 0px 0px rgba(0,0,0,0.2);
+                            border: 1px solid rgb(168, 206, 241);
+                            outline: 0;
+                            font-size: 15px;
+                            transition: border ease-in-out 0.2s, box-shadow ease-in-out 0.1s, transform ease-in-out 0.15s;
+                        }
+                        .noteboard-passage {
+                            color: black;
+                            width: 100%;
+                            overflow: visible;
+                            box-sizing: border-box;
+                            margin-top: -20px;
+                            resize: none;
+                            border: none;
+                            border: 1px solid white;
+                            padding: 10px;
+                            border-radius: 10px;
+                            box-shadow: 0 3px 12px 0px rgba(0,0,0,0.2);
+                            outline: 0;
+                            font-size: 15px;
+                            transition: border ease-in-out 0.2s, box-shadow ease-in-out 0.1s, transform ease-in-out 0.15s;
+                        }
+
+
+                        .noteboard-delete-icon {
+                            position: relative;
+                            height: 30px;
+                            transform: translate(-50px, 17px);
+                        }
+
+                    .noteboard-button {
+                        width: 100%;
+                        overflow-x: hidden;
+                        white-space: nowrap;
+                    }
+                        .noteboard-remove {
+                            border: 0;
+                            box-sizing: border-box;
+                            width: 40%;
+                            height: 40px;
+                            margin: 20px 20px 0 0;
+                            background-color: rgb(255, 60, 60);
+                            color: white;
+                            border-radius: 25px;
+                            display: inline-block;
+                            transition: width ease-in-out 0.1s;
+                        }
+                        .noteboard-submit {
+                            border: 0;
+                            width: 70%;
+                            height: 40px;
+                            margin: 10px 15% 10px 15%;
+                            background-color: rgb(65, 199, 70);
+                            color: white;
+                            border-radius: 25px;
+                            display: inline-block;
+                            transition: width ease-in-out 0.1s;
+                            outline:0;
+                        }
 
     .cards {
         width: 100%;
