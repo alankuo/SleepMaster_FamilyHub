@@ -6,7 +6,7 @@ import {
 import './index.css';
 import AppRouter from './Router'
 import * as serviceWorker from './serviceWorker';
-require('./components/EventDetail/ably');
+require('./components/EventDetails/ably');
 
 ReactDOM.render(
   <HashRouter>
