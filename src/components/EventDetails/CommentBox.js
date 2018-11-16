@@ -13,12 +13,13 @@ class CommentBox extends Component {
     // Get the value of the comment box
     // and make sure it not some empty strings
     const comment = e.target.elements.comment.value.trim();
-    const name = e.target.elements.name.value.trim();
+    // const name = e.target.elements.name.value.trim();
 
     // Make sure name and comment boxes are filled
-    if (name && comment) {
-      const commentObject = { name, comment };
-
+    // if (name && comment) {
+    if (comment){
+      // const commentObject = { name, comment };
+      const commentObject = {comment };
       this.props.handleAddComment(commentObject);
 
       // Publish comment
@@ -32,7 +33,7 @@ class CommentBox extends Component {
 
       // Clear input fields
       e.target.elements.comment.value = '';
-      e.target.elements.name.value = '';
+      // e.target.elements.name.value = '';
     }
     else{
       alert ("Please fill in your name or comment section!");
@@ -44,16 +45,17 @@ class CommentBox extends Component {
       <div>
         <h1 className="title">Leave your comment!</h1>
         <form onSubmit={this.addComment}>
-          <div className="input-group">
-            <div className="control">
-              <label>Your Name</label>
-              <input type="text" className="input" name="name" placeholder="Your name"/>
-            </div>
-          </div>
+          {/*<div className="input-group">*/}
+            {/*<div className="control">*/}
+              {/*<label>Your Name</label>*/}
+              {/*<input type="text" className="input" name="name" placeholder="Your name"/>*/}
+            {/*</div>*/}
+          {/*</div>*/}
           <div className="input-group">
             <div className="control">
               <label>Comment</label>
-              <input className="textarea" name="comment" placeholder="Add a comment"/>
+              {/*<input className="textarea" name="comment" placeholder="Add a comment" rows= {8} style={{height:'200%'}}/>*/}
+              <textarea cols="50" rows="3" name="comment" placeholder="Add a comment" />
               {/*<textarea className="textarea" name="comment" placeholder="Add a comment"></textarea>*/}
             </div>
           </div>
