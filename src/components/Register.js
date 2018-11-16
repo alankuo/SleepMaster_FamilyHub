@@ -38,6 +38,7 @@ class Register extends Component {
       localStorage.setItem('password', password_1);
       localStorage.setItem('email', email);
       localStorage.setItem('phone', phone);
+      localStorage.setItem('firstTime', true);
       alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
       window.location = "#/login";
     }

@@ -23,7 +23,9 @@ class ImageUpload extends React.Component {
         file: file,
         imagePreviewUrl: reader.result
       });
-      this.props.setImageURL(reader.result);
+      if(this.props.setImageURL !== undefined) {
+        this.props.setImageURL(reader.result);
+      }
     }
     if(file !== undefined) {
       reader.readAsDataURL(file);

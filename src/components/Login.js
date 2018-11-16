@@ -20,7 +20,16 @@ class Login extends Component {
     const password = document.getElementById("password").value;
     if ( (username === "philip" && password === "guo") ||
           (username === localStorage['username'] && password === localStorage['password'])){
-      window.location="#/";
+            if(localStorage['firstTime'] === undefined) {
+              localStorage.setItem('firstTime', true);
+            }
+            let firstID = localStorage['firstTime'];
+            if(firstID === "true") {
+              window.location = "#/create";
+            }
+            else {
+              window.location="#/";
+            }
     }
     else{
       alert("username and password do not match!");
