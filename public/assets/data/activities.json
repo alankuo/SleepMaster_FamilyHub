@@ -1,8 +1,19 @@
 {
   "activities": [
-  	{"name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha"},
-  	{"name":"Play Soccer", "num":[3,5], "category":"outdoor", "equipment":["soccer"], "time-length":[60, 80], "img":"assets/img/balotelli.jpg", "description":"testing"},
-    {"name":"Sing", "num":[2,5], "category":"indoor", "equipment":["microphone", "speaker"], "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo"},
-    {"name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo"}
+  	{"name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha",
+      "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+    {"name":"Play Soccer", "num":[3,5], "category":"outdoor", "equipment":["soccer"], "time-length":[60, 80], "img":"assets/img/balotelli.jpg", "description":"testing",
+      "comments": [{"name": "Alan Kuo", "comment": "My fav!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+    {"name":"Sing", "num":[2,5], "category":"indoor", "equipment":["microphone", "speaker"], "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo",
+      "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+    {"name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo",
+      "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+    {"name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha",
+      "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]}
+
   ]
 }
