@@ -87,7 +87,7 @@ class CreateFamily extends Component {
             <div className="header">
               <h2>Create Your Family Account</h2>
             </div>
-            <form method="post">
+            <form>
               <div className="input-group" onKeyPress={this.keyEvent}>
                 <label>Family Name*</label>
                 <input type="text" name="family_name" id="family_name" ></input>

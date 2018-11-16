@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import '../css/cropper.css';
 import NavBar from './NavBar'
 import Footer from './Footer'
+import Cropper from 'react-cropper'
 
 class Settings extends Component {
   constructor() {
@@ -9,12 +11,17 @@ class Settings extends Component {
 
     // Initial state
     this.state = {
-      routeAddress: "/profile"
+      routeAddress: "/profile",
+      newImageURL: "",
+      cropResult: ""
     };
 
     // Bind all functions so they can refer to "this" correctly
     this.saveProfile = this.saveProfile.bind(this);
+    this.cropImage = this.cropImage.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
+
   componentDidMount() {
     if (localStorage["username"] === undefined) {
       document.getElementsByName("username")[0].value = "";
@@ -26,11 +33,41 @@ class Settings extends Component {
       document.getElementsByName("email")[0].value = localStorage["email"];
     }
   }
+
   saveProfile(e){
     localStorage.setItem("username",document.getElementsByName("username")[0].value);
     localStorage.setItem("phone",document.getElementsByName("phone")[0].value);
     localStorage.setItem("email",document.getElementsByName("email")[0].value);
+    if(this.state.cropResult !== "") {
+      localStorage.setItem("familyPhoto", this.state.cropResult);
+    }
     alert("Profile has been saved!");
+    window.location = "#/";
+  }
+
+  onChange(e) {
+    e.preventDefault();
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.setState({ newImageURL: reader.result });
+    };
+    reader.readAsDataURL(files[0]);
+  }
+
+  cropImage(e) {
+    if (typeof this.cropper.getCroppedCanvas() === 'undefined') {
+      return;
+    }
+    this.setState({
+      cropResult: this.cropper.getCroppedCanvas().toDataURL(),
+    });
+    e.preventDefault();
   }
 
   render() {
@@ -55,10 +92,29 @@ class Settings extends Component {
                  <label>Email</label>
                  <input type="email" name="email" defaultValue="johndoe@example.com"/>
                </div>
-               <p>By submitting this information, you indicate that you agree to EasyLineUp's <strong>Terms of Service</strong> and have read and understood our <strong>Privacy Policy</strong>.</p>
                <div className="input-group">
-                <input type="submit" onClick={this.saveProfile} className="btn" name="register_btn" value="Save" />
-              </div>
+                 <label>Change a Family Photo</label>
+                 <input type="file" onChange={this.onChange} />
+                 {this.state.newImageURL!==""?
+                   <div>
+                   <Cropper
+                     style={{ height: 400, width: '400px' }}
+                     aspectRatio={16 / 9}
+                     preview=".img-preview"
+                     guides={false}
+                     src={this.state.newImageURL}
+                     ref={cropper => { this.cropper = cropper; }}
+                   /><button onClick={this.cropImage} style={{ float:'right', marginTop:10, fontWeight:"bold" }}>
+                     Crop Image
+                   </button>
+                   <p>*Make sure you crop the image so that changes on the photo could apply*</p>
+                   </div>
+                   :''
+                 }
+                 <img style={{ width: '100%' }} src={this.state.cropResult} alt={this.state.cropResult} />
+               </div>
+
+               <input type="submit" onClick={this.saveProfile} className="btn" value="Save" />
             </form>
           </div>
         </div>

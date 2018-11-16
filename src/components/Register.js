@@ -24,7 +24,7 @@ class Register extends Component {
     const password_2 = document.getElementById("password_2").value;
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
-    if(first_name===""||last_name===""||username===""||password_1===""){
+    if(first_name===""||last_name===""||username===""||password_1===""||email===""){
       alert("Please fill in all required information!");
     }
     else if(password_1.length<8){
@@ -32,6 +32,9 @@ class Register extends Component {
     }
     else if(password_1!==password_2){
       alert("Passwords do not match!");
+    }
+    else if(!email.includes("@")||!email.includes(".com")){
+      alert("Please enter a valid email address!");
     }
     else{
       localStorage.setItem('username', username);
