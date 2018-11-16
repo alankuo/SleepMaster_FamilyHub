@@ -35,14 +35,20 @@ class Settings extends Component {
   }
 
   saveProfile(e){
-    localStorage.setItem("username",document.getElementsByName("username")[0].value);
-    localStorage.setItem("phone",document.getElementsByName("phone")[0].value);
-    localStorage.setItem("email",document.getElementsByName("email")[0].value);
-    if(this.state.cropResult !== "") {
-      localStorage.setItem("familyPhoto", this.state.cropResult);
+    let email = document.getElementsByName("email")[0].value;
+    if(!email.includes("@")||!email.includes(".com")){
+      alert("Please enter a valid email address!");
     }
-    alert("Profile has been saved!");
-    window.location = "#/";
+    else {
+      if(this.state.cropResult !== "") {
+        localStorage.setItem("familyPhoto", this.state.cropResult);
+      }
+      localStorage.setItem("username", document.getElementsByName("username")[0].value);
+      localStorage.setItem("phone", document.getElementsByName("phone")[0].value);
+      localStorage.setItem("email", email);
+      alert("Profile has been saved!");
+      window.location = "#/";
+    }
   }
 
   onChange(e) {
