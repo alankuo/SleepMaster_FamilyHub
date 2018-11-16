@@ -61,8 +61,6 @@ class Swipe extends Component {
       const response = Database.getMatches(20);
       const arr = [];
       const commentsArr = [];
-      for(let i=0; i < response.activities.length; i++) {
-        const activity = response.activities[i];
 
       for(let i=0; i < response.length; i++) {
         const activity = response[i];
@@ -71,10 +69,7 @@ class Swipe extends Component {
       }
       // console.log(arr);
 
-      this.setState({...this.state, cards: arr, current: arr.length - 1, comments: commentsArr}, );
-    });
-      this.setState({...this.state, cards: arr, current: arr.length - 1});
-
+      this.setState({...this.state, cards: arr, current: arr.length - 1, comments: commentsArr});
     }).bind(this),500);
   }
 
