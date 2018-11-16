@@ -39,6 +39,10 @@ class NoteBoard extends Component {
 
     /********** lifecycle *************/
 
+    componentWillUnmount() {
+        document.onkeyup = null;
+    }
+
     /********** ref helper ************/
     scrollTop() {
         if(this.NoteBoard.current != null) {
