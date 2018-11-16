@@ -1,7 +1,7 @@
 # SleepMaster_FamilyHub
 This is a web app designed to enhance family interactions by providing a platform to effectively suggest activities for the family to do together.
 
-##URL
+## URL
 https://alankuo.github.io/SleepMaster_FamilyHub/#/
 
 ## Synopsis
