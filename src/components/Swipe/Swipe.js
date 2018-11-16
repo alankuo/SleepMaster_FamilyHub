@@ -46,13 +46,15 @@ class Swipe extends Component {
     request('GET', 'assets/data/activities.json', {json: true}).done((res)=> {
       var response = JSON.parse(res.getBody());
       const arr = [];
+      const commentsArr = [];
       for(let i=0; i < response.activities.length; i++) {
         const activity = response.activities[i];
         arr.push(new CardInfo(activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, activity.comments))
+        commentsArr.push(activity.comments)
       }
       // console.log(arr);
 
-      this.setState({...this.state, cards: arr, current: arr.length - 1});
+      this.setState({...this.state, cards: arr, current: arr.length - 1, comments: commentsArr}, );
     });
   }
 
@@ -73,8 +75,21 @@ class Swipe extends Component {
 
   handleAddComment(comment) {
     this.setState(prevState => {
+      // let index = this.state.current;
+      // let prevComment = prevState.cards[index].comment;
+      // let newComment = prevComment.concat(comment);
+      // let commentState = this.state.cards[index];
+      let index = this.state.current;
+      for(let i=0; i < this.state.comments.length; i++) {
+        if (i === index){
+          prevState.comments[i]= prevState.comments[this.state.current].concat(comment)
+        }
+      }
+      // let a = prevState.comments[this.state.current].concat(comment);
       return {
-        comments: prevState.comments.concat(comment)
+        comments: prevState.comments
+        // cards[index]: newComment
+        // cards[current].comment: prevState.cards[prevState.current].comment.concat(comment)
       };
     });
   }
@@ -267,7 +282,8 @@ class Swipe extends Component {
           </div>
           <div className="col-lg-5" style={{left:'50%'}}>
             <div className="columns">
-              <Comments comments={this.state.cards[this.state.current].comment.reverse()} />
+              {/*<Comments comments={this.state.cards[this.state.current].comment} />*/}
+              <Comments comments={this.state.comments[this.state.current]} />
               <CommentBox handleAddComment={this.handleAddComment} />
             </div>
           </div>
