@@ -7,7 +7,26 @@ export default class Database{
         {"id": 3, "name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo"}
     ];
 
+    static test = true;
 
+    static init(test) {
+        // set fake data
+        Database.test = test;
+        if(test) {
+            localStorage.setItem('activities', JSON.stringify(Database.data));
+        }
+    }
+
+
+    static getActivities() {
+        const data = localStorage.getItem('activities');
+
+        if(data) {
+            return JSON.parse(data);
+        } else {
+            return [];
+        }
+    }
 
 
     static setLike(card) {
@@ -24,27 +43,29 @@ export default class Database{
     static getVisited() {
         const visited = localStorage.getItem('visited');
         if(visited) {
-            return visited;
+            return parseInt(visited);
         } else {
             return 0;
         }
     }
 
-    static setVisited(card) {
-        const visited = Database.getVisited();
+    static setVisited() {
+        let visited = Database.getVisited();
         visited += 1;
+        console.log(visited);
         localStorage.setItem('visited', visited);
 
     }
 
     static getMatches(num) {
         const matches = [];
-        const start = Database.getVisited();
-        for(let i=start; i<Database.length; i++) {
+        const start = Database.test ? 0 : Database.getVisited();
+        const data = Database.getActivities()
+        for(let i=start; i<data.length; i++) {
             if(i >= start + num) {
                 break;
             }
-            matches.push({...Database.data[i]});
+            matches.unshift({...data[i]});
         }
 
         return matches;
