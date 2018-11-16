@@ -50,6 +50,7 @@
           transform: translate(0,-5%);
           transition: transform ease-in-out 0.1s;
           margin: 10px auto;
+          left:50%
 
       }
 

@@ -29,9 +29,8 @@ class Swipe extends Component {
       update: true,
       release: false,
       inform: false,
-      comments: [{name: "Lan Wang", comment: "Really enjoy it with my family!"}
-        ,{name: "Yuhan Wang", comment: "Like it!"}],
-    }
+      comments:[],
+    };
 
     this.renderCards = this.renderCards.bind(this);
     this.startDrag = this.startDrag.bind(this);
@@ -49,9 +48,9 @@ class Swipe extends Component {
       const arr = [];
       for(let i=0; i < response.activities.length; i++) {
         const activity = response.activities[i];
-        arr.push(new CardInfo(activity.name, activity.img, activity.num,activity.category, activity.equipment))
+        arr.push(new CardInfo(activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, activity.comments))
       }
-      console.log(arr);
+      // console.log(arr);
 
       this.setState({...this.state, cards: arr, current: arr.length - 1});
     });
@@ -219,7 +218,6 @@ class Swipe extends Component {
                     <h6 >Need: {e.stuffs}</h6>
                   </div>
                 </div>
-
               )
             }
           </div>
@@ -260,7 +258,8 @@ class Swipe extends Component {
 
                     <h6> <div className="swipe-people glyphicon glyphicon-user"> </div> {e.suggestPeople[0]} - {e.suggestPeople[1]}</h6>
                     <h6 className="swipe-type">{e.type}</h6>
-                    <h6 >Need: {e.stuffs}</h6>
+                    <h6 >Need: {e.stuffs} </h6>
+                    <h6> Description: {e.descript}</h6>
                   </div>
                 </div>
               )
@@ -268,7 +267,7 @@ class Swipe extends Component {
           </div>
           <div className="col-lg-5" style={{left:'50%'}}>
             <div className="columns">
-              <Comments comments={this.state.comments.reverse()} />
+              <Comments comments={this.state.cards[this.state.current].comment.reverse()} />
               <CommentBox handleAddComment={this.handleAddComment} />
             </div>
           </div>
@@ -285,7 +284,7 @@ class Swipe extends Component {
 }
 
 class CardInfo {
-  constructor(title, image, suggestPeople, type, stuffs) {
+  constructor(title, image, suggestPeople, type, stuffs, descript, comment ) {
     this.title = title;
     this.image = image;
     this.suggestPeople = suggestPeople;
@@ -294,10 +293,12 @@ class CardInfo {
     this.x = 0;
     this.y = 0;
     this.rotate = 0;
+    this.comment = comment;
+    this.descript = descript;
   }
 
   json() {
-    return {"name":this.title, "num":this.suggestPeople, "category":this.type, "equipment":this.stuffs,"img":this.image}
+    return {"name":this.title, "num":this.suggestPeople, "category":this.type, "equipment":this.stuffs,"img":this.image, "comments":this.comment, "description": this.descript }
   }
 
 
