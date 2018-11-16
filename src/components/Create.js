@@ -7,16 +7,15 @@ class Create extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
         <div className="create-page">
           <Link to="/create-family">
             <button className="create">
-              Create a new family account
+              Create a New Family Group
             </button>
           </Link>
           <Link to="/join-family">
             <button className="join">
-              Join an existed family
+              Join an Existing Family
             </button>
           </Link>
         </div>
