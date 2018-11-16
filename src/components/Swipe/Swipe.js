@@ -201,7 +201,7 @@ class Swipe extends Component {
     const x = e.x < 0 ? e.x - (progress * xSpeed) : e.x + (progress * xSpeed)
     const y = e.y < 0 ? e.y - (progress * ySpeed) : e.y + (progress * ySpeed)
     const transform = `translateX(-50%) translate(${x}px,${y}px) rotate(${e.rotate}deg)`
-    console.log(e.ref)
+    console.log(e.ref);
     e.ref.current.style.transform = transform;
 
     if (progress < 4000 / xSpeed) {
@@ -219,7 +219,7 @@ class Swipe extends Component {
     if (!this.start) this.start = timestamp;
     const progress = timestamp - this.start;
 
-    const e = this.state.cards[this.state.current]
+    const e = this.state.cards[this.state.current];
     const xSpeed = 10;
     const ySpeed = 1;
 
@@ -398,7 +398,7 @@ class Swipe extends Component {
               )
             }
           </div>
-          <div className="col-lg-5" style={{left:'50%'}}>
+          <div className="col-lg-5" style={{left:'50%', marginTop:'-10%'}}>
             <div className="columns">
               {/*<Comments comments={this.state.cards[this.state.current].comment} />*/}
               <Comments comments={this.state.comments[this.state.current]} />
