@@ -166,6 +166,17 @@ class Swipe extends Component {
 
     const inform = this.state.inform;
 
+    let dislikeTutorial =
+      <div style={{marginTop: 270+'px',float:'left'}}>
+        <p style={{marginLeft: 170+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE LEFT TO DISLIKE</p><br/>
+        <img className="swipe-img" style={{marginLeft: "190px", width:150+'px'}} src={swipeLeft} alt={swipeLeft} />
+      </div>;
+    let likeTutorial =
+      <div style={{marginTop: 270+'px',float:'right'}}>
+        <p style={{marginRight: 160+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE RIGHT TO LIKE</p><br/>
+        <img className="swipe-img" style={{marginLeft:10+'px'}} src={swipeRight} alt={swipeRight} />
+      </div>;
+
     let informButton;
     let returnDiv;
 
@@ -173,10 +184,7 @@ class Swipe extends Component {
       informButton =<img className="swipe-card-info" src={infoIcon} alt={infoIcon} onClick={this.handleInformClick}/>;
       returnDiv =
         <div>
-          <div style={{marginTop: 270+'px',float:'left'}}>
-            <p style={{marginLeft: 170+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE LEFT TO DISLIKE</p><br/>
-            <img className="swipe-img" style={{marginLeft: "190px", width:150+'px'}} src={swipeLeft} alt={swipeLeft} />
-          </div>
+          {dislikeTutorial}
           <div className="swipe" style={{position: 'fixed'}}>
             {
               this.state.cards.map((e, i) =>
@@ -215,10 +223,7 @@ class Swipe extends Component {
               )
             }
           </div>
-          <div style={{marginTop: 270+'px',float:'right'}}>
-            <p style={{marginRight: 160+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE RIGHT TO LIKE</p><br/>
-            <img className="swipe-img" style={{marginLeft:10+'px'}} src={swipeRight} alt={swipeRight} />
-          </div>
+          {likeTutorial}
         </div>
     } else {
       informButton = <img className="swipe-card-info" src={closeIcon} alt={closeIcon} onClick={this.handleInformOutClick}/>
