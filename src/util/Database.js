@@ -13,8 +13,6 @@ export default class Database{
         {"id": 3, "name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo",
         "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
 
-        {"id": 4, "name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha",
-        "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]}
     ];
 
     static test = true;
@@ -50,6 +48,23 @@ export default class Database{
         localStorage.setItem('favorite', JSON.stringify(arr));
     }
 
+    static setUnlike(card) {
+        let arr = localStorage.getItem('favorite');
+        if(arr == null) {
+            arr = []
+        } else {
+            arr = JSON.parse(arr);
+        }
+
+        for(let i=0; i < arr.length; i++) {
+            if(arr[i].img == card.img && arr[i].name == card.name) {
+                arr.splice(i, 1)
+            }
+        }
+        localStorage.setItem('favorite', JSON.stringify(arr));
+
+    }
+
     static getVisited() {
         const visited = localStorage.getItem('visited');
         if(visited) {
@@ -67,6 +82,12 @@ export default class Database{
 
     }
 
+    static undoVisited() {
+        let visited = Database.getVisited();
+        visited -= 1;
+        console.log(visited);
+        localStorage.setItem('visited', visited);
+    }
     static getMatches(num) {
         const matches = [];
         const start = Database.getVisited();
