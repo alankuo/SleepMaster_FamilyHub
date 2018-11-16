@@ -6,6 +6,7 @@ import dislike from '../../img/dislike_icon.png';
 import like from '../../img/like_icon.png';
 import swipeLeft from '../../img/swipe-left.png';
 import swipeRight from '../../img/swipe-right.png';
+import Database from '../../util/Database'
 // import {
 //   CSSTransition,
 //   TransitionGroup,
@@ -94,7 +95,7 @@ class Swipe extends Component {
       currentCard[this.state.current].x = 20000;
       currentCard[this.state.current].y = 0;
       this.setState({...this.state, cards: currentCard, update: !this.state.update, current: this.state.current - 1});
-      this.like(this.state.cards[this.state.current]);
+      Database.setLike(this.state.cards[this.state.current]);
     } else {
       currentCard[this.state.current].x = 0;
       currentCard[this.state.current].y = 0;
@@ -108,19 +109,6 @@ class Swipe extends Component {
   /*********** Navigation ******************/
   detail() {
     window.location = "#/event-details";
-  }
-
-  like(card) {
-    let arr = localStorage.getItem('favorite');
-    if(arr == null) {
-      arr = []
-    } else {
-      arr = JSON.parse(arr);
-    }
-    arr.push(card.json());
-    localStorage.setItem('favorite', JSON.stringify(arr));
-
-
   }
 
   render() {

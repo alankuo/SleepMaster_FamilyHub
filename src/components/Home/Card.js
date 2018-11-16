@@ -6,17 +6,18 @@ import {Link} from 'react-router-dom';
 
 const navigation=['/discover-event', '/create-event', '/favorite-event']
 const icons = [searchIcon, addIcon, favorite];
-const texts = ['Explore Events', 'Create Events', 'Favorite Events']
+const texts = ['Explore', 'Create', 'Favorites']
 class Card extends Component {
 
     render() {
         return (
-            <div className="card">
-                <Link className="card-link" to={`${navigation[this.props.icon]}`}>
+            <Link className="card-link" to={`${navigation[this.props.icon]}`}>
+                <div className="card">
                     <img className="card-img center-block" src={icons[this.props.icon]} alt={icons[this.props.icon]}/>
-                    <h1>{texts[this.props.icon]}</h1>
-                </Link>
-            </div>
+                    <h1 className="card-name">{texts[this.props.icon]}</h1>
+
+                </div>
+            </Link>
 
         );
     }

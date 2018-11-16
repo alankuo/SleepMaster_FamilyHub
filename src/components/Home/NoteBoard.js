@@ -33,6 +33,8 @@ class NoteBoard extends Component {
         this.clickNote = this.clickNote.bind(this);
         this.changeNote = this.changeNote.bind(this);
         this.clickSave = this.clickSave.bind(this);
+
+        document.onkeyup = this.shortPath.bind(this);
     }
 
     /********** lifecycle *************/
@@ -45,6 +47,7 @@ class NoteBoard extends Component {
     }
 
     /********** interaction **********/
+
     doubleClickNoUseElement(e) {
         // if double click in useful element
         if(!NoUseElements.has(e.target.className)) {
@@ -101,7 +104,6 @@ class NoteBoard extends Component {
         }).bind(this);
     }
 
-
     changeNote(e, i) {
         return (function(event) {
 
@@ -128,6 +130,20 @@ class NoteBoard extends Component {
         }).bind(this)
 
     }
+
+    shortPath(e) {
+
+        this.cloneState = {...this.state};
+
+        if(e.ctrlKey && e.which == 83) {
+            this.saveEdit();
+        } else if(e.ctrlKey && e.which == 13) {
+            this.createEdit();
+        }
+
+        this.setState(this.cloneState);
+    }
+
 
 
     /********** editor **********/
@@ -223,7 +239,7 @@ class NoteBoard extends Component {
 
                 {
                     this.state.bullets.length === 0 ?
-                    <h3 className="noteboard-tutorial"> Double Click here<br/>to start your new message</h3> : null
+                    <h3 className="noteboard-tutorial"> Double Click here Or <br/><br/> Press Ctrl + Enter<br/><br/>to start your new message <br/> </h3> : null
                 }
                 </ul>
 
