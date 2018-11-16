@@ -62,13 +62,18 @@ class Swipe extends Component {
     setTimeout((function() {
       const response = Database.getMatches(20);
       const arr = [];
+      const commentsArr = [];
 
       for(let i=0; i < response.length; i++) {
         const activity = response[i];
         arr.push(new CardInfo(activity.id, activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, activity.comments))
-      }
-      this.setState({...this.state, cards: arr, current: arr.length - 1});
+        commentsArr.push(activity.comments)
 
+      }
+      // console.log(arr);
+
+
+      this.setState({...this.state, cards: arr, current: arr.length - 1, comments: commentsArr});
     }).bind(this),100);
   }
 
@@ -89,8 +94,21 @@ class Swipe extends Component {
 
   handleAddComment(comment) {
     this.setState(prevState => {
+      // let index = this.state.current;
+      // let prevComment = prevState.cards[index].comment;
+      // let newComment = prevComment.concat(comment);
+      // let commentState = this.state.cards[index];
+      let index = this.state.current;
+      for(let i=0; i < this.state.comments.length; i++) {
+        if (i === index){
+          prevState.comments[i]= prevState.comments[this.state.current].concat(comment)
+        }
+      }
+      // let a = prevState.comments[this.state.current].concat(comment);
       return {
-        comments: prevState.comments.concat(comment)
+        comments: prevState.comments
+        // cards[index]: newComment
+        // cards[current].comment: prevState.cards[prevState.current].comment.concat(comment)
       };
     });
   }
@@ -193,7 +211,7 @@ class Swipe extends Component {
     const x = e.x < 0 ? e.x - (progress * xSpeed) : e.x + (progress * xSpeed)
     const y = e.y < 0 ? e.y - (progress * ySpeed) : e.y + (progress * ySpeed)
     const transform = `translateX(-50%) translate(${x}px,${y}px) rotate(${e.rotate}deg)`
-    console.log(e.ref)
+    console.log(e.ref);
     e.ref.current.style.transform = transform;
 
     if (progress < 4000 / xSpeed) {
@@ -232,7 +250,7 @@ class Swipe extends Component {
     if (!this.start) this.start = timestamp;
     const progress = timestamp - this.start;
 
-    const e = this.state.cards[this.state.current]
+    const e = this.state.cards[this.state.current];
     const xSpeed = 10;
     const ySpeed = 1;
 
@@ -419,9 +437,10 @@ class Swipe extends Component {
               )
             }
           </div>
-          <div className="col-lg-5" style={{left:'50%'}}>
+          <div className="col-lg-5" style={{left:'50%', marginTop:'-10%'}}>
             <div className="columns">
-              <Comments comments={this.state.cards[this.state.current].comment.reverse()} />
+              {/*<Comments comments={this.state.cards[this.state.current].comment} />*/}
+              <Comments comments={this.state.comments[this.state.current]} />
               <CommentBox handleAddComment={this.handleAddComment} />
             </div>
           </div>
