@@ -128,7 +128,7 @@ class CreateEvents extends Component {
 
               <div className="input-group" onKeyPress={this.keyEvent}>
                 <label>Event Photo*</label>
-                <UploadImage setImageURL={this.setImageURL}/>
+                <UploadImage setImageURL={this.setImageURL} showPreview={true}/>
               </div>
 
               <div>
