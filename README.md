@@ -4,7 +4,7 @@ This is a web app designed to enhance family interactions by providing a platfor
 ## URL
 https://alankuo.github.io/SleepMaster_FamilyHub/#/
 
-# Log In page:
+### Log In page:
 https://alankuo.github.io/SleepMaster_FamilyHub/#/login
 
 ## Synopsis
