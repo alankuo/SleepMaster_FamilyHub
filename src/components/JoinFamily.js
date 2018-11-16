@@ -20,10 +20,11 @@ class CreateFamily extends Component {
     const pin = document.getElementById("pin").value;
     if ((family_name === localStorage['family_name'] && pin === localStorage['pin'])){
       localStorage.setItem('firstTime', false);
+      alert("Welcome to the Family!");
       window.location="#/";
     }
     else{
-      alert("Family name and pin do not match!");
+      alert("Family Name and PIN do not match!");
     }
   }
 
