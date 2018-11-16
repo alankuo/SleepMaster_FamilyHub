@@ -41,7 +41,6 @@ class Swipe extends Component {
     this.handleInformClick = this.handleInformClick.bind(this);
     this.handleInformOutClick = this.handleInformOutClick.bind(this);
     this.handleAddComment = this.handleAddComment.bind(this);
-
   }
 
   componentWillMount() {
