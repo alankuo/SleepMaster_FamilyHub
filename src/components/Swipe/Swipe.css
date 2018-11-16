@@ -5,6 +5,55 @@
   box-sizing: border-box;
 }
 
+.swipe-back {
+    position: fixed;
+    border-radius: 5vh;
+    box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
+    background-color: white;
+    height: 10vh;
+    top: 75vh;
+    left: 50%;
+    transform: translate(-45vh) translateX(-50%) scale(1);
+    transition: transform ease-in-out 0.1s
+}
+
+.swipe-back-text {
+    position: fixed;
+    top: 85vh;
+    left: 50%;
+    font-size: 20px;
+    transform: translate(-45vh) translateX(-50%) scale(1);
+}
+
+.swipe-back:hover {
+    cursor: pointer;
+    transform: translate(-45vh) translateX(-50%) scale(1.03);
+}
+
+.swipe-favorite {
+    position: fixed;
+    border-radius: 5vh;
+    box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
+    background-color: white;
+    height: 10vh;
+    top: 75vh;
+    left: 50%;
+    transform: translate(45vh) translateX(-50%) scale(1);
+    transition: transform ease-in-out 0.1s
+}
+
+.swipe-favorite-text {
+    position: fixed;
+    top: 85vh;
+    left: 50%;
+    font-size: 20px;
+    transform: translate(45vh) translateX(-50%) scale(1);
+}
+
+.swipe-favorite:hover {
+    cursor: pointer;
+    transform: translate(45vh) translateX(-50%) scale(1.03);
+}
 
 .swipe-card {
   width: 50vh;
@@ -14,7 +63,9 @@
   border-radius: 20px;
   overflow: hidden;
   position: fixed;
-  /*left: 50%;*/
+  left: 50%;
+  z-index: 100;
+  /* left: 50%; */
 
   box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
   background-color: white;
@@ -38,6 +89,7 @@
 
   .swipe-card-image {
       height: 60vh;
+      min-height: 360px;
 
   }
 
