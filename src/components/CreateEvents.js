@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar.js';
 
-import ImageUpload from'./UploadImage';
+import UploadImage from'./UploadImage';
 import Footer from './Footer'
 
 class CreateEvents extends Component {
@@ -128,7 +128,7 @@ class CreateEvents extends Component {
 
               <div className="input-group" onKeyPress={this.keyEvent}>
                 <label>Event Photo*</label>
-                <ImageUpload setImageURL={this.setImageURL}/>
+                <UploadImage setImageURL={this.setImageURL} showPreview={true}/>
               </div>
 
               <div>

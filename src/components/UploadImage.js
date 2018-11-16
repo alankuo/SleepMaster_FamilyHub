@@ -21,19 +21,35 @@ class ImageUpload extends React.Component {
     reader.onloadend = () => {
       this.setState({
         file: file,
-        imagePreviewUrl: reader.result
       });
-      this.props.setImageURL(reader.result);
+      if(this.props.setImageURL !== undefined) {
+        this.props.setImageURL(reader.result);
+        console.log("SET URL");
+        console.log(reader.result);
+      }
+      if(this.props.showPreview === true) {
+        this.setState({
+          imagePreviewUrl: reader.result
+        });
+      }
+      else {
+        this.setState({
+          imagePreviewUrl: ''
+        });
+      }
     }
     if(file !== undefined) {
       reader.readAsDataURL(file);
+      console.log("FILE NOT UNDEFINED");
     }
-    else {
+    else if(file === undefined){
       this.setState({
         file: '',
         imagePreviewUrl: ''
       })
+      console.log("FILE UNDEFINED");
     }
+    console.log("OUTSIDE");
   }
 
   render() {

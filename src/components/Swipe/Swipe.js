@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import infoIcon from '../../img/info.png'
+import closeIcon from '../../img/close_icon.png'
 import './Swipe.css';
 import NavBar from '../NavBar.js';
 import dislike from '../../img/dislike_icon.png';
@@ -16,6 +17,8 @@ import {Link} from 'react-router-dom'
 // } from 'react-transition-group';
 import request from 'then-request'
 import { setTimeout } from 'timers';
+import Comments from '../EventDetails/Comments'
+import CommentBox from '../EventDetails/CommentBox'
 
 class Swipe extends Component {
 
@@ -28,7 +31,9 @@ class Swipe extends Component {
       current: -1,
       update: true,
       release: false,
-    }
+      inform: false,
+      comments:[],
+    };
 
     this.current = React.createRef();
 
@@ -38,9 +43,16 @@ class Swipe extends Component {
     this.drag = this.drag.bind(this);
     this.drop = this.drop.bind(this);
     this.detail = this.detail.bind(this);
+
     this.slide = this.slide.bind(this);
     this.reset = this.reset.bind(this);
     this.undo = this.undo.bind(this);
+
+    this.goback = this.goback.bind(this)
+    this.handleInformClick = this.handleInformClick.bind(this);
+    this.handleInformOutClick = this.handleInformOutClick.bind(this);
+    this.handleAddComment = this.handleAddComment.bind(this);
+
   }
 
   componentWillMount() {
@@ -48,15 +60,38 @@ class Swipe extends Component {
     setTimeout((function() {
       const response = Database.getMatches(20);
       const arr = [];
+
       for(let i=0; i < response.length; i++) {
         const activity = response[i];
-        arr.push(new CardInfo(activity.name, activity.img, activity.num,activity.category, activity.equipment))
-      };
+        arr.push(new CardInfo(activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, activity.comments))
+      }
       this.setState({...this.state, cards: arr, current: arr.length - 1});
 
     }).bind(this),500);
   }
 
+  componentDidMount() {
+    /*global Ably*/
+    const channel = Ably.channels.get('comments');
+
+    channel.attach();
+    channel.once('attached', () => {
+      channel.history((err, page) => {
+        // create a new array with comments only in an reversed order (i.e old to new)
+        const comments = Array.from(page.items.reverse(), item => item.data)
+
+        this.setState({ comments });
+      });
+    });
+  }
+
+  handleAddComment(comment) {
+    this.setState(prevState => {
+      return {
+        comments: prevState.comments.concat(comment)
+      };
+    });
+  }
 
   /************* cards render ************/
   renderCards() {
@@ -66,9 +101,14 @@ class Swipe extends Component {
 
   /************* card Interaction *************/
   undo() {
+
+    if(this.state.cards.length == 0) {
+      return ;
+    }
     let prev = this.state.current + 1;
     prev = prev >= this.state.cards.length ? this.state.cards.length - 1: prev;
-
+    prev = prev >= 0 ? prev : 0;
+    console.log(prev, this.state.cards)
     this.state.cards[prev].x = 0;
     this.state.cards[prev].y = 0;
     this.state.cards[prev].rotate = 0;
@@ -209,23 +249,59 @@ class Swipe extends Component {
     }
   }
 
+  goback() {
+    this.setState({...this.state, inform: !this.state.inform})
+  }
+
+  like(card) {
+    let arr = localStorage.getItem('favorite');
+    if(arr == null) {
+      arr = []
+    } else {
+      arr = JSON.parse(arr);
+    }
+    arr.push(card.json());
+    localStorage.setItem('favorite', JSON.stringify(arr));
+  }
+
+  handleInformClick() {
+    this.setState({inform: true});
+  }
+
+  handleInformOutClick() {
+    this.setState({inform: false});
+  }
 
 
   render() {
-    return (
-      <div>
-        <NavBar />
-          <div style={{marginTop: 270+'px', left: '50%', position:'fixed', transform: 'translate(-60vh,0) translateX(-50%)', zIndex: '10'}}>
-            <p style={{marginLeft: 170+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE LEFT TO DISLIKE</p><br/>
-            <img className="swipe-img" style={{marginLeft: "190px", width:150+'px'}} src={swipeLeft} alt={swipeLeft} />
-          </div>
 
+    const inform = this.state.inform;
+
+    let dislikeTutorial =
+      <div style={{top: '30%', left: '50%', position:'fixed', transform: 'translate(-60vh,0) translateX(-50%)', zIndex: '10'}}>
+        <p style={{marginLeft: 170+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE LEFT TO DISLIKE</p><br/>
+        <img className="swipe-img" style={{marginLeft: "190px", width:150+'px'}} src={swipeLeft} alt={swipeLeft} />
+      </div>;
+    let likeTutorial =
+      <div style={{top: '30%',left: '50%', position:'fixed', transform: 'translate(60vh,0) translateX(-50%)',zIndex: '10'}}>
+        <p style={{marginRight: 160+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE RIGHT TO LIKE</p><br/>
+        <img className="swipe-img" style={{marginLeft:10+'px'}} src={swipeRight} alt={swipeRight} />
+      </div>;
+
+    let informButton;
+    let returnDiv;
+
+    if (!inform) {
+      informButton =<img className="swipe-card-info" src={infoIcon} alt={infoIcon} onClick={this.handleInformClick}/>;
+      returnDiv =
+        <div>
+          {dislikeTutorial}
           <img src={backIcon} className="swipe-back" onClick={this.undo}/>
           <h1 className="swipe-back-text"> Undo </h1>
           <Link to="/favorite-event" ><img src={favoritesIcon} className="swipe-favorite"/></Link>
           <h1 className="swipe-favorite-text"> Favorites </h1>
           <div className="swipe">
-              {
+             {
                 this.state.cards.map((e, i) =>
                     <div
                       key={i}
@@ -245,11 +321,11 @@ class Swipe extends Component {
                       <img className="swipe-card-dislike" src={dislike} alt={dislike} style={{opacity: e.rotate / 5}} draggable="false"/>
                       <img className="swipe-card-like" src={like} alt={like} style={{opacity: -e.rotate / 5}} draggable="false"/>
                       <img className="swipe-card-image" src={e.image} alt={e.image} draggable="false"
-                        onClick={this.detail}/>
+                        onClick={this.handleInformClick}/>
 
                       <div className="swipe-card-bot">
-                        <h4 className="swipe-card-title">{e.title} <img className="swipe-card-info" src={infoIcon} alt={infoIcon} onClick={this.detail}
-                          />
+                        <h4 className="swipe-card-title">{e.title}
+                        {informButton}
                         </h4>
 
                         <h6> <div className="swipe-people glyphicon glyphicon-user"> </div> {e.suggestPeople[0]} - {e.suggestPeople[1]}</h6>
@@ -261,17 +337,71 @@ class Swipe extends Component {
                 )
               }
         </div>
-        <div style={{marginTop: 270+'px',left: '50%', position:'fixed', transform: 'translate(60vh,0) translateX(-50%)',zIndex: '10'}}>
-          <p style={{marginRight: 160+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE RIGHT TO LIKE</p><br/>
-          <img className="swipe-img" style={{marginLeft:10+'px'}} src={swipeRight} alt={swipeRight} />
+        {likeTutorial}
+      </div>
+    } else {
+      informButton = <img className="swipe-card-info" src={closeIcon} alt={closeIcon} onClick={this.handleInformOutClick}/>
+      returnDiv =
+        <div>
+          <div className="col-lg-1">
+            <button style={{left:"0%", marginTop:"100%"}} type="button" className="btn btn-default btn-lg glyphicon glyphicon-arrow-left" onClick={this.goback}/>
+          </div>
+          <div className="swipe" >
+          {
+              this.state.cards.map((e, i) =>
+                <div
+                  key={i}
+                  className="swipe-card"
+                  style={{
+                    left:'30%',
+                    transform: `translateX(-50%) translate(${e.x + ((this.state.current - i) * 8)}px, ${e.y + ((this.state.current - i) * 8)}px) rotate(${e.rotate}deg)`,
+                    display: `${i <= this.state.current && i >= this.state.current - 1 ? "block" : "none"}`
+                  }}
+                  ref={e.ref}
+                  onDragStart={this.startDrag}
+                  onDrag={this.drag}
+                  onDragEnd={this.drop}
+                  draggable={"false"}
+                >
+                  <img className="swipe-card-dislike" src={dislike} alt={dislike} style={{opacity: e.rotate / 5}} draggable="false"/>
+                  <img className="swipe-card-like" src={like} alt={like} style={{opacity: -e.rotate / 5}} draggable="false"/>
+                  <img className="swipe-card-image" src={e.image} alt={e.image} draggable="false"/>
+                       {/*onClick={this.handleInformOutClick}/>*/}
+
+                  <div className="swipe-card-bot">
+                    <h4 className="swipe-card-title">{e.title}
+                      {informButton}
+                    </h4>
+
+                    <h6> <div className="swipe-people glyphicon glyphicon-user"> </div> {e.suggestPeople[0]} - {e.suggestPeople[1]}</h6>
+                    <h6 className="swipe-type">{e.type}</h6>
+                    <h6 >Need: {e.stuffs} </h6>
+                    <h6> Description: {e.descript}</h6>
+                  </div>
+                </div>
+              )
+            }
+          </div>
+          <div className="col-lg-5" style={{left:'50%'}}>
+            <div className="columns">
+              <Comments comments={this.state.cards[this.state.current].comment.reverse()} />
+              <CommentBox handleAddComment={this.handleAddComment} />
+            </div>
+          </div>
         </div>
+    }
+
+    return (
+      <div>
+        <NavBar />
+        {returnDiv}
       </div>
     );
   }
 }
 
 class CardInfo {
-  constructor(title, image, suggestPeople, type, stuffs) {
+  constructor(title, image, suggestPeople, type, stuffs, descript, comment ) {
     this.title = title;
     this.image = image;
     this.suggestPeople = suggestPeople;
@@ -281,10 +411,12 @@ class CardInfo {
     this.y = 0;
     this.rotate = 0;
     this.ref = React.createRef();
+    this.comment = comment;
+    this.descript = descript;
   }
 
   json() {
-    return {"name":this.title, "num":this.suggestPeople, "category":this.type, "equipment":this.stuffs,"img":this.image}
+    return {"name":this.title, "num":this.suggestPeople, "category":this.type, "equipment":this.stuffs,"img":this.image, "comments":this.comment, "description": this.descript }
   }
 
 

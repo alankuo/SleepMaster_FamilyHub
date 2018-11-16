@@ -1,10 +1,20 @@
 export default class Database{
 
     static data = [
-        {"id": 0, "name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha"},
-        {"id": 1, "name":"Play Soccer", "num":[3,5], "category":"outdoor", "equipment":["soccer"], "time-length":[60, 80], "img":"assets/img/balotelli.jpg", "description":"testing"},
-        {"id": 2, "name":"Sing", "num":[2,5], "category":"indoor", "equipment":["microphone", "speaker"], "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo"},
-        {"id": 3, "name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo"}
+        {"id": 0, "name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha",
+      "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+        {"id": 1, "name":"Play Soccer", "num":[3,5], "category":"outdoor", "equipment":["soccer"], "time-length":[60, 80], "img":"assets/img/balotelli.jpg", "description":"testing",
+        "comments": [{"name": "Alan Kuo", "comment": "My fav!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+        {"id": 2, "name":"Sing", "num":[2,5], "category":"indoor", "equipment":["microphone", "speaker"], "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo",
+        "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+        {"id": 3, "name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo",
+        "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+
+        {"id": 4, "name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha",
+        "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]}
     ];
 
     static test = true;
@@ -59,7 +69,7 @@ export default class Database{
 
     static getMatches(num) {
         const matches = [];
-        const start = Database.test ? 0 : Database.getVisited();
+        const start = Database.getVisited();
         const data = Database.getActivities()
         for(let i=start; i<data.length; i++) {
             if(i >= start + num) {

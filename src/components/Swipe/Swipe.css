@@ -1,5 +1,5 @@
 .swipe {
-  position: fixed;
+  /*position: fixed;*/
   padding: 100px 20px;
   height: 100%;
   box-sizing: border-box;
@@ -65,6 +65,7 @@
   position: fixed;
   left: 50%;
   z-index: 100;
+  /* left: 50%; */
 
   box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
   background-color: white;
@@ -101,6 +102,7 @@
           transform: translate(0,-5%);
           transition: transform ease-in-out 0.1s;
           margin: 10px auto;
+          left:50%
 
       }
 
