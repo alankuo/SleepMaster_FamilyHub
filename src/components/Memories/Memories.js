@@ -4,6 +4,7 @@ import '../../css/Memories.css';
 import NavBar from '../NavBar';
 import photo from '../../img/party.jpg';
 import Modal from './Modal.js';
+import ImageUpload from'../UploadImage';
 import request from 'then-request';
 
 class Memories extends Component {
@@ -91,6 +92,15 @@ class Memories extends Component {
   // }
 
   render() {
+    if (this.state.show == false) {
+      return (
+        <div>
+          <NavBar />
+          <h1 className="title">Upload activity photos to create your own memory album!</h1>
+          <ImageUpload/>
+        </div>
+      );
+    }
     return (
       <div className="App">
         <NavBar />

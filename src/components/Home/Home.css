@@ -1,38 +1,15 @@
 
 
 .home {
+    margin: auto;
 }
 
-    .homt-top {
-        width: 100%;
-    }
-
-        .home-photo-section {
-            padding: 20px;
-
+    .home-noteboard-section {
             box-sizing: border-box;
-        }
-
-            .home-photo {
-                box-sizing: border-box;
-                padding: 1%;
-                box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
-                border-radius: 20px;
-                transition: transform ease-in-out 0.1s;
-            }
-
-            .home-photo:hover {
-                cursor: pointer;
-                /* transform: scale(1.05); */
-            }
-                .home-photo-img {
-                    width: 100%;
-                    border-radius: 20px;
-                }
-
-        .home-noteboard-section {
-            box-sizing: border-box;
-            padding: 30px;
+            padding: 3vw;
+            width: 33%;
+            height: 53vw;
+            float: left;
         }
 
             .noteboard {
@@ -127,7 +104,7 @@
                             box-shadow: 0 0px 0px 0px rgba(0,0,0,0.2);
                             border: 1px solid rgb(168, 206, 241);
                             outline: 0;
-                            font-size: 15px;
+                            font-size: 1.2vw;
                             transition: border ease-in-out 0.2s, box-shadow ease-in-out 0.1s, transform ease-in-out 0.15s;
                         }
                         .noteboard-passage {
@@ -143,7 +120,7 @@
                             border-radius: 10px;
                             box-shadow: 0 3px 12px 0px rgba(0,0,0,0.2);
                             outline: 0;
-                            font-size: 15px;
+                            font-size: 1.2vw;
                             transition: border ease-in-out 0.2s, box-shadow ease-in-out 0.1s, transform ease-in-out 0.15s;
                         }
 
@@ -184,60 +161,96 @@
                             outline:0;
                         }
 
+    .home-top {
+        width: 67%;
+        float: left;
+        padding: 3vw;
+
+    }
+
+        .home-photo-section {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+            .home-photo {
+                box-sizing: border-box;
+                padding: 1%;
+                box-shadow: 0 3px 12px 3px rgba(0,0,0,0.2);
+                border-radius: 20px;
+                transition: transform ease-in-out 0.1s;
+            }
+
+            .home-photo:hover {
+                cursor: pointer;
+                /* transform: scale(1.05); */
+            }
+                .home-photo-img {
+                    width: 100%;
+                    border-radius: 20px;
+                }
+
+
     .cards {
-        width: 100%;
-        padding: 20px;
+        padding: 2%;
+        margin: 0 auto;
+        width: fit-content;
         box-sizing: border-box;
         list-style: none;
     }
 
         .cards-card {
-            width: 30%;
-            height: 40vw;
-            margin-left: 2.5%;
-            margin-bottom: 10%;
+            padding: 10px;
+            width: 17vw;
+            height: 17vw;
             margin-top: 0;
             float: left;
         }
 
-            .card {
-                transition: transform ease-in-out 0.2s;
-                transform: scale(1);
-                box-shadow: 0 3px 12px 0px rgba(0,0,0,0.2);
-                border-radius: 20px;
+
+            .card-link {
+                width: 100%;
                 height: 100%;
-                margin: 0;
-                box-sizing: border-box;
-                padding: 40px;
+                display: block;
             }
 
-            .card:hover {
-                transform: scale(1.03);
+            .card-link:hover {
+                cursor: pointer;
+                text-decoration: none;
             }
 
-                .card-link {
-                    width: 100%;
+                .card {
                     height: 100%;
-                    display: block;
+                    width: 100%;
+                    padding: 1.5vw;
+                    transition: transform ease-in-out 0.2s;
+                    transform: scale(1);
+                    box-shadow: 0 3px 12px 0px rgba(0,0,0,0.2);
+                    border-radius: 20px;
+                    margin: 0;
+                    box-sizing: border-box;
                 }
 
-                .card-link:hover {
-                    cursor: pointer;
-                    text-decoration: none;
+                .card:hover {
+                    transform: scale(1.03);
                 }
+
+                    .card-name {
+                        font-size: 2vw;
+                        color: #555555;
+                        transform: translateY(-4vw);
+                    }
                     .card-img {
-                        margin-top: 40%;
+                        margin-top: 6vw;
+                        transform: translateY(-3.5vw);
                         width: 40%;
                     }
 
 /*** smart phone ****/
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 650px) {
 
-    .home-photo-section {
-        width: 100%;
-    }
 
-    .home-noteboard-section {
+    /* .home-noteboard-section {
         width: 100%;
         height: 120vw;
     }
@@ -246,13 +259,7 @@
             font-size: 4vw;
         }
 
-        .noteboard-text {
-            font-size: 18px;
-        }
 
-        .noteboard-passage {
-            font-size: 18px;
-        }
 
         .noteboard-submit {
             height: 50px;
@@ -263,21 +270,33 @@
         height: 120vw;
         margin-left: 0;
         margin-top: 10%;
+    } */
+
+    .home-top{
+        width: 100%;
     }
+    .home-noteboard-section {
+        width: 100%;
+        height: 100vw;
+    }
+
+
+        .noteboard-text {
+            font-size: 2vw;
+        }
+
+        .noteboard-passage {
+            font-size: 2vw;
+        }
 
 }
 
 /*** large desktop ****/
 @media screen and (min-width: 1000px) {
 
-    .home-photo-section {
-        width: 70%;
-        float: left;
-    }
-
-    .home-noteboard-section {
+    /* .home-noteboard-section {
         height: 40vw;
         width: 30%;
         float: left;
-    }
+    } */
 }

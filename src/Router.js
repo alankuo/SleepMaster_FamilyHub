@@ -4,6 +4,7 @@ import {Switch, Route } from 'react-router-dom';
 import App from './components/App.js';
 import Login from './components/Login';
 import Register from './components/Register.js';
+import Create from './components/Create.js';
 import JoinFamily from './components/JoinFamily.js';
 import CreateFamily from './components/CreateFamily.js';
 import Swipe from './components/Swipe/Swipe.js';
@@ -23,6 +24,7 @@ export default class Router extends React.Component<{}> {
           <Route exact path='/' component={App}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
+          <Route exact path='/create' component={Create}/>
           <Route exact path='/join-family' component={JoinFamily}/>
           <Route exact path='/create-family' component={CreateFamily}/>
           <Route exact path='/discover-event' component={Swipe}/>

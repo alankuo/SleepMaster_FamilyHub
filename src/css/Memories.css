@@ -19,6 +19,11 @@
   background-color: rgb(255, 255, 255, 0.3);
 }
 
+/* Empty page */
+.title {
+  margin-top: 10%;
+}
+
 /* The actual timeline (the vertical ruler) */
 .timeline::after {
     content: '';

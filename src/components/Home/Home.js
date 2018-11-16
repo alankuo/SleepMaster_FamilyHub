@@ -8,18 +8,19 @@ import './Home.css';
 class Home extends Component {
   render() {
     return (
-      <div className="home">
+      <div className="home clearfix">
         <div className="home-top clearfix">
             <div className="home-photo-section">
                 <div className="home-photo">
                     <img src={familyPhoto} alt={familyPhoto} className="home-photo-img"/>
                 </div>
             </div>
-            <div className="home-noteboard-section">
-                <NoteBoard />
-            </div>
+            <Cards />
+            {/*  */}
         </div>
-        <Cards />
+        <div className="home-noteboard-section">
+          <NoteBoard />
+        </div>
       </div>
     );
   }
