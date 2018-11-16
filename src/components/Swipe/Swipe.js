@@ -16,7 +16,7 @@ import {Link} from 'react-router-dom'
 //   TransitionGroup,
 // } from 'react-transition-group';
 import request from 'then-request'
-import { setTimeout } from 'timers';
+import { setTimeout, setInterval } from 'timers';
 import Comments from '../EventDetails/Comments'
 import CommentBox from '../EventDetails/CommentBox'
 
@@ -33,9 +33,11 @@ class Swipe extends Component {
       release: false,
       inform: false,
       comments:[],
+      time: '1'
     };
 
     this.current = React.createRef();
+    this.undoButton = React.createRef();
 
 
     this.renderCards = this.renderCards.bind(this);
@@ -64,13 +66,15 @@ class Swipe extends Component {
 
       for(let i=0; i < response.length; i++) {
         const activity = response[i];
-        arr.push(new CardInfo(activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, activity.comments))
+        arr.push(new CardInfo(activity.id, activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, activity.comments))
         commentsArr.push(activity.comments)
+
       }
       // console.log(arr);
 
+
       this.setState({...this.state, cards: arr, current: arr.length - 1, comments: commentsArr});
-    }).bind(this),500);
+    }).bind(this),100);
   }
 
   componentDidMount() {
@@ -129,6 +133,8 @@ class Swipe extends Component {
     this.state.cards[prev].y = 0;
     this.state.cards[prev].rotate = 0;
 
+    Database.undoVisited();
+    Database.setUnlike(this.state.cards[prev].json())
     this.setState({...this.state, ...this.state, update: !this.state.update, current: prev})
 
   }
@@ -191,7 +197,11 @@ class Swipe extends Component {
 
   /************ Animation ******************/
   slide(timestamp) {
-    if (!this.start) this.start = timestamp;
+    if (!this.start) {
+      this.start = timestamp;
+      this.undoButton.current.style.opacity = '1';
+      this.undoButton.current.style.display = 'block';
+    }
     const progress = timestamp - this.start;
 
     const e = this.state.cards[this.state.current]
@@ -212,6 +222,27 @@ class Swipe extends Component {
       currentCard[this.state.current].y = y;
       this.setState({...this.state, update: !this.state.update, current: this.state.current - 1});
       this.start = null
+
+      //
+      this.hide = this.state.current;
+      let start;
+      const fade = (function(timestamp1) {
+        if (!start) start = timestamp;
+        const progress1 = timestamp1 - start;
+
+
+        if(progress1 >= 1000) {
+          this.undoButton.current.style.opacity = '0';
+          this.undoButton.current.style.display = 'none';
+        } else {
+          this.undoButton.current.style.opacity = `${1 - (progress1 / 1000)}`;
+          this.undoButton.current.style.display = 'block';
+          window.requestAnimationFrame(fade)
+        }
+      }).bind(this)
+
+      window.requestAnimationFrame(fade);
+
     }
   }
 
@@ -312,8 +343,10 @@ class Swipe extends Component {
       returnDiv =
         <div>
           {dislikeTutorial}
-          <img src={backIcon} className="swipe-back" onClick={this.undo}/>
+          <div ref={this.undoButton} style={{opacity: 0, display:'none'}}>
+          <img src={backIcon} className="swipe-back"  onClick={this.undo} />
           <h1 className="swipe-back-text"> Undo </h1>
+          </div>
           <Link to="/favorite-event" ><img src={favoritesIcon} className="swipe-favorite"/></Link>
           <h1 className="swipe-favorite-text"> Favorites </h1>
           <div className="swipe">
@@ -351,6 +384,12 @@ class Swipe extends Component {
                     </div>
 
                 )
+              }
+
+              {
+                this.state.current == -1 ?
+                  <h1 className="swipe-no-cards"> NO CARDS LEFT!!!!!! <br/> <Link to="/create-event">ADD CARDS TO THE DECK</Link></h1>
+                  : null
               }
         </div>
         {likeTutorial}
@@ -418,7 +457,8 @@ class Swipe extends Component {
 }
 
 class CardInfo {
-  constructor(title, image, suggestPeople, type, stuffs, descript, comment ) {
+  constructor(id, title, image, suggestPeople, type, stuffs, descript, comment ) {
+    this.id = id
     this.title = title;
     this.image = image;
     this.suggestPeople = suggestPeople;
@@ -433,7 +473,7 @@ class CardInfo {
   }
 
   json() {
-    return {"name":this.title, "num":this.suggestPeople, "category":this.type, "equipment":this.stuffs,"img":this.image, "comments":this.comment, "description": this.descript }
+    return {"id": this.id, "name":this.title, "num":this.suggestPeople, "category":this.type, "equipment":this.stuffs,"img":this.image, "comments":this.comment, "description": this.descript }
   }
 
 
