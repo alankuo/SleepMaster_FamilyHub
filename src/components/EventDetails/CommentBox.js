@@ -14,12 +14,13 @@ class CommentBox extends Component {
     // and make sure it not some empty strings
     const comment = e.target.elements.comment.value.trim();
     // const name = e.target.elements.name.value.trim();
+    const name = "Philip Guo"
 
     // Make sure name and comment boxes are filled
     // if (name && comment) {
     if (comment){
-      // const commentObject = { name, comment };
-      const commentObject = {comment };
+      const commentObject = { name, comment };
+      // const commentObject = {comment };
       this.props.handleAddComment(commentObject);
 
       // Publish comment
@@ -43,30 +44,19 @@ class CommentBox extends Component {
   render() {
     return (
       <div>
-        <h1 className="title">Leave your comment!</h1>
+        {/*<h1 className="title">Leave your comment!</h1>*/}
         <form onSubmit={this.addComment}>
-          {/*<div className="input-group">*/}
-            {/*<div className="control">*/}
-              {/*<label>Your Name</label>*/}
-              {/*<input type="text" className="input" name="name" placeholder="Your name"/>*/}
-            {/*</div>*/}
-          {/*</div>*/}
-          <div className="input-group">
-            <div className="control">
-              <label>Comment</label>
-              {/*<input className="textarea" name="comment" placeholder="Add a comment" rows= {8} style={{height:'200%'}}/>*/}
-              <textarea cols="50" rows="3" name="comment" placeholder="Add a comment" />
-              {/*<textarea className="textarea" name="comment" placeholder="Add a comment"></textarea>*/}
-            </div>
+          <div className="input-group" >
+            <label>Leave your comment!</label>
+            <textarea cols="50" rows="8" name="comment" id="comment_text" placeholder="Add a comment" />
           </div>
           <div className="field">
             <div className="control">
               <button className="btn is-primary">Submit</button>
             </div>
-
           </div>
-
         </form>
+
       </div>
     );
   }
