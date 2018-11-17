@@ -8,11 +8,13 @@ export default class Database{
         "comments": [{"name": "Alan Kuo", "comment": "My fav!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
 
         {"id": 2, "name":"Sing", "num":[2,5], "category":"indoor", "equipment":["microphone", "speaker"], "time-length":[20,40], "img":"assets/img/gem.jpg", "description":"yo",
-        "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+          "comments": [{"name": "Lan", "comment": "enjoy!"},{"name": "Yuhan", "comment": "Love it!"}]},
 
         {"id": 3, "name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo",
-        "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
+          "comments": [{"name": "Guo", "comment": "enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "I really Like it!"}]},
 
+        {"id": 4, "name":"Play BasketBall", "num":[2,3], "category":"outdoor", "equipment":["basketball"], "time-length":[50, 90], "img":"assets/img/curry.jpg", "description":"Haha",
+          "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]}
     ];
 
     static test = true;
