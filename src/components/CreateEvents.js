@@ -23,12 +23,19 @@ class CreateEvents extends Component {
   createEvent(e){
     const eventName = document.getElementById("event_name").value;
     const numOfMembers = document.getElementById("number_of_members").value;
-    const equipment = document.getElementById("equipment").value;
     const time = document.getElementById("time").value;
     const categorySelecter = document.getElementById("categorySelector");
     const categoryId = categorySelecter.options[categorySelecter.selectedIndex].value;
     const categoryText = categorySelecter.options[categorySelecter.selectedIndex].text;
     const description = document.getElementById("description").value;
+
+    // format equipment
+    let equipment = document.getElementById("equipment").value;
+    equipment = equipment.trim().split(",");
+    if(equipment.length == 0) {
+      equipment.push("N/A")
+    }
+
 
     if(eventName === ""){
       alert("Please fill in the event name!");
@@ -69,7 +76,7 @@ class CreateEvents extends Component {
     }
     let eventObj = {
       "name": eventName,
-      "num": numOfMembers,
+      "num": [0,numOfMembers],
       "category":categoryText,
       "equipment":equipment,
       "time-length":time,

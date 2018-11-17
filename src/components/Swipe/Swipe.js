@@ -66,8 +66,9 @@ class Swipe extends Component {
 
       for(let i=0; i < response.length; i++) {
         const activity = response[i];
-        arr.push(new CardInfo(activity.id, activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, activity.comments))
-        commentsArr.push(activity.comments)
+        const comments = activity.comments ? activity.comments : [];
+        arr.push(new CardInfo(activity.id, activity.name, activity.img, activity.num,activity.category, activity.equipment, activity.description, comments))
+        commentsArr.push(comments)
 
       }
       // console.log(arr);
@@ -128,7 +129,7 @@ class Swipe extends Component {
     let prev = this.state.current + 1;
     prev = prev >= this.state.cards.length ? this.state.cards.length - 1: prev;
     prev = prev >= 0 ? prev : 0;
-    console.log(prev, this.state.cards)
+    // console.log(prev, this.state.cards)
     this.state.cards[prev].x = 0;
     this.state.cards[prev].y = 0;
     this.state.cards[prev].rotate = 0;
@@ -141,7 +142,7 @@ class Swipe extends Component {
 
   startDrag(e) {
     if(this.state.cards[this.state.current].x < 0) {
-      console.log(this.state.cards[this.state.current].x)
+      // console.log(this.state.cards[this.state.current].x)
     }
     e.dataTransfer.setDragImage(new Image(0,0), 0, 0);
     this.x = e.screenX;
@@ -211,7 +212,7 @@ class Swipe extends Component {
     const x = e.x < 0 ? e.x - (progress * xSpeed) : e.x + (progress * xSpeed)
     const y = e.y < 0 ? e.y - (progress * ySpeed) : e.y + (progress * ySpeed)
     const transform = `translateX(-50%) translate(${x}px,${y}px) rotate(${e.rotate}deg)`
-    console.log(e.ref);
+    // console.log(e.ref);
     e.ref.current.style.transform = transform;
 
     if (progress < 4000 / xSpeed) {
@@ -229,7 +230,9 @@ class Swipe extends Component {
       const fade = (function(timestamp1) {
         if (!start) start = timestamp;
         const progress1 = timestamp1 - start;
-
+        if(this.undoButton.current == null) {
+          return ;
+        }
 
         if(progress1 >= 1000) {
           this.undoButton.current.style.opacity = '0';
@@ -325,14 +328,14 @@ class Swipe extends Component {
     const inform = this.state.inform;
 
     let dislikeTutorial =
-      <div style={{top: '30%', left: '50%', position:'fixed', transform: 'translate(-60vh,0) translateX(-50%)', zIndex: '10'}}>
-        <p style={{marginLeft: 170+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE LEFT TO DISLIKE</p><br/>
-        <img className="swipe-img" style={{marginLeft: "190px", width:150+'px'}} src={swipeLeft} alt={swipeLeft} />
+      <div className="swipe-tutorial swipe-tutorial-dislike">
+        <p className=".swipe-tutorial-text">SWIPE LEFT TO DISLIKE</p><br/>
+        <img className="swipe-img"  src={swipeLeft} alt={swipeLeft} />
       </div>;
     let likeTutorial =
-      <div style={{top: '30%',left: '50%', position:'fixed', transform: 'translate(60vh,0) translateX(-50%)',zIndex: '10'}}>
-        <p style={{marginRight: 160+'px', fontWeight:'bold', fontSize:20+'px'}}>SWIPE RIGHT TO LIKE</p><br/>
-        <img className="swipe-img" style={{marginLeft:10+'px'}} src={swipeRight} alt={swipeRight} />
+      <div className="swipe-tutorial swipe-tutorial-like">
+        <p className=".swipe-tutorial-text swipe-tutorial-right">SWIPE RIGHT TO LIKE</p><br/>
+        <img className="swipe-img swipe-tutorial-right" src={swipeRight} alt={swipeRight} />
       </div>;
 
     let informButton;
@@ -341,7 +344,7 @@ class Swipe extends Component {
     if (!inform) {
       informButton =<img className="swipe-card-info" src={infoIcon} alt={infoIcon} onClick={this.handleInformClick}/>;
       returnDiv =
-        <div>
+        <div className="swipe-root">
           {dislikeTutorial}
           <div ref={this.undoButton} style={{opacity: 0, display:'none'}}>
           <img src={backIcon} className="swipe-back"  onClick={this.undo} />
