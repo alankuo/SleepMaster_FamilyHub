@@ -36,9 +36,9 @@
 :root {
   /* --theme-color: #166643; */
   /* --theme-color: #5F9EA0; */
-  --theme-color: #166643;
-  --navbar-color: #EEFCCE;
-  --login-bar-width: 500px;
+  --theme-color: #373A3C;
+  --navbar-color: #5B5D56;
+  --login-bar-width: 450px;
   --login-bar-margin: 15%;
 }
 
@@ -50,31 +50,48 @@ body {
 body h1{
 	text-align: center;
 	font-size: 30px;
+  margin-top: 0;
 }
 
 footer{
 	text-align: center;
-	height:60px;
+	height:50px;
 	background:#f4f4f4;
-  margin-top:50px;
-	padding-top:15px;
+	padding-top:20px;
 }
 
 /* navbar override bootstrap */
 .navbar-default {
   background-color: var(--navbar-color) !important;
+  border-color: var(--navbar-color) !important;
 }
 
+.navbar-default .navbar-nav>li>a {
+  color: black !important;
+}
+
+.background {
+  background: url('../img/background42.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 /* login */
 .welcome-msg{
-	margin-top: 100px;
-  margin-bottom: 100px;
+	padding-top: 50px;
+  margin-bottom: 60px;
 	font-size: 36px;
+  color: #373A3C;
+}
+
+.logo {
+  width: 120px;
 }
 
 .login-bar {
   width: var(--login-bar-width);
-	margin: auto;
+	margin: 8% auto 6.5% auto;
 }
 
 .header {
@@ -84,12 +101,10 @@ footer{
 	border: 1px solid var(--theme-color);
 	border-bottom: none;
 	border-radius: 10px 10px 0px 0px;
-	padding: 20px;
+  padding: 20px 0 20px 0;
 }
 
 form, .content {
-  margin: 0px auto;
-  padding: 20px;
   border: 1px solid #B0C4DE;
   background: white;
   border-radius: 0px 0px 10px 10px;
@@ -97,7 +112,7 @@ form, .content {
 }
 
 .input-group {
-	margin: 30px 20px 10px 30px;
+	margin: 35px auto;
 }
 
 .input-group label {
@@ -107,7 +122,7 @@ form, .content {
 }
 
 .input-group input {
-	width: 400px;
+	width: 350px;
   padding: 5px 10px;
   font-size: 16px;
   border-radius: 5px;
@@ -117,8 +132,10 @@ form, .content {
 .btn {
   color: white;
   background: var(--theme-color);
-  margin-top: 30px;
-  margin-bottom: 20px !important;
+  margin-top: 5px;
+  margin-bottom: 25px !important;
+  width: 90px;
+  height: 45px;
 }
 
 /* settings */
@@ -137,5 +154,3 @@ form, .content {
             user-select: text; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
-
-

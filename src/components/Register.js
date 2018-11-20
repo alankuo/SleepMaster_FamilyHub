@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import { Link } from 'react-router-dom'
-import Footer from './Footer'
+import { Link } from 'react-router-dom';
+import Footer from './Footer';
+import bg from '../img/background45.jpg';
+
+const background = {
+  background: `url(${bg}) no-repeat center center fixed`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+}
 
 class Register extends Component {
   constructor() {
@@ -56,6 +63,7 @@ class Register extends Component {
   render() {
     document.title = 'Register - FamilyHub';
     return (
+      <div style={background}>
       <div className="container" onKeyPress={this.keyEvent}>
         <div className="login-bar">
           <div className="header">
@@ -97,8 +105,9 @@ class Register extends Component {
             </p>
           </form>
         </div>
-        <Footer />
       </div>
+      <Footer />
+    </div>
     );
   }
 }

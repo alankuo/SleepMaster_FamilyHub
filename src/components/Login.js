@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import { Link } from 'react-router-dom'
-import Footer from './Footer'
+import { Link } from 'react-router-dom';
+import Footer from './Footer';
+import bg from '../img/background40.jpg';
+import logo from "../img/logo.png";
 
+const background = {
+  backgroundImage: `url(${bg})`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+}
 class Login extends Component {
   constructor() {
     super();
@@ -45,12 +52,12 @@ class Login extends Component {
   render() {
     document.title = 'Login - FamilyHub';
     return (
-      <div onKeyPress={this.keyEvent}>
-        <h1 className="welcome-msg">Welcome to <span className="primary">FamilyHub!!</span></h1>
+      <div onKeyPress={this.keyEvent} style={background}>
+        {/**<h1 className="welcome-msg">Welcome to <span className="primary">FamilyHub!!</span></h1>**/}
         <div className="container">
           <div className="login-bar">
             <div className="header">
-              <h2>LOG IN</h2>
+              <img src={logo} alt="" className="logo"/>
             </div>
             <form id="form_id" method="post" name="myform">
 

@@ -8,7 +8,7 @@ const styles = {
     maxHeight: "80px",
     display: "block",
     marginLeft: "4%",
-    float: "left"
+    float: "left",
   }
 }
 

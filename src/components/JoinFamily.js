@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
+import bg from '../img/background45.jpg';
+
+const background = {
+  background: `url(${bg}) no-repeat center center fixed`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+}
 
 class CreateFamily extends Component {
   constructor() {
@@ -37,15 +44,13 @@ class CreateFamily extends Component {
   render() {
     document.title = 'Login - FamilyHub';
     return (
-      <div onKeyPress={this.keyEvent}>
-        <h1 className="welcome-msg">Join your family now!</h1>
+      <div onKeyPress={this.keyEvent} style={background}>
         <div className="container">
-          <div className="login-bar">
+          <div className="login-bar" style={{marginTop: '10%', marginBottom: '6%'}}>
             <div className="header">
               <h2>Enter family account info</h2>
             </div>
             <form id="form_id" method="post" name="myform">
-
               <div className="input-group">
                 <label>Family Name*</label>
                 <input type="text" name="family_name" id="family_name" ></input>

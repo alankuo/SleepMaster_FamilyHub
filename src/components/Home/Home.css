@@ -1,7 +1,9 @@
 
 
 .home {
-    margin: auto;
+    padding-top: 80px;
+    background: url('../../img/background35.jpg') no-repeat center center fixed;
+    background-size: 100%;
 }
 
     .home-noteboard-section {
@@ -21,7 +23,7 @@
                 flex-direction: column;
                 transition: transform ease-in-out 0.2s;
                 transform: translate(0,2%) scale(1.035);
-
+                background-color: rgb(233, 232, 211, 0.9);
             }
 
             .noteboard:hover {
