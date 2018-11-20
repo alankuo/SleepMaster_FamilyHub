@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
-import bg from '../img/background45.jpg';
+import bg from '../img/background35.jpg';
 
 const background = {
   background: `url(${bg}) no-repeat center center fixed`,
@@ -40,7 +40,7 @@ class Register extends Component {
     else if(password_1!==password_2){
       alert("Passwords do not match!");
     }
-    else if(!email.includes("@")||!email.includes(".com")){
+    else if(!email.includes("@")||(!email.includes("com") && !email.includes("edu"))){
       alert("Please enter a valid email address!");
     }
     else{

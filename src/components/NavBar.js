@@ -4,8 +4,8 @@ import logo from "../img/logo.png"
 
 const styles = {
   image: {
-    height: "15vw",
-    maxHeight: "80px",
+    width: "7vw",
+
     display: "block",
     marginLeft: "4%",
     float: "left",

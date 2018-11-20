@@ -2,8 +2,9 @@
 
 .home {
     padding-top: 80px;
-    background: url('../../img/background35.jpg') no-repeat center center fixed;
+    /* background: url('../../img/background35.jpg') no-repeat center center fixed; */
     background-size: 100%;
+    background: linear-gradient(to bottom right, 	#FCF9E9, #E6D273);
 }
 
     .home-noteboard-section {

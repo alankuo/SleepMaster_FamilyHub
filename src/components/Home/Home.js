@@ -25,6 +25,7 @@ class Home extends Component {
 
   render() {
     return (
+      <div className="homepage">
       <div className="home clearfix">
         <div className="home-top clearfix">
             <div className="home-photo-section">
@@ -33,11 +34,11 @@ class Home extends Component {
                 </div>
             </div>
             <Cards />
-            {/*  */}
         </div>
         <div className="home-noteboard-section">
           <NoteBoard />
         </div>
+      </div>
       </div>
     );
   }

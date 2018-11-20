@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
-import bg from '../img/background40.jpg';
+import bg from '../img/background35.jpg';
 import logo from "../img/logo.png";
 
 const background = {

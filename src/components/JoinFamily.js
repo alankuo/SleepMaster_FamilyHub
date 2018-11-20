@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
-import bg from '../img/background45.jpg';
+import bg from '../img/background35.jpg';
 
 const background = {
   background: `url(${bg}) no-repeat center center fixed`,
@@ -45,7 +45,7 @@ class CreateFamily extends Component {
     document.title = 'Login - FamilyHub';
     return (
       <div onKeyPress={this.keyEvent} style={background}>
-        <div className="container">
+        <div className="container" style={{paddingBottom: "70px"}}>
           <div className="login-bar" style={{marginTop: '10%', marginBottom: '6%'}}>
             <div className="header">
               <h2>Enter family account info</h2>

@@ -36,8 +36,8 @@
 :root {
   /* --theme-color: #166643; */
   /* --theme-color: #5F9EA0; */
-  --theme-color: #373A3C;
-  --navbar-color: #5B5D56;
+  --theme-color: #4C5356;
+  --navbar-color: rgb(0,0,0,0);
   --login-bar-width: 450px;
   --login-bar-margin: 15%;
 }
@@ -71,7 +71,7 @@ footer{
 }
 
 .background {
-  background: url('../img/background42.jpg') no-repeat center center fixed;
+  background: url('../img/background35.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -112,7 +112,7 @@ form, .content {
 }
 
 .input-group {
-	margin: 35px auto;
+	margin: 35px 40px;
 }
 
 .input-group label {

@@ -4,7 +4,7 @@ import '../css/cropper.css';
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import Cropper from 'react-cropper';
-import bg from '../img/background45.jpg';
+import bg from '../img/background35.jpg';
 
 const background = {
   background: `url(${bg}) no-repeat center center fixed`,
@@ -87,7 +87,7 @@ class CreateFamily extends Component {
 
   render() {
     return (
-      <div style={background}>        
+      <div style={background}>
         <div className="container">
           <div className="login-bar">
             <div className="header">

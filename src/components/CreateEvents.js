@@ -43,11 +43,15 @@ class CreateEvents extends Component {
     else if(numOfMembers === ""){
       alert("Please fill in the number of members suggested!");
     }
+
     else if(categoryId === "0") {
       alert("Please select a category for the event!");
     }
     else if(this.state.imageURL === "") {
       alert("Please select an image for the event!");
+    }
+    else if(numOfMembers < "0" || time < "0") {
+      alert("Please enter a valid number!");
     }
     else{
       alert ("The event has been successfully created!");
@@ -104,7 +108,7 @@ class CreateEvents extends Component {
               </div>
               <div className="input-group" onKeyPress={this.keyEvent}>
                 <label>Number of members*</label>
-                <input type="number" name="number_of_members" id="number_of_members" placeholder=""></input>
+                <input type="number" name="number_of_members" min="0" id="number_of_members" placeholder=""></input>
               </div>
 
               <div className="input-group" onKeyPress={this.keyEvent}>
@@ -120,7 +124,7 @@ class CreateEvents extends Component {
 
               <div className="input-group" onKeyPress={this.keyEvent}>
                 <label>Approximated Time (in minutes)</label>
-                <input type="number" name="time" id="time" placeholder=""></input>
+                <input type="number" name="time" min="0" id="time" placeholder=""></input>
               </div>
 
               <div className="input-group" onKeyPress={this.keyEvent}>
