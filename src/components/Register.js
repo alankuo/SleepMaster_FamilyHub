@@ -3,6 +3,7 @@ import '../css/App.css';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import bg from '../img/background35.jpg';
+import AlertBox from "./AlertBox.js";
 
 const background = {
   background: `url(${bg}) no-repeat center center fixed`,
@@ -15,12 +16,17 @@ class Register extends Component {
     super();
     // Initial state
     this.state = {
-      routeAddress: "/login"
+      routeAddress: "/login",
+      show: false,
+      msg: "",
+      type: "",      
     };
 
     // Bind all functions so they can refer to "this" correctly
     this.registerAccount = this.registerAccount.bind(this);
     this.keyEvent = this.keyEvent.bind (this);
+    this.openAlert = this.openAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
   }
 
   registerAccount(e){
@@ -32,16 +38,40 @@ class Register extends Component {
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
     if(first_name===""||last_name===""||username===""||password_1===""||email===""){
-      alert("Please fill in all required information!");
+      this.setState({
+        show: true,
+        msg: "Please fill in all required information!",
+        type: ""
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert("Please fill in all required information!");
     }
     else if(password_1.length<8){
-      alert("Password is too short! It has to be at least 8 characters!");
+      this.setState({
+        show: true,
+        msg: "Password is too short! It has to be at least 8 characters!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert("Password is too short! It has to be at least 8 characters!");
     }
     else if(password_1!==password_2){
-      alert("Passwords do not match!");
+      this.setState({
+        show: true,
+        msg: "Passwords do not match!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert("Passwords do not match!");
     }
     else if(!email.includes("@")||(!email.includes("com") && !email.includes("edu"))){
-      alert("Please enter a valid email address!");
+      this.setState({
+        show: true,
+        msg: "Please enter a valid email address!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert("Please enter a valid email address!");
     }
     else{
       localStorage.setItem('username', username);
@@ -49,8 +79,14 @@ class Register extends Component {
       localStorage.setItem('email', email);
       localStorage.setItem('phone', phone);
       localStorage.setItem('firstTime', true);
-      alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
-      window.location = "#/login";
+      this.setState({
+        show: true,
+        msg: "Your account has been successfully created! You can log in to FamilyHub now!",
+        type: "success"
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
+      setTimeout(() => {window.location = "#/login"}, 2000);
     }
   }
 
@@ -58,6 +94,17 @@ class Register extends Component {
     if (e.key === 'Enter') {
       this.registerAccount();
     }
+  }
+
+  openAlert() {
+    return <AlertBox
+              alertMsg={this.state.msg}
+              close={this.closeAlert}
+              type={this.state.type} />;
+  }
+
+  closeAlert() {
+    this.setState({show: false});
   }
 
   render() {
@@ -69,6 +116,7 @@ class Register extends Component {
           <div className="header">
             <h2>Register An Account</h2>
           </div>
+          {this.state.show && this.openAlert()}
           <form method="post">
             <div className="input-group">
               <label>First Name*</label>

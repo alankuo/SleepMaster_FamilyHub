@@ -4,22 +4,29 @@ import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import bg from '../img/background35.jpg';
 import logo from "../img/logo.png";
+import AlertBox from "./AlertBox.js";
 
 const background = {
   backgroundImage: `url(${bg})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 }
+
+const msg = "username and password do not match!";
+
 class Login extends Component {
   constructor() {
     super();
     // Initial state
     this.state = {
-      routeAddress: "/"
+      routeAddress: "/",
+      show: false,
     };
     // Bind all functions so they can refer to "this" correctly
     this.validateLogin = this.validateLogin.bind(this);
     this.keyEvent = this.keyEvent.bind (this);
+    this.openAlert = this.openAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
   }
 
   validateLogin(e){
@@ -39,7 +46,9 @@ class Login extends Component {
             }
     }
     else{
-      alert("username and password do not match!");
+      this.setState({show: true});
+      setTimeout((this.closeAlert), 2000);
+      // alert("username and password do not match!");
     }
   }
 
@@ -47,6 +56,14 @@ class Login extends Component {
     if (e.key === 'Enter') {
       this.validateLogin();
     }
+  }
+
+  openAlert(msg) {
+    return <AlertBox alertMsg={msg} close={this.closeAlert} />;
+  }
+
+  closeAlert() {
+    this.setState({show: false});
   }
 
   render() {
@@ -59,6 +76,7 @@ class Login extends Component {
             <div className="header">
               <img src={logo} alt="" className="logo"/>
             </div>
+            {this.state.show && this.openAlert("username and password do not match!")}
             <form id="form_id" method="post" name="myform">
 
               <div className="input-group">

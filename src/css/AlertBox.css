@@ -1,0 +1,78 @@
+/***********Modal outline***************/
+.alert_warning {
+  position: fixed;
+  left: 25%;
+  right: 25%;
+  top: 5%;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 18px;
+  background-color: #FFB818;
+  z-index: 3;
+}
+
+.alert_success {
+  background-color: #4CAF50;
+  position: fixed;
+  left: 22%;
+  right: 22%;
+  top: 5%;
+  height: 120px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 18px;
+  z-index: 3;
+}
+
+.alert_success_info {
+  background-color: #4CAF50;
+  position: fixed;
+  left: 20%;
+  right: 20%;
+  top: 5%;
+  height: 220px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 18px;
+  z-index: 3;
+}
+
+.warning {
+  font-size: 60px;
+  float: left;
+  padding: 20px;
+  color: white;
+}
+
+.success {
+  font-size: 50px;
+  float: left;
+  padding: 20px;
+  color: white;
+}
+
+.alert_msg {
+  font-size: 22px;
+  padding: 35px;
+  margin-left: 80px;
+  color: white;
+}
+
+
+.close_alert {
+  float: right;
+  background-color: rgb(0,0,0,0);
+  border: none;
+  font-size: 22px;
+  color: white;
+}
+
+.success_info {
+  font-size: 50px;
+  float: left;
+  padding: 20px;
+  color: white;
+}
+
+.next-step {
+  font-size: 20px;
+  margin-left: 50px;
+}

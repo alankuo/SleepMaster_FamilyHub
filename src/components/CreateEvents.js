@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import NavBar from './NavBar.js';
 
 import UploadImage from'./UploadImage';
-import Footer from './Footer'
+import Footer from './Footer';
+import AlertBox from "./AlertBox.js";
 
 class CreateEvents extends Component {
   constructor() {
@@ -10,7 +11,10 @@ class CreateEvents extends Component {
     // Initial state
     this.state = {
       routeAddress: "/",
-      imageURL: ""
+      imageURL: "",
+      show: false,
+      msg: "",
+      type: "",
     };
 
     // Bind all functions so they can refer to "this" correctly
@@ -18,6 +22,8 @@ class CreateEvents extends Component {
     this.keyEvent = this.keyEvent.bind(this);
     this.setImageURL = this.setImageURL.bind(this);
     this.storeEvent = this.storeEvent.bind(this);
+    this.openAlert = this.openAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
   }
 
   createEvent(e){
@@ -38,26 +44,71 @@ class CreateEvents extends Component {
 
 
     if(eventName === ""){
-      alert("Please fill in the event name!");
+      this.setState({
+        show: true,
+        msg: "The event has been successfully created and added to explore page!",
+        type: "success_info"
+      });
+      // this.setState({
+      //   show: true,
+      //   msg: "Please fill in the event name!",
+      //   type: ""
+      // });
+      // setTimeout((this.closeAlert), 2000);
     }
     else if(numOfMembers === ""){
-      alert("Please fill in the number of members suggested!");
+      this.setState({
+        show: true,
+        msg: "Please fill in the number of members suggested!",
+        type: ""
+      });
+      setTimeout((this.closeAlert), 2000);
     }
 
     else if(categoryId === "0") {
-      alert("Please select a category for the event!");
+      this.setState({
+        show: true,
+        msg: "Please select a category for the event!",
+        type: ""
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else if(this.state.imageURL === "") {
-      alert("Please select an image for the event!");
+      this.setState({
+        show: true,
+        msg: "Please select an image for the event!",
+        type: ""
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else if(numOfMembers < "0" || time < "0") {
-      alert("Please enter a valid number!");
+      this.setState({
+        show: true,
+        msg: "Please enter a valid number!",
+        type: ""
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else{
-      alert ("The event has been successfully created!");
+      this.setState({
+        show: true,
+        msg: "The event has been successfully created and added to explore page!",
+        type: "success_info"
+      });
       this.storeEvent(eventName, numOfMembers, categoryText, equipment, time, description);
-      window.location = "#/";
+      // window.location = "#/";
     }
+  }
+
+  openAlert() {
+    return <AlertBox
+              alertMsg={this.state.msg}
+              close={this.closeAlert}
+              type={this.state.type} />;
+  }
+
+  closeAlert() {
+    this.setState({show: false});
   }
 
   keyEvent(e) {
@@ -101,6 +152,7 @@ class CreateEvents extends Component {
             <div className="header">
               <h2>Create an Event</h2>
             </div>
+            {this.state.show && this.openAlert()}
             <form method="post">
               <div className="input-group" onKeyPress={this.keyEvent}>
                 <label>Event Name*</label>
