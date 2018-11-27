@@ -26,19 +26,18 @@ class Home extends Component {
   render() {
     return (
       <div className="homepage">
-      <div className="home clearfix">
-        <div className="home-top clearfix">
-            <div className="home-photo-section">
-                <div className="home-photo">
-                    <img src={this.state.photoURL} alt={this.state.photoURL} className="home-photo-img"/>
-                </div>
-            </div>
-            {/* <Cards /> */}
+      <div className="home2 clearfix">
+
+        <h1 className="home2-title">My Family </h1>
+
+        <div className="home2-photo-section">
+          <div className="home2-photo">
+              <img src={this.state.photoURL} alt={this.state.photoURL} className="home2-photo-img"/>
+          </div>
         </div>
-        <div className="home-noteboard-section">
-          {/* <NoteBoard /> */}
-          <Cards/>
-        </div>
+
+        <NoteBoard/>
+        <Cards/>
       </div>
       </div>
     );

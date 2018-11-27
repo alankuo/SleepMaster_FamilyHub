@@ -11,10 +11,10 @@ class Card extends Component {
 
     render() {
         return (
-            <Link className="card-link" to={`${navigation[this.props.icon]}`}>
-                <div className="card">
-                    <img className="card-img center-block" src={icons[this.props.icon]} alt={icons[this.props.icon]}/>
-                    <h1 className="card-name">{texts[this.props.icon]}</h1>
+            <Link className="card2-link" to={`${navigation[this.props.icon]}`}>
+                <div className="card2">
+                    <img className="card2-img center-block" src={icons[this.props.icon]} alt={icons[this.props.icon]}/>
+                    <h1 className="card2-name">{texts[this.props.icon]}</h1>
 
                 </div>
             </Link>

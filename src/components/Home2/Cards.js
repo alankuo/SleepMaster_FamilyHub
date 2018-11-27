@@ -5,16 +5,21 @@ class Cards extends Component {
   render() {
     return (
 
-            <ul className='cards clearfix'>
-                <li className='cards-card'>
-
-                    <Card icon={2} />
-                </li>
-                <li className='cards-card'>
+            <ul className='cards2 clearfix'>
+                <li className='cards2-card'>
 
                     <Card icon={0} />
                 </li>
-                {/* <li className='cards-card'>
+                <li className='cards2-card'>
+
+                    <Card icon={2} />
+                </li>
+                {/* <li className='cards2-card'>
+
+                    <Card icon={1}/>
+                </li>
+
+                <li className='cards2-card'>
 
                     <Card icon={1}/>
                 </li> */}

@@ -7,7 +7,7 @@ const hash = require('object-hash');
 // import {cloneState} from '../../util/CloneState';
 
 
-const NoUseElements = new Set(['noteboard-button', 'noteboard-tutorial', 'noteboard-title', 'noteboard-notes', 'noteboard'])
+const NoUseElements = new Set(['noteboard2-button', 'noteboard2-tutorial', 'noteboard2-title', 'noteboard2-notes', 'noteboard'])
 
 class NoteBoard extends Component {
     constructor(props) {
@@ -234,13 +234,13 @@ class NoteBoard extends Component {
     /************ render notes ***********/
     renderNotes() {
         return this.state.bullets.map((e, i) => {
-            return (<li className={"noteboard-note " + (this.state.delete ? "noteboard-delete" : "noteboard-normal")} key={e.id}>
+            return (<li className={"noteboard2-note " + (this.state.delete ? "noteboard2-delete" : "noteboard2-normal")} key={e.id}>
                         <img
-                            className='noteboard-delete-icon'
+                            className='noteboard2-delete-icon'
                             src={deleteIcon}
                             onClick={this.clickDelete(e, i)}/>
                         <Textarea
-                            className={(this.state.edit === e? "noteboard-text" : "noteboard-passage")}
+                            className={(this.state.edit === e? "noteboard2-text" : "noteboard2-passage")}
                             readOnly={this.state.edit === e? null : "readOnly"}
                             autoFocus
                             onClick={this.clickNote(e,i)}
@@ -255,34 +255,34 @@ class NoteBoard extends Component {
         return (
 
             <div
-                className="noteboard"
+                className="noteboard2"
                 onDoubleClick={this.doubleClickNoUseElement}
                 onClick={this.clickNoUseElement}
             >
-                <h3 className="noteboard-title">
+                <h3 className="noteboard2-title">
                     Message Board
-                    <button className='noteboard-button-icon noteboard-button-minus' onClick={this.clickMinus}> - </button>
-                    <button className='noteboard-button-icon noteboard-button-plus' onClick={this.clickPlus}> + </button>
+                    <button className='noteboard2-button-icon noteboard2-button-minus' onClick={this.clickMinus}> - </button>
+                    <button className='noteboard2-button-icon noteboard2-button-plus' onClick={this.clickPlus}> + </button>
                 </h3>
 
-                <ul className="noteboard-notes" ref={this.NoteBoard}>
+                <ul className="noteboard2-notes" ref={this.NoteBoard}>
                 {
                     this.renderNotes()
                 }
 
                 {
                     this.state.bullets.length === 0 ?
-                    <h3 className="noteboard-tutorial"> Double Click here Or <br/><br/> Press Ctrl + Enter<br/><br/>to start your new message <br/> </h3> : null
+                    <h3 className="noteboard2-tutorial"> Double Click here Or <br/><br/> Press Ctrl + Enter<br/><br/>to start your new message <br/> </h3> : null
                 }
                 </ul>
 
 
-                <div className="noteboard-button">
-                    {/* <input className="noteboard-remove" type="submit" value="Delete" onClick={this.saveEdit}/> */}
-                    <div className="notenoard-submit-img-section" ref={this.checked}>
-                        <img className="notenoard-submit-img" src={checked} />
+                <div className="noteboard2-button">
+                    {/* <input className="noteboard2-remove" type="submit" value="Delete" onClick={this.saveEdit}/> */}
+                    <div className="noteboard2-submit-img-section" ref={this.checked}>
+                        <img className="noteboard2-submit-img" src={checked} />
                     </div>
-                    <input className="noteboard-submit center-block" type="submit" value="Save" onClick={this.clickSave}/>
+                    <input className="noteboard2-submit center-block" type="submit" value="Save" onClick={this.clickSave}/>
                 </div>
             </div>
         );
