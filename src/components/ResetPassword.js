@@ -1,6 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Footer from './Footer'
+import bg from '../img/background35.jpg';
+
+const background = {
+  backgroundImage: `url(${bg})`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+}
 
 class ResetPassword extends React.Component{
   constructor() {
@@ -33,10 +40,9 @@ class ResetPassword extends React.Component{
 
   render(){
     return (
-      <div>
-        <h1 className="welcome-msg">Welcome to <span className="primary">FamilyHub!!</span></h1>
+      <div style={background}>
         <div className="container" onKeyPress={this.keyEvent}>
-          <div className="login-bar">
+          <div className="login-bar" style={{marginTop:250+'px'}}>
             <div className="header">
               <h2>Reset Your Password</h2>
             </div>
