@@ -126,7 +126,7 @@ class FavoriteEvents extends Component {
     return (
       <div>
         <NavBar/>
-        <div className="container" style={{marginTop:100+"px", marginBottom:40+"px"}}>
+        <div className="container" style={{marginTop:200+"px", marginBottom:40+"px"}}>
           <h1>Events Your Family All Liked</h1>
         </div>
         <section>
