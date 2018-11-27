@@ -102,7 +102,7 @@ footer{
 }
 
 form, .content {
-  border: 1px solid #FFFFFF;
+  border: 1px solid #B0C4DE;
   background: white;
   border-radius: 0px 0px 10px 10px;
 	text-align: center;
@@ -159,6 +159,6 @@ form, .content {
   border-radius: 5px 5px 0px 0px;
 }
 
-.family-tab:hover {
-  background:green !important;
+#family-form {
+  border: 1px solid #FFFFFF;
 }
