@@ -55,7 +55,7 @@ body h1{
 
 footer{
 	text-align: center;
-	height:50px;
+	height:70px;
 	background:#f4f4f4;
 	padding-top:20px;
 }
@@ -134,8 +134,6 @@ form, .content {
   background: var(--theme-color);
   margin-top: 5px;
   margin-bottom: 25px !important;
-  width: 90px;
-  height: 45px;
 }
 
 /* settings */
@@ -143,6 +141,7 @@ form, .content {
   width: var(--login-bar-width);
   margin: auto;
   margin-top: 150px;
+  margin-bottom: 100px;
 }
 
 * {
