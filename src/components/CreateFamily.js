@@ -100,7 +100,7 @@ class CreateFamily extends Component {
               </div>
 
               <div className="input-group" onKeyPress={this.keyEvent}>
-                <label>PIN*</label>
+                <label>Family PIN*</label>
                 <input type="password" name="pin" id="pin" ></input>
               </div>
               <div className="input-group">
@@ -126,8 +126,9 @@ class CreateFamily extends Component {
 
               <div>
                 <input type="button" className="btn" id="submitBtn"  onClick={this.createFamily} value="Create"/>
-                <p>
-                  Know Your Family Account? <Link to="/join-family">Join Your Family</Link>
+                <p style={{fontSize:18+'px'}}>
+                  Know Your Family Account? <br />
+                  <Link to="/join-family">Join Your Family</Link>
                 </p>
               </div>
             </form>

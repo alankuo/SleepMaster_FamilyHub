@@ -55,14 +55,14 @@ body h1{
 
 footer{
 	text-align: center;
-	height:50px;
+	height:70px;
 	background:#f4f4f4;
 	padding-top:20px;
 }
 
 /* navbar override bootstrap */
 .navbar-default {
-  background-color: var(--navbar-color) !important;
+  background-color: rgb(251,247,205) !important;
   border-color: var(--navbar-color) !important;
 }
 
@@ -134,8 +134,6 @@ form, .content {
   background: var(--theme-color);
   margin-top: 5px;
   margin-bottom: 25px !important;
-  width: 90px;
-  height: 45px;
 }
 
 /* settings */
@@ -143,6 +141,7 @@ form, .content {
   width: var(--login-bar-width);
   margin: auto;
   margin-top: 150px;
+  margin-bottom: 100px;
 }
 
 * {
@@ -153,4 +152,13 @@ form, .content {
         -ms-user-select: text; /* Internet Explorer/Edge */
             user-select: text; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+.family-header {
+  background: var(--theme-color);
+  border-radius: 5px 5px 0px 0px;
+}
+
+#family-form {
+  border: 1px solid #FFFFFF;
 }

@@ -140,34 +140,31 @@ class Create extends Component {
 
           <div className="container" style={{paddingBottom: "50px"}}>
             <div className="login-bar" style={{ marginBottom: '6%'}}>
-              <div className="header" >
+              <div className="family-header">
                 <Nav bsStyle="tabs" justified activeKey={1} style={{backgroundColor: 'transparent'}}>
-                  <NavItem eventKey={1} href="#" onClick={this.join} active={true}>
+                  <NavItem eventKey={1} className="family-tab" href="#" onClick={this.join} active={true}>
                     <h3>Join Existing Family</h3>
                   </NavItem>
-                  <NavItem eventKey={2} href="#" onClick={this.create}>
-                    <h3>Create Your Family Account</h3>
+                  <NavItem eventKey={2} className="family-tab" href="#" onClick={this.create}>
+                    <h3 style={{color:'#FFFFFF'}}>Create Your Family Account</h3>
                   </NavItem>
                 </Nav>
               </div>
 
 
-              <form id="form_id" method="post" name="myform">
+              <form id="family-form" method="post" name="myform">
                 <div className="input-group">
                   <label>Family Name*</label>
                   <input type="text" name="family_name" id="family_name" />
                 </div>
 
                 <div className="input-group">
-                  <label>PIN*</label>
+                  <label>Family PIN*</label>
                   <input type="password" name="pin" id="pin" />
                 </div>
 
                 <div>
                   <input type="button" className="btn" onClick={this.validateJoin} id="submitBtn" name="login_btn" value="Join"/>
-                  <p>
-                    Need to Create a New Family Group? <Link to="/create-family">Create Group for Your Family </Link>
-                  </p>
                 </div>
               </form>
             </div>
@@ -180,27 +177,27 @@ class Create extends Component {
         <div onKeyPress={this.keyEvent} >
           <div className="container" style={{paddingBottom: "50px"}}>
             <div className="login-bar" style={{marginBottom: '6%'}}>
-              <div className="header">
+              <div className="family-header">
                 {/*<Navbar inverse collapseOnSelect style={{backgroundColor: 'transparent', border:'none'}}>*/}
                 <Nav bsStyle="tabs" justified activeKey={2} style={{backgroundColor: 'transparent'}}>
-                  <NavItem eventKey={1} href="#" onClick={this.join} >
-                    <h3>Join Existing Family</h3>
+                  <NavItem eventKey={1} className="family-tab" href="#" onClick={this.join} >
+                    <h3 style={{color:'#FFFFFF'}}>Join Existing Family</h3>
                   </NavItem>
-                  <NavItem eventKey={2} href="#" onClick={this.create}>
+                  <NavItem eventKey={2} className="family-tab" href="#" onClick={this.create}>
                     <h3>Create Your Family Account</h3>
                   </NavItem>
                 </Nav>
               </div>
 
 
-              <form id="form_id" method="post" name="myform">
+              <form id="family-form" method="post" name="myform">
                 <div className="input-group" onKeyPress={this.keyEvent}>
                   <label>Family Name*</label>
                   <input type="text" name="family_name" id="family_name" />
                 </div>
 
                 <div className="input-group" onKeyPress={this.keyEvent}>
-                  <label>PIN*</label>
+                  <label>Family PIN*</label>
                   <input type="password" name="pin" id="pin" />
                 </div>
                 <div className="input-group">
@@ -226,9 +223,6 @@ class Create extends Component {
 
                 <div>
                   <input type="button" className="btn" id="submitBtn"  onClick={this.createFamily} value="Create"/>
-                  <p>
-                    Know Your Family Account? <Link to="/join-family">Join Your Family</Link>
-                  </p>
                 </div>
               </form>
             </div>

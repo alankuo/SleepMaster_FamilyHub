@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Home from './Home/Home';
+import Home from './Home2/Home';
 import NavBar from './NavBar'
 import Footer from './Footer'
 
