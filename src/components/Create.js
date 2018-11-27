@@ -159,7 +159,7 @@ class Create extends Component {
                 </div>
 
                 <div className="input-group">
-                  <label>Family PIN*</label>
+                  <label>Family Password*</label>
                   <input type="password" name="pin" id="pin" />
                 </div>
 
@@ -197,7 +197,7 @@ class Create extends Component {
                 </div>
 
                 <div className="input-group" onKeyPress={this.keyEvent}>
-                  <label>Family PIN*</label>
+                  <label>Family Password*</label>
                   <input type="password" name="pin" id="pin" />
                 </div>
                 <div className="input-group">

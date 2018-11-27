@@ -57,7 +57,7 @@ class CreateFamily extends Component {
               </div>
 
               <div className="input-group">
-                <label>Family PIN*</label>
+                <label>Family Password*</label>
                 <input type="password" name="pin" id="pin" ></input>
               </div>
 
