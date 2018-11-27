@@ -55,14 +55,14 @@ body h1{
 
 footer{
 	text-align: center;
-	height:70px;
-	background:#f1f1f1;
+	height:50px;
+	background:#f4f4f4;
 	padding-top:20px;
 }
 
 /* navbar override bootstrap */
 .navbar-default {
-  background-color: var(--navbar-color) !important;
+  background-color: rgb(251,247,205) !important;
   border-color: var(--navbar-color) !important;
 }
 
@@ -98,6 +98,9 @@ footer{
 	color: white;
 	background: var(--theme-color);
 	text-align: center;
+	border: 1px solid var(--theme-color);
+	border-bottom: none;
+	border-radius: 10px 10px 0px 0px;
   padding: 20px 0 20px 0;
 }
 
@@ -140,7 +143,6 @@ form, .content {
   width: var(--login-bar-width);
   margin: auto;
   margin-top: 150px;
-  margin-bottom: 50px;
 }
 
 * {
@@ -151,14 +153,4 @@ form, .content {
         -ms-user-select: text; /* Internet Explorer/Edge */
             user-select: text; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
-}
-
-.family-header {
-	background: var(--theme-color);
-	text-align: center;
-  border-radius: 5px 5px 0px 0px;
-}
-
-#family-form {
-  border: 1px solid #FFFFFF;
 }
