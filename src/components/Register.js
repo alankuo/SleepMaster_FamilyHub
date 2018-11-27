@@ -19,7 +19,7 @@ class Register extends Component {
       routeAddress: "/login",
       show: false,
       msg: "",
-      type: "",      
+      type: "",
     };
 
     // Bind all functions so they can refer to "this" correctly
@@ -64,7 +64,7 @@ class Register extends Component {
       setTimeout((this.closeAlert), 2000);
       // alert("Passwords do not match!");
     }
-    else if(!email.includes("@")||(!email.includes("com") && !email.includes("edu"))){
+    else if(!email.includes("@")||(!email.includes("com") && !email.includes("edu") && !email.includes("org"))){
       this.setState({
         show: true,
         msg: "Please enter a valid email address!",

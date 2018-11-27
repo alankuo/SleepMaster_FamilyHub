@@ -30,10 +30,11 @@ class Login extends Component {
   }
 
   validateLogin(e){
-    const username = document.getElementById("username").value;
+    const email_username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    if ( (username === "philip" && password === "guo") ||
-          (username === localStorage['username'] && password === localStorage['password'])){
+    if ( (email_username === "philip"  && password === "guo") ||
+          ((email_username === localStorage['username'] || email_username === localStorage['email'])
+          && password === localStorage['password'])){
             if(localStorage['firstTime'] === undefined) {
               localStorage.setItem('firstTime', true);
             }
@@ -80,7 +81,7 @@ class Login extends Component {
             <form id="form_id" method="post" name="myform">
 
               <div className="input-group">
-                <label>Username</label>
+                <label>Email/Username</label>
                 <input type="text" name="username" id="username" ></input>
               </div>
 

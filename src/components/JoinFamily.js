@@ -48,7 +48,7 @@ class CreateFamily extends Component {
         <div className="container" style={{paddingBottom: "70px"}}>
           <div className="login-bar" style={{marginTop: '10%', marginBottom: '6%'}}>
             <div className="header">
-              <h2>Enter family account info</h2>
+              <h2>Enter Family Account Info</h2>
             </div>
             <form id="form_id" method="post" name="myform">
               <div className="input-group">
@@ -57,14 +57,15 @@ class CreateFamily extends Component {
               </div>
 
               <div className="input-group">
-                <label>PIN*</label>
+                <label>Family PIN*</label>
                 <input type="password" name="pin" id="pin" ></input>
               </div>
 
               <div>
                 <input type="button" className="btn" onClick={this.validateJoin} id="submitBtn" name="login_btn" value="Join"/>
-                <p>
-                  Need to Create a New Family Group? <Link to="/create-family">Create Group for Your Family </Link>
+                <p style={{fontSize:18+'px'}}>
+                  Need to Create a New Family Group? <br />
+                  <Link to="/create-family">Create Group for Your Family </Link>
                 </p>
               </div>
             </form>

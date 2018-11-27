@@ -123,7 +123,7 @@ class Swipe extends Component {
   /************* card Interaction *************/
   undo() {
 
-    if(this.state.cards.length == 0) {
+    if(this.state.cards.length === 0) {
       return ;
     }
     let prev = this.state.current + 1;
@@ -151,7 +151,7 @@ class Swipe extends Component {
 
   drag(e) {
 
-    if(e.screenX == 0) {
+    if(e.screenX === 0) {
       // some bug of 'screenX of last drag before drop is always 0' on react
       return;
     }
@@ -234,11 +234,11 @@ class Swipe extends Component {
           return ;
         }
 
-        if(progress1 >= 1000) {
+        if(progress1 >= 2500) {
           this.undoButton.current.style.opacity = '0';
           this.undoButton.current.style.display = 'none';
         } else {
-          this.undoButton.current.style.opacity = `${1 - (progress1 / 1000)}`;
+          this.undoButton.current.style.opacity = `${1 - (progress1 / 2500)}`;
           this.undoButton.current.style.display = 'block';
           window.requestAnimationFrame(fade)
         }
@@ -287,7 +287,7 @@ class Swipe extends Component {
     const transform = `translateX(-50%) translate(${x}px,${y}px) rotate(${rotate}deg)`
     e.ref.current.style.transform = transform;
 
-    if ((x != 0 || y != 0) && (progress < 4000 / xSpeed)) {
+    if ((x !== 0 || y !== 0) && (progress < 4000 / xSpeed)) {
       window.requestAnimationFrame(this.slide);
     } else {
       const currentCard = this.state.cards;
