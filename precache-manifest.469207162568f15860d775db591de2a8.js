@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/SleepMaster_FamilyHub/static/media/logo.096d31e8.png"
   },
   {
-    "revision": "c112ca339e2d34fbcb9c",
+    "revision": "68c12f2f44f7cd749295",
     "url": "/SleepMaster_FamilyHub/static/css/main.b55b428d.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/SleepMaster_FamilyHub/static/media/family_photo.2d0f9eef.jpg"
   },
   {
-    "revision": "c112ca339e2d34fbcb9c",
-    "url": "/SleepMaster_FamilyHub/static/js/main.c112ca33.chunk.js"
+    "revision": "68c12f2f44f7cd749295",
+    "url": "/SleepMaster_FamilyHub/static/js/main.68c12f2f.chunk.js"
   },
   {
     "revision": "7d97bd8ff787034739434701ac5ef86e",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/SleepMaster_FamilyHub/static/media/party.6f0c1017.jpg"
   },
   {
-    "revision": "4e51738d7355dea5b0aac95a10e2d094",
+    "revision": "12a72f57893238ba97219f73c6df734a",
     "url": "/SleepMaster_FamilyHub/index.html"
   }
 ];
