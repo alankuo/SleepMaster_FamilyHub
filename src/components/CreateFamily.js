@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import Cropper from 'react-cropper';
 import bg from '../img/background35.jpg';
+import AlertBox from "./AlertBox.js";
 
 const background = {
   background: `url(${bg}) no-repeat center center fixed`,
@@ -26,27 +27,50 @@ class CreateFamily extends Component {
     this.setImageURL = this.setImageURL.bind(this);
     this.cropImage = this.cropImage.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.openAlert = this.openAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
   }
 
   createFamily(e) {
     const family_name = document.getElementById("family_name").value;
     const pin = document.getElementById("pin").value;
     if (family_name === "" || pin === "") {
-      alert("Please fill in all required information!");
+      this.setState({
+        show: true,
+        msg: "Please fill in all required information!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else if(this.state.imageURL === "") {
-      alert("Please select a photo for your family!");
+      this.setState({
+        show: true,
+        msg: "Please select a photo for your family!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else if(this.state.cropResult === "") {
-      alert("Please crop your family photo to the desired dimension!");
+      this.setState({
+        show: true,
+        msg: "Please crop your family photo to the desired dimension!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else {
       localStorage.setItem('family_name', family_name);
       localStorage.setItem('pin', pin);
       localStorage.setItem('firstTime', false);
       localStorage.setItem('familyPhoto', this.state.cropResult);
-      alert("Your Family Group is Created! Enjoy!!");
-      window.location="#/";
+      this.setState({
+        show: true,
+        msg: "Your Family Group is Created! Enjoy!!",
+        type: "success"
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
+      setTimeout(() => {window.location = "#/"}, 2000);
     }
   }
 
@@ -85,6 +109,17 @@ class CreateFamily extends Component {
     e.preventDefault();
   }
 
+  openAlert() {
+    return <AlertBox
+              alertMsg={this.state.msg}
+              close={this.closeAlert}
+              type={this.state.type} />;
+  }
+
+  closeAlert() {
+    this.setState({show: false});
+  }
+
   render() {
     return (
       <div style={background}>
@@ -93,6 +128,7 @@ class CreateFamily extends Component {
             <div className="header">
               <h2>Create Your Family Account</h2>
             </div>
+            {this.state.show && this.openAlert()}
             <form>
               <div className="input-group" onKeyPress={this.keyEvent}>
                 <label>Family Name*</label>

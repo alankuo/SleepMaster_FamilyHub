@@ -4,6 +4,7 @@ import NavBar from './NavBar.js';
 import UploadImage from'./UploadImage';
 import Footer from './Footer';
 import AlertBox from "./AlertBox.js";
+import Database from '../util/Database';
 
 class CreateEvents extends Component {
   constructor() {
@@ -12,6 +13,8 @@ class CreateEvents extends Component {
     this.state = {
       routeAddress: "/",
       imageURL: "",
+      cards: [
+      ],
       show: false,
       msg: "",
       type: "",
@@ -22,6 +25,8 @@ class CreateEvents extends Component {
     this.keyEvent = this.keyEvent.bind(this);
     this.setImageURL = this.setImageURL.bind(this);
     this.storeEvent = this.storeEvent.bind(this);
+    this.addToFav = this.addToFav.bind(this);
+    this.addToExplore = this.addToExplore.bind(this);
     this.openAlert = this.openAlert.bind(this);
     this.closeAlert = this.closeAlert.bind(this);
   }
@@ -43,18 +48,13 @@ class CreateEvents extends Component {
     }
 
 
-    if(eventName === ""){
+    if(eventName === ""){      
       this.setState({
         show: true,
-        msg: "The event has been successfully created and added to explore page!",
-        type: "success_info"
+        msg: "Please fill in the event name!",
+        type: ""
       });
-      // this.setState({
-      //   show: true,
-      //   msg: "Please fill in the event name!",
-      //   type: ""
-      // });
-      // setTimeout((this.closeAlert), 2000);
+      setTimeout((this.closeAlert), 2000);
     }
     else if(numOfMembers === ""){
       this.setState({
@@ -95,8 +95,10 @@ class CreateEvents extends Component {
         msg: "The event has been successfully created and added to explore page!",
         type: "success_info"
       });
-      this.storeEvent(eventName, numOfMembers, categoryText, equipment, time, description);
+      // this.storeEvent(eventName, numOfMembers, categoryText, equipment, time, description);
       // window.location = "#/";
+      let eventInfo = this.storeEvent(eventName, numOfMembers, categoryText, equipment, time, description);
+      this.addToExplore(eventInfo);
     }
   }
 
@@ -104,7 +106,8 @@ class CreateEvents extends Component {
     return <AlertBox
               alertMsg={this.state.msg}
               close={this.closeAlert}
-              type={this.state.type} />;
+              type={this.state.type}
+              fav={this.addToFav} />;
   }
 
   closeAlert() {
@@ -122,13 +125,13 @@ class CreateEvents extends Component {
   }
 
   storeEvent(eventName, numOfMembers, categoryText, equipment, time, description) {
-    let activityArray = localStorage["activities"];
-    if(activityArray === undefined) {
-      activityArray = [];
-    }
-    else {
-      activityArray = JSON.parse(activityArray);
-    }
+    // let activityArray = localStorage["activities"];
+    // if(activityArray === undefined) {
+    //   activityArray = [];
+    // }
+    // else {
+    //   activityArray = JSON.parse(activityArray);
+    // }
     let eventObj = {
       "name": eventName,
       "num": [0,numOfMembers],
@@ -138,8 +141,31 @@ class CreateEvents extends Component {
       "img":this.state.imageURL,
       "description":description
     };
+    return eventObj;
+    // activityArray.push(eventObj);
+    // localStorage.setItem('activities', JSON.stringify(activityArray));
+  }
+
+  addToExplore(eventObj) {
+    let activityArray = localStorage["activities"];
+    if(activityArray === undefined) {
+      activityArray = [];
+    }
+    else {
+      activityArray = JSON.parse(activityArray);
+    }
     activityArray.push(eventObj);
     localStorage.setItem('activities', JSON.stringify(activityArray));
+    this.setState({
+      cards: JSON.stringify(activityArray),
+    });
+  }
+
+  addToFav() {
+    // console.log("ggg");
+    // console.log(this.state.cards);
+    // Database.setLike(this.state.cards[0]);
+    // Database.setVisited();
   }
 
   render() {

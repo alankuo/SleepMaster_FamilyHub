@@ -11,9 +11,9 @@ class AlertBox extends Component {
           <p className="alert_msg">{this.props.alertMsg}</p>
           <p style={{textAlign:"center", color:"#4C5356", fontWeight:"bold", fontSize:"20px"}}>What do you want to do next?</p>
           <br/>
-          <Link to="/favorite-event" className="next-step">Add the event to favorite page</Link>
-          <Link to="/create-event" className="next-step" onClick={this.props.close}>Create another event</Link>
-          <Link to="/" className="next-step">Go back to home page</Link>
+          {/**<Link to="/favorite-event" className="next-step">Add the event to favorite page</Link>**/}
+          <Link to="/" className="next-step" style={{float: "left"}}>Go back to home page</Link>
+          <Link to="/create-event" className="next-step" onClick={this.props.close} style={{float: "right"}}>Create another event</Link>
       </div>
     );}
     return(

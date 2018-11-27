@@ -3,6 +3,7 @@ import '../css/App.css';
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import bg from '../img/background35.jpg';
+import AlertBox from "./AlertBox.js";
 
 const background = {
   background: `url(${bg}) no-repeat center center fixed`,
@@ -20,6 +21,8 @@ class CreateFamily extends Component {
     // Bind all functions so they can refer to "this" correctly
     this.validateJoin = this.validateJoin.bind(this);
     this.keyEvent = this.keyEvent.bind (this);
+    this.openAlert = this.openAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
   }
 
   validateJoin(e){
@@ -27,11 +30,22 @@ class CreateFamily extends Component {
     const pin = document.getElementById("pin").value;
     if ((family_name === localStorage['family_name'] && pin === localStorage['pin'])){
       localStorage.setItem('firstTime', false);
-      alert("Welcome to the Family!");
-      window.location="#/";
+      this.setState({
+        show: true,
+        msg: "Welcome to the Family!",
+        type: "success"
+      });
+      setTimeout((this.closeAlert),1500);
+      // alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
+      setTimeout(() => {window.location = "#/"}, 1500);
     }
     else{
-      alert("Family Name and PIN do not match!");
+      this.setState({
+        show: true,
+        msg: "Family Name and PIN do not match!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
   }
 
@@ -39,6 +53,17 @@ class CreateFamily extends Component {
     if (e.key === 'Enter') {
       this.validateJoin();
     }
+  }
+
+  openAlert() {
+    return <AlertBox
+              alertMsg={this.state.msg}
+              close={this.closeAlert}
+              type={this.state.type} />;
+  }
+
+  closeAlert() {
+    this.setState({show: false});
   }
 
   render() {
@@ -50,6 +75,7 @@ class CreateFamily extends Component {
             <div className="header">
               <h2>Enter Family Account Info</h2>
             </div>
+            {this.state.show && this.openAlert()}
             <form id="form_id" method="post" name="myform">
               <div className="input-group">
                 <label>Family Name*</label>
