@@ -12,7 +12,7 @@
     {"name":"Party", "num":[40,50], "category":"others", "equipment":["N/A"], "time-length":[20,40], "img":"assets/img/party.jpg", "description":"yo",
       "comments": [{"name": "Guo", "comment": "enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "I really Like it!"}]},
 
-    {"name":"San Diego Sea World", "num":[1,5], "category":"outdoor", "equipment":["none"], "time-length":[240, 300], "img":"assets/img/seaworld.jpg, "description":"Marine life shows, thrill rides, aquariums",
+    {"name":"San Diego Sea World", "num":[1,5], "category":"outdoor", "equipment":["none"], "time-length":[240, 300], "img":"assets/img/seaworld.jpg", "description":"Marine life shows, thrill rides, aquariums",
       "comments": [{"name": "Lan Wang", "comment": "Really enjoy it with my family!"},{"name": "Yuhan Wang", "comment": "Like it!"}]},
 
   ]
