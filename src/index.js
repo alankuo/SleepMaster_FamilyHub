@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import Database from './util/Database';
 require('./components/EventDetails/ably');
 
-Database.init(false);
+Database.init(true);
 
 ReactDOM.render(
   <HashRouter>
