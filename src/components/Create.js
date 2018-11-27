@@ -190,7 +190,7 @@ class Create extends Component {
               </div>
 
 
-              <form id="form_id" method="post" name="myform">
+              <form id="family-form" method="post" name="myform">
                 <div className="input-group" onKeyPress={this.keyEvent}>
                   <label>Family Name*</label>
                   <input type="text" name="family_name" id="family_name" />
