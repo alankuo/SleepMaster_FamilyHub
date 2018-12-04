@@ -153,3 +153,12 @@ form, .content {
             user-select: text; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+.family-header {
+  background: var(--theme-color);
+  border-radius: 5px 5px 0px 0px;
+}
+
+#family-form {
+  border: 1px solid #FFFFFF;
+}

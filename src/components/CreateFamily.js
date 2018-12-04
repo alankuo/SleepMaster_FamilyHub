@@ -136,7 +136,7 @@ class CreateFamily extends Component {
               </div>
 
               <div className="input-group" onKeyPress={this.keyEvent}>
-                <label>Family PIN*</label>
+                <label>Family Password*</label>
                 <input type="password" name="pin" id="pin" ></input>
               </div>
               <div className="input-group">
