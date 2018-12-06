@@ -7,7 +7,9 @@ import Cropper from 'react-cropper';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 // import CreateFamily from './CreateFamily'
 // import JoinFamily from './JoinFamily'
-import Footer from './Footer'
+import Footer from './Footer';
+import AlertBox from "./AlertBox.js";
+
 
 const background = {
   background: `url(${bg}) no-repeat center center fixed`,
@@ -35,6 +37,8 @@ class Create extends Component {
     this.cropImage = this.cropImage.bind(this);
     this.onChange = this.onChange.bind(this);
     this.validateJoin = this.validateJoin.bind(this);
+    this.openAlert = this.openAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
     // this.keyEvent = this.keyEvent.bind (this);
 
 
@@ -44,21 +48,42 @@ class Create extends Component {
     const family_name = document.getElementById("family_name").value;
     const pin = document.getElementById("pin").value;
     if (family_name === "" || pin === "") {
-      alert("Please fill in all required information!");
+      this.setState({
+        show: true,
+        msg: "Please fill in all required information!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else if(this.state.imageURL === "") {
-      alert("Please select a photo for your family!");
+      this.setState({
+        show: true,
+        msg: "Please select a photo for your family!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else if(this.state.cropResult === "") {
-      alert("Please crop your family photo to the desired dimension!");
+      this.setState({
+        show: true,
+        msg: "Please crop your family photo to the desired dimension!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else {
       localStorage.setItem('family_name', family_name);
       localStorage.setItem('pin', pin);
       localStorage.setItem('firstTime', false);
       localStorage.setItem('familyPhoto', this.state.cropResult);
-      alert("Your Family Group is Created! Enjoy!!");
-      window.location="#/";
+      this.setState({
+        show: true,
+        msg: "Your Family Group is Created! Enjoy!!",
+        type: "success"
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
+      setTimeout(() => {window.location = "#/"}, 2000);
     }
   }
 
@@ -98,11 +123,22 @@ class Create extends Component {
     const pin = document.getElementById("pin").value;
     if ((family_name === localStorage['family_name'] && pin === localStorage['pin'])){
       localStorage.setItem('firstTime', false);
-      alert("Welcome to the Family!");
-      window.location="#/";
+      this.setState({
+        show: true,
+        msg: "Welcome to the Family!",
+        type: "success"
+      });
+      setTimeout((this.closeAlert),1500);
+      // alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
+      setTimeout(() => {window.location = "#/"}, 1500);
     }
     else{
-      alert("Family Name and PIN do not match!");
+      this.setState({
+        show: true,
+        msg: "Family Name and PIN do not match!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
   }
 
@@ -129,6 +165,17 @@ class Create extends Component {
     this.setState({join: true});
   }
 
+  openAlert() {
+    return <AlertBox
+              alertMsg={this.state.msg}
+              close={this.closeAlert}
+              type={this.state.type} />;
+  }
+
+  closeAlert() {
+    this.setState({show: false});
+  }
+
 
   render() {
     const join = this.state.join;
@@ -150,8 +197,7 @@ class Create extends Component {
                   </NavItem>
                 </Nav>
               </div>
-
-
+              {this.state.show && this.openAlert()}
               <form id="family-form" method="post" name="myform">
                 <div className="input-group">
                   <label>Family Name*</label>
@@ -189,7 +235,7 @@ class Create extends Component {
                 </Nav>
               </div>
 
-
+              {this.state.show && this.openAlert()}
               <form id="family-form" method="post" name="myform">
                 <div className="input-group" onKeyPress={this.keyEvent}>
                   <label>Family Name*</label>

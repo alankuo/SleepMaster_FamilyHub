@@ -4,6 +4,7 @@ import '../css/cropper.css';
 import NavBar from './NavBar'
 import Footer from './Footer'
 import Cropper from 'react-cropper'
+import AlertBox from "./AlertBox.js";
 
 class Settings extends Component {
   constructor() {
@@ -20,6 +21,8 @@ class Settings extends Component {
     this.saveProfile = this.saveProfile.bind(this);
     this.cropImage = this.cropImage.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.openAlert = this.openAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +40,12 @@ class Settings extends Component {
   saveProfile(e){
     let email = document.getElementsByName("email")[0].value;
     if(!email.includes("@")||!email.includes(".com")){
-      alert("Please enter a valid email address!");
+      this.setState({
+        show: true,
+        msg: "Please enter a valid email address!",
+        type: "warning"
+      });
+      setTimeout((this.closeAlert), 2000);
     }
     else {
       if(this.state.cropResult !== "") {
@@ -46,8 +54,14 @@ class Settings extends Component {
       localStorage.setItem("username", document.getElementsByName("username")[0].value);
       localStorage.setItem("phone", document.getElementsByName("phone")[0].value);
       localStorage.setItem("email", email);
-      alert("Profile has been saved!");
-      window.location = "#/";
+      this.setState({
+        show: true,
+        msg: "Profile has been saved!",
+        type: "success"
+      });
+      setTimeout((this.closeAlert), 2000);
+      // alert ("The account for " + username + " has been successfully created! You can log in to FamilyHub Now!");
+      setTimeout(() => {window.location = "#/"}, 2000);
     }
   }
 
@@ -76,6 +90,17 @@ class Settings extends Component {
     e.preventDefault();
   }
 
+  openAlert() {
+    return <AlertBox
+              alertMsg={this.state.msg}
+              close={this.closeAlert}
+              type={this.state.type} />;
+  }
+
+  closeAlert() {
+    this.setState({show: false});
+  }
+
   render() {
     return (
       <div className="App">
@@ -85,6 +110,7 @@ class Settings extends Component {
             <div className="header">
               <h2>Edit Your Profile</h2>
             </div>
+            {this.state.show && this.openAlert()}
             <form>
               <div className="input-group">
                 <label>Username</label>
