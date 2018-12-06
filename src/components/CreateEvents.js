@@ -48,7 +48,7 @@ class CreateEvents extends Component {
     }
 
 
-    if(eventName === ""){      
+    if(eventName === ""){
       this.setState({
         show: true,
         msg: "Please fill in the event name!",
@@ -171,7 +171,7 @@ class CreateEvents extends Component {
   render() {
     document.title = 'Create an Event';
     return (
-      <div>
+      <div className="App">
         <NavBar/>
         <div className="container">
           <div className="settings-bar">
@@ -201,7 +201,7 @@ class CreateEvents extends Component {
               </div>
 
               <div className="input-group" onKeyPress={this.keyEvent}>
-                <label>Approximated Time (in minutes)</label>
+                <label>Approximated Time (in hours)</label>
                 <input type="number" name="time" min="0" id="time" placeholder=""></input>
               </div>
 

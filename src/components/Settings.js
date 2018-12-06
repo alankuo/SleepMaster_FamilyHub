@@ -78,7 +78,7 @@ class Settings extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <NavBar />
         <div className="container">
           <div className="settings-bar">

@@ -344,7 +344,7 @@ class Swipe extends Component {
     if (!inform) {
       informButton =<img className="swipe-card-info" src={infoIcon} alt={infoIcon} onClick={this.handleInformClick}/>;
       returnDiv =
-        <div className="swipe-root">
+        <div className="swipe-root App">
           {dislikeTutorial}
           <div ref={this.undoButton} style={{opacity: 0, display:'none'}}>
           <img src={backIcon} className="swipe-back"  onClick={this.undo} />

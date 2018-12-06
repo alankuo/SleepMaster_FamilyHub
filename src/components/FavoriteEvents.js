@@ -124,7 +124,7 @@ class FavoriteEvents extends Component {
     var otherActivities = this.state.dataRetrieved?this.state.otherActivities:[];
     const otherCards = this.mapArray(otherActivities);
     return (
-      <div>
+      <div className="App">
         <NavBar/>
         <div className="container" style={{marginTop:200+"px", marginBottom:40+"px"}}>
           <h1>Events Your Family All Liked</h1>

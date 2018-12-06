@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: linear-gradient(to bottom right, 	#FCF9E9, #FCEF90);
+  padding-top: 1px;
 }
 
 .App-logo {
@@ -68,6 +70,12 @@ footer{
 
 .navbar-default .navbar-nav>li>a {
   color: black !important;
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+    z-index: 1;
 }
 
 .background {
