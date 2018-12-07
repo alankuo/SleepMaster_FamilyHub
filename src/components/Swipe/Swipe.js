@@ -134,6 +134,8 @@ class Swipe extends Component {
     this.state.cards[prev].y = 0;
     this.state.cards[prev].rotate = 0;
 
+    this.stop = true;
+
     Database.undoVisited();
     Database.setUnlike(this.state.cards[prev].json())
     this.setState({...this.state, ...this.state, update: !this.state.update, current: prev})
@@ -228,15 +230,19 @@ class Swipe extends Component {
       this.hide = this.state.current;
       let start;
       const fade = (function(timestamp1) {
-        if (!start) start = timestamp;
+        if (!start) {
+          start = timestamp;
+          this.stop = false;
+        }
         const progress1 = timestamp1 - start;
         if(this.undoButton.current == null) {
           return ;
         }
 
-        if(progress1 >= 2500) {
+        if(progress1 >= 2500 || this.stop) {
           this.undoButton.current.style.opacity = '0';
           this.undoButton.current.style.display = 'none';
+          start = null;
         } else {
           this.undoButton.current.style.opacity = `${1 - (progress1 / 2500)}`;
           this.undoButton.current.style.display = 'block';

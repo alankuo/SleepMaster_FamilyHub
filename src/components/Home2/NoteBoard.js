@@ -27,6 +27,7 @@ class NoteBoard extends Component {
 
         this.NoteBoard = React.createRef();
         this.checked = React.createRef();
+        this.typeEnter = this.typeEnter.bind(this);
 
         this.doubleClickNoUseElement = this.doubleClickNoUseElement.bind(this);
         this.clickNoUseElement = this.clickNoUseElement.bind(this);
@@ -38,7 +39,7 @@ class NoteBoard extends Component {
 
         this.checkedAnimation = this.checkedAnimation.bind(this);
 
-        document.onkeyup = this.shortPath.bind(this);
+        // document.onkeyup = this.shortPath.bind(this);
     }
 
     /********** lifecycle *************/
@@ -105,7 +106,7 @@ class NoteBoard extends Component {
         return (function() {
 
             this.cloneState = {...this.state};
-
+            this.saveEdit();
             this.enterEdit(e);
 
             this.setState(this.cloneState);
@@ -139,17 +140,31 @@ class NoteBoard extends Component {
 
     }
 
-    shortPath(e) {
+    typeEnter(i) {
+        let that = this;
+        return function(e) {
+            that.cloneState = {...that.state};
+            let newLine = false;
+            let textarea = e.target;
+            let cursor;
+            if(e.ctrlKey && e.which == 13) {
+                console.log(e);
+                cursor = e.target.selectionStart;
+                newLine = true;
+                that.cloneState.edit.text = that.cloneState.edit.text.substring(0,cursor) + '\n' + that.cloneState.edit.text.substring(cursor)
+            } else if(e.which == 13) {
+                that.saveEdit();
+                e.preventDefault();
+            }
 
-        this.cloneState = {...this.state};
 
-        if(e.ctrlKey && e.which == 83) {
-            this.saveEdit();
-        } else if(e.ctrlKey && e.which == 13) {
-            this.createEdit();
+            that.setState(that.cloneState, () => {
+                if(newLine) {
+                    textarea.selectionStart = cursor + 1;
+                    textarea.selectionEnd = cursor + 1;
+                }
+            });
         }
-
-        this.setState(this.cloneState);
     }
 
 
@@ -179,7 +194,10 @@ class NoteBoard extends Component {
                 this.cloneState.bullets.shift();
 
             } else {
-                window.requestAnimationFrame(this.checkedAnimation)
+                if(this.start == null) {
+                    window.requestAnimationFrame(this.checkedAnimation)
+                }
+
             }
             this.cloneState.edit = null;
         }
@@ -198,6 +216,8 @@ class NoteBoard extends Component {
         Database.setNoteboard(this.cloneState.bullets);
     }
 
+
+
     /***********  delete **********/
     switchDeleteMode() {
         this.saveEdit();
@@ -215,14 +235,14 @@ class NoteBoard extends Component {
         }
 
         const progress = timestamp - this.start;
-        const point = 300;
+        const point = 800;
         if (progress < point) {
             this.checked.current.style.opacity = `${progress/point}`
         } else {
-            this.checked.current.style.opacity = `${(800 - progress) / point}`
+            this.checked.current.style.opacity = `${(1600 - progress) / point}`
         }
 
-        if(progress > 800) {
+        if(progress > 1600) {
             this.start = null;
             this.checked.current.style.opacity = '0';
         } else {
@@ -243,6 +263,7 @@ class NoteBoard extends Component {
                             className={(this.state.edit === e? "noteboard2-text" : "noteboard2-passage")}
                             readOnly={this.state.edit === e? null : "readOnly"}
                             autoFocus
+                            onKeyPress={this.typeEnter(i)}
                             onClick={this.clickNote(e,i)}
                             onInput={this.changeNote(e,i)}
                             value={this.state.bullets[i].text}
@@ -272,7 +293,7 @@ class NoteBoard extends Component {
 
                 {
                     this.state.bullets.length === 0 ?
-                    <h3 className="noteboard2-tutorial"> Double Click here Or <br/><br/> Press Ctrl + Enter<br/><br/>to start your new message <br/> </h3> : null
+                    <h3 className="noteboard2-tutorial"> Double Click here to <br/><br/> start new message <br/> </h3> : null
                 }
                 </ul>
 

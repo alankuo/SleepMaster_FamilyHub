@@ -53,20 +53,22 @@
                     margin-bottom: 5px;
                     text-align: left;
                     font-size: 1.2vw;
+                    display: inline-block;
+                    line-height: 3vh;
                 }
 
                     .noteboard2-button-icon {
                         float: right;
                         margin-right: 20px;
                         background-color: transparent;
-                        height: 2vh;
-                        width: 2vh;
-                        border-radius: 1vh;
-                        font-size: auto;
+                        height: 3vh;
+                        width: 3vh;
+                        border-radius: 1.5vh;
                         overflow: hidden;
                         font-weight: normal;
                         text-align: center;
-                        font-size: 1vh;
+                        font-size: 2.5vh;
+                        line-height: 1vh;
                         padding: 0;
                         outline:0;
                     }
@@ -86,7 +88,7 @@
                     display: block;
                     box-sizing: border-box;
                     padding: 10px;
-                    color: #bbbbbb;
+                    color: #777777;
                     margin-top: 50px;
                 }
 
@@ -112,7 +114,7 @@
                         transform: translateX(0px);
                     }
                         .noteboard2-text {
-                            color: rgb(29, 76, 119);
+                            color: rgb(24, 123, 209);
                             width: 100%;
                             overflow: visible;
                             margin-top: -20px;
@@ -122,7 +124,7 @@
                             padding: 10px;
                             border-radius: 10px;
                             box-shadow: 0 0px 0px 0px rgba(0,0,0,0.2);
-                            border: 1px solid rgb(168, 206, 241);
+                            border: 1px solid rgb(29, 142, 238);
                             outline: 0;
                             font-size: 0.8vw;
                             transition: border ease-in-out 0.2s, box-shadow ease-in-out 0.1s, transform ease-in-out 0.15s;
@@ -228,7 +230,7 @@
             }
 
             .home2-photo:hover {
-                cursor: pointer;
+                /* cursor: pointer; */
                 /* transform: scale(1.05); */
             }
                 .home2-photo-img {
